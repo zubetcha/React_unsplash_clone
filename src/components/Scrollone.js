@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     position:"relative",
     flexGrow: 0.6,
-    width: '90%',
+    width: '95%',
   },
 }));
 
@@ -67,21 +67,7 @@ export default function ScrollableTabsButtonAuto() {
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
         >
-          <Tab label="Holidays" {...a11yProps(0)} />
-          <Tab label="Blockchain" {...a11yProps(1)} />
-          <Tab label="Wallpapaers" {...a11yProps(2)} />
-          <Tab label="3D Renders" {...a11yProps(3)} />
-          <Tab label="Textures & Patterns" {...a11yProps(4)} />
-          <Tab label="Architecture" {...a11yProps(5)} />
-          <Tab label="Experimental" {...a11yProps(6)} />
-          <Tab label="Nature" {...a11yProps(7)} />
-          <Tab label="Business & Work" {...a11yProps(8)} />
-          <Tab label="Fashion" {...a11yProps(9)} />
-          <Tab label="Food & Drink" {...a11yProps(10)} />
-          <Tab label="Health & Wellness" {...a11yProps(11)} />
-          <Tab label="Current Events" {...a11yProps(12)} />
-          <Tab label="People" {...a11yProps(13)} />
-          <Tab label="Interiors" {...a11yProps(14)} />
+          <Tab label="Editorial" {...a11yProps(0)} />
         </Tabs>
       
     </div>

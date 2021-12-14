@@ -1,41 +1,47 @@
 import React from "react";
 import styled from "styled-components";
+import Card from "./Card";
+import { Image } from "../elements";
 
 const Masonry = (props) => {
-    const {columnCount, padding} = props;
-    const styles ={
-        columns:columnCount, padding:padding
-    }
-    const imageUrls = [
-        "https://picsum.photos/200/300?image=279",
-        "https://picsum.photos/200/600?image=117",
-        "https://picsum.photos/300/300?image=999",
-        "https://picsum.photos/200/200?image=1000",
-        "https://picsum.photos/200/240?image=1011",
-        "https://picsum.photos/200/370?image=1022",
-        "https://picsum.photos/200/370?image=1022",
-        "https://picsum.photos/200/370?image=1022",
-        "https://picsum.photos/200/370?image=1022",
-        "https://picsum.photos/200/370?image=1022",
-        
-    ]
     
     return (
-        <Mason {...styles}>
-            {imageUrls.map((img,i) =>
-            <img src={img} key={i} padding="2px"></img>
-            )}
+        <div style={styles.card_container}>
+            <Card src="https://picsum.photos/200/300?image=279" size="small"></Card>
+            <Card src="https://picsum.photos/400/400?image=400" size="medium"></Card>
+            <Card src="https://picsum.photos/600/400?image=501" size="large"></Card>
+            <Card src="https://picsum.photos/200/200?image=998" size="large"></Card>
+            <Card src="https://picsum.photos/500/400?image=287" size="medium"></Card>
+            <Card src="https://picsum.photos/400/600?image=957" size="small"></Card>
+            <Card src="https://picsum.photos/200/300?image=916" size="small"></Card>
+            <Card src="https://picsum.photos/200/300?image=279" size="medium"></Card>
+            <Card src="https://picsum.photos/400/400?image=400" size="large"></Card>
+            <Card src="https://picsum.photos/600/400?image=501" size="small"></Card>
+            <Card src="https://picsum.photos/200/200?image=998" size="medium"></Card>
+            <Card src="https://picsum.photos/500/400?image=287" size="large"></Card>
+            <Card src="https://picsum.photos/400/600?image=957" size="small"></Card>
+            <Card src="https://picsum.photos/200/300?image=916" size="medium"></Card>
             
-        </Mason>
+        </div>
     );
-};
-Masonry.defaultProps = {
-    columns: false,
-    padding: false,
+
 };
 
-const Mason = styled.div`
-    columns: ${(props) => props.columnCount};
-    padding: ${(props) => props.padding};
-`;
+const styles = {
+    card_container: {
+    margin: "30px 0px 0px 0px",
+    padding: 0,
+    width: '80vw',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, 400px)',
+    gridAutoRows: '10px',
+    position: 'absolute',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+
+    }
+   };
+
 export default Masonry;
