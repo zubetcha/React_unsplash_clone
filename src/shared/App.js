@@ -17,7 +17,7 @@ function App() {
     <Route path="/Edit" exact component={Edit} />
     <Route path="/Upload" exact component={Upload} />
     </>
-  );
+  )
 }
 
-export default App;
+export default App

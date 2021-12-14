@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 const Grid = (props) => {
+
 
     const {position, children, flex, align, width, padding, margin, _onClick, bg, height} =props;
     const styles = {
@@ -46,7 +47,6 @@ const GridBox = styled.div`
     display:${(props)=> props.flex ? `${props.flex}`: ""};
     text-align:${(props) => props.align};
     background:${(props) => props.bg};
-
 `
 
-export default Grid;
+export default Grid

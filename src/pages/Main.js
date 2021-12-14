@@ -8,6 +8,8 @@ import Masonry from "../components/Masonry";
 
 
 const Main = (props) => {
+  return <>메인이다!</>
+}
 
     return (
         <>
