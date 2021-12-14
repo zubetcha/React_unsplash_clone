@@ -2,11 +2,25 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Image = (props) => {
-  const { shape, src } = props
 
-  const styles = {
-    src: src,
-  }
+    const {shape, src, size} = props;
+
+    const styles = {
+        src: src,
+        size: size,
+    }
+
+    if(shape === "circle"){
+        return (
+            <ImageCircle {...styles}></ImageCircle>
+        );
+    };
+    
+    if(shape === "small"){
+        return (
+            <ImageSmall {...styles}></ImageSmall>
+        );
+    };
 
   if (shape === 'small') {
     return <ImageSmall {...styles}></ImageSmall>
@@ -57,18 +71,34 @@ const ImageBig = styled.div`
 `
 
 const ImageFull = styled.div`
-  width: 100%;
-  height: 480px;
-  background-image: url('${(props) => props.src}');
-  background-size: cover;
-  background-position: center;
+
+    width: 100%;
+    height:530px; 
+    background-image: url("${(props) => props.src}");
+    background-size: cover;
+    background-position:center;
+    background-color:rgba(0, 0, 0, 0.5);
+    background-blend-mode:multiply;
 `
 const ImageLogo = styled.div`
-  width: 60px;
-  height: 60px;
-  background-image: url('${(props) => props.src}');
-  background-size: cover;
-  margin: 10px 0;
+    width: 50px;
+    height: 50px;
+    background-image: url("${(props) => props.src}");
+    background-size: cover;
+    margin:10px 0; 
 `
 
-export default Image
+const ImageCircle = styled.div`
+    --size: ${(props) => props.size};
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--size);
+
+    background-image: url("${(props) => props.src}");
+    background-size: cover;
+    margin: 4px;
+`;
+
+
+
+export default Image;
