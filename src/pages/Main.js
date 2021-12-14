@@ -1,12 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const Main = (props) => {
+  return <>메인이다!</>
+}
 
-    return (
-        <>
-        메인이다!
-        </>
-    );
-};
-
-export default Main;
+export default Main
