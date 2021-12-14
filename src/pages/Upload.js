@@ -12,25 +12,31 @@ const Upload = (props) => {
             </div>
             <div className="upload-modal-container">
               <UploadHeader>
-                <div className="header-title">
-                  <h4>Submit to Unsplash</h4>
+                <div>
+                  <h4 className="header-title">Submit to Unsplash</h4>
                 </div>
-                <div className="header-info">
-                  <a>Need help?</a>
+                <div>
+                  <a className="header-info" href>
+                    Need help?
+                  </a>
                 </div>
               </UploadHeader>
-              <div className="choose-images">
-                <div>
-                  <button>
-                    <div>
-                      <div>
-                        <img></img>
+              <UploadBody>
+                <div className="input-area">
+                  <button className="input-btn">
+                    <div className="drop-area">
+                      <div className="img-area">
+                        <img src="https://unsplash.com/a/img/uploader/dropbox-empty-illustration/2x.png"></img>
+                      </div>
+                      <div className="text-area">
+                        Drag and drop up to 1 images <br />
+                        or <span className="highlight-browse">Browse</span> to choose a file
                       </div>
                     </div>
                   </button>
                   <div></div>
                 </div>
-              </div>
+              </UploadBody>
               <div className="upload-modal-footer"></div>
             </div>
           </div>
@@ -94,11 +100,96 @@ const UploadHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 48px;
+  min-height: 30px;
   padding: 8px 16px 10px;
-  background-color: #888;
+  background-color: #fff;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+
+  .header-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+    margin: 0;
+  }
+
+  .header-info {
+    font-size: 14px;
+    color: #767676;
+    text-decoration: underline;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+
+    transition: color 0.1s ease-in-out;
+
+    &:hover {
+      color: #111;
+    }
+  }
+`
+
+const UploadBody = styled.div`
+  background-color: #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0 16px 16px;
+
+  .input-area {
+    box-sizing: border-box;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 2px;
+    border: 2px dashed #d1d1d1;
+    background-color: #fff;
+
+    .input-btn {
+      outline: none;
+      border: none;
+      background-color: #fff;
+      width: 420px;
+      padding: 0;
+      cursor: pointer;
+
+      &:hover .highlight-browse {
+        color: #086be3;
+      }
+
+      .drop-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .img-area {
+          width: 130px;
+          margin-bottom: 16px;
+          position: relative;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .text-area {
+          font-size: 28px;
+          font-weight: 700;
+          color: #111;
+          max-width: 420px;
+          line-height: 1.2;
+
+          .highlight-browse {
+            color: #007fff;
+
+            &:hover {
+              color: #086be3;
+            }
+          }
+        }
+      }
+    }
+  }
 `
 
 export default Upload
