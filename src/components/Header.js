@@ -3,11 +3,13 @@ import {Grid ,Text, Button, Image, Input} from "../elements";
 import SearchIcon from '@material-ui/icons/Search';
 import CenterFocusWeakIcon from '@material-ui/icons/CenterFocusWeak';
 import Scroll from "../components/Scroll"
+import Scrollone from "../components/Scrollone"
+import styled from "styled-components";
 
 const Header = (props) => {
 
     return (
-        <>
+    <Head>
         <Grid height="62px" flex="flex; justify-content:space-around;align-items:center">
             <Grid width="50px">
                 <Image shape="logo" src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/tbvbvipimh2camf5nb2q"></Image>
@@ -27,29 +29,20 @@ const Header = (props) => {
                 <Text>Login</Text>
             </Grid>
             <Button text="Submit a photo" width="130px" bg="#fff" color="black" border="1px solid black" height="32px"></Button>
-            
             <Image shape="circle" size="40px" src="https://image.shutterstock.com/image-vector/default-avatar-profile-trendy-style-260nw-1759726295.jpg"></Image> 
         </Grid>
-        <Grid padding="0px 0px 0px 10px" height="55px" flex="flex; align-items:center; justify-content:space-around">
-            <Text>Editorial</Text>
+        <Grid height="55px" flex="flex; align-items:center; justify-content:space-around">
+            <Scrollone/>
+            <Grid width="1px" bg="#d1d1d1" height="32px"/>
             <Scroll/>
-            {/* <Text>Holidays</Text>
-            <Text>Blockchain</Text>
-            <Text>Wallpapaers</Text>
-            <Text>3D Renders</Text>
-            <Text>Textures & Patterns</Text>
-            <Text>Architecture</Text>
-            <Text>Experimental</Text>
-            <Text>Nature</Text>
-            <Text>Business & Work</Text>
-            <Text>Fashion</Text>
-            <Text>Food & Drink</Text>
-            <Text>Health & Wellness</Text>
-            <Text>Current Events</Text> */}
         </Grid>
-
-        </>
+    </Head>
     );
 };
 
+const Head = styled.div`
+    /* position: fixed;
+    top: 0; */
+    
+`;
 export default Header;
