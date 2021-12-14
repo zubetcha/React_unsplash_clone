@@ -38,7 +38,7 @@ const Button = (props) => {
 
   return (
     <>
-      <button {...styles}>{text}</button>
+      <Btn {...styles}>{text}</Btn>
     </>
   )
 }
@@ -105,5 +105,16 @@ const UserBtn = styled.button`
   user-select: none;
   -webkit-transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out, color 0.1s ease-in-out;
   transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out, color 0.1s ease-in-out;
+`
+const Btn = styled.button`
+  box-sizing: ${(props) => props.boxSizing};
+  text-align: ${(props) => props.textAlign};
+  border-radius: ${(props) => props.borderRadius};
+  border: ${(props) => props.border};
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  background-color: ${(props) => props.bg};
+  color: ${(props) => props.color};
+  cursor: ${(props) => props.cursor};
 `
 export default Button
