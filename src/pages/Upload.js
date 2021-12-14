@@ -1,14 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
 
+// react-icons
+import { MdClose } from 'react-icons/md'
+
 const Upload = (props) => {
+  const { completed } = props
+
+  if (completed) {
+    return <div></div>
+  }
+
   return (
     <>
       <UploadModalBody>
         <div className="upload-modal-overlay">
           <div className="upload-modal-content">
             <div>
-              <button>X</button>
+              <button className="close-modal-btn" onClick>
+                <MdClose className="close-modal-icon" />
+              </button>
             </div>
             <div className="upload-modal-container">
               <UploadHeader>
@@ -34,10 +45,52 @@ const Upload = (props) => {
                       </div>
                     </div>
                   </button>
-                  <div></div>
+                  {/* 파일 여러개 업로드 multiple */}
+                  <input className="input-file" type="file" accept="image/jpeg, image/jpg" data-test="uploader-input"></input>
+                  <div className="file-info-area">
+                    <div className="input-file-info">
+                      <ul className="info-list">
+                        <li className="info-list-item">
+                          <span className="bold">High quality photos</span> (at least <span className="bold">5MP</span>)
+                        </li>
+                        <li className="info-list-item">
+                          Photos are <span className="bold">clear & original</span>
+                        </li>
+                      </ul>
+                      <ul className="info-list">
+                        <li className="info-list-item">
+                          Only upload photos you <span className="bold">own the rights to</span>
+                        </li>
+                        <li className="info-list-item">Zero tolerance for nudity, violence or hate</li>
+                      </ul>
+                      <ul className="info-list">
+                        <li className="info-list-item">Respect the intellectual property of others</li>
+                        <li className="info-list-item">
+                          Read the{' '}
+                          <span>
+                            <a className="link" href>
+                              Unsplash Terms
+                            </a>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </UploadBody>
-              <div className="upload-modal-footer"></div>
+              <UploadFooter>
+                <div>
+                  <a href className="unsplash-license">
+                    Read the Unsplash License
+                  </a>
+                </div>
+                <div className="footer-btn">
+                  <button className="cancel-btn">Cancel</button>
+                  <button className="submit-btn" disabled={() => {}}>
+                    Submit to Unsplash
+                  </button>
+                </div>
+              </UploadFooter>
             </div>
           </div>
         </div>
@@ -78,13 +131,30 @@ const UploadModalBody = styled.div`
       height: 100%;
       display: flex;
 
+      .close-modal-btn {
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 8px 0 0 8px;
+        padding: 0;
+        outline: none;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+
+        .close-modal-icon {
+          font-size: 24px;
+          color: #fff;
+        }
+      }
+
       .upload-modal-container {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         position: fixed;
         height: 100%;
-        max-height: 1000px;
+        max-height: 1100px;
         max-width: 1400px;
         width: 100%;
         background-color: #fff;
@@ -129,11 +199,11 @@ const UploadHeader = styled.div`
 `
 
 const UploadBody = styled.div`
-  background-color: #e8e8e8;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   padding: 0 16px 16px;
+  height: 100%;
 
   .input-area {
     box-sizing: border-box;
@@ -143,7 +213,13 @@ const UploadBody = styled.div`
     align-items: center;
     border-radius: 2px;
     border: 2px dashed #d1d1d1;
-    background-color: #fff;
+    height: 100%;
+
+    .input-file {
+      display: none;
+      padding: initial;
+      border: initial;
+    }
 
     .input-btn {
       outline: none;
@@ -152,9 +228,13 @@ const UploadBody = styled.div`
       width: 420px;
       padding: 0;
       cursor: pointer;
+      transition: color 0.1s ease-in-out;
+      margin-top: auto;
 
-      &:hover .highlight-browse {
-        color: #086be3;
+      &:hover > .highlight-browse {
+        ::after {
+          color: #086be3;
+        }
       }
 
       .drop-area {
@@ -181,12 +261,97 @@ const UploadBody = styled.div`
 
           .highlight-browse {
             color: #007fff;
+            transition: color 0.1s ease-in-out;
 
             &:hover {
               color: #086be3;
             }
           }
         }
+      }
+    }
+
+    .file-info-area {
+      margin-top: auto;
+      .input-file-info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .info-list {
+          margin: 8px 16px;
+          padding-left: 8px;
+          .info-list-item {
+            font-size: 13px;
+            color: #767676;
+
+            .bold {
+              font-weight: bolder;
+            }
+
+            .link {
+              text-decoration: underline;
+              cursor: pointer;
+              transition: color 0.1s ease-in-out;
+
+              &:hover {
+                color: #111;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+const UploadFooter = styled.div`
+  height: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-top: 1px solid #d1d1d1;
+
+  .unsplash-license {
+    font-size: 12px;
+    text-decoration: none;
+    color: #767676;
+    cursor: pointer;
+    transition: color 0.1s ease-in-out;
+
+    &:hover {
+      color: #111;
+    }
+  }
+
+  .footer-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    .cancel-btn,
+    .submit-btn {
+      box-sizing: border-box;
+      background-color: #fff;
+      border: 0.5px solid #d1d1d1;
+      padding: 0 9px;
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 4px;
+      height: 32px;
+      line-height: 30px;
+      color: #767676;
+      cursor: pointer;
+      transition: all 0.1s ease-in-out;
+
+      &:hover {
+        color: #111;
+        border: 0.5px solid #111;
       }
     }
   }
