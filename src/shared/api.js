@@ -22,17 +22,19 @@ api.interceptors.request.use((config) => {
 // ******** Export api ******** //
 
 export const apis = {
-  // **** post **** //
-  addPost: (contents) => api.post('/api/posts', contents),
-  editPost: (postId, newPost) => api.put(`/api/posts/${postId}`, newPost),
-  deletePost: (postId) => api.delete(`/api/posts/${postId}`),
-  // get posts에서 한 postId의 comment 데이터까지 한 번에 가져오도록 수정할 건지 백 확인 필요
-  posts: () => api.get('/api/posts'),
+  // **** board **** //
+  // post info: nickname, multiPartFile, location, tagname, description, size
+  addPost: (post) => api.post('/api/board', post),
+  // newPost info: location, tagname, description
+  editPost: (boardId, newPost) => api.put(`/api/board/edit/${boardId}`, newPost),
+  deletePost: (boardId) => api.delete(`/api/board/detail/${boardId}`),
+  allPosts: () => api.get('/api/main'),
+  onePost: (boardId) => api.get(`/api/board/detail/${boardId}`),
 
   // **** user **** //
-  login: (email, password) => api.post('/api/auth/login', { email: email.email, password: email.password }),
-  register: (email, nickname, password, passwordCheck) => api.post('/api/auth/register', { email: email, nickname: nickname, password: password, passwordCheck: passwordCheck }),
-  users: () => api.get('/api/auth'),
+  join: (email, password, name, nickname) => api.post('/user/join', { username: email, password: password, name: name, nickname: nickname }),
+  login: (email, password) => api.post('/user/login', { username: email, password: password }),
 
   // **** tag **** //
+  tagPosts: (tagId) => api.get(`/api/tag/${tagId}`),
 }
