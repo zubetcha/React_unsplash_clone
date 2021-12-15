@@ -9,6 +9,86 @@ import { Grid, Text } from '../elements'
 import { BsFacebook } from 'react-icons/bs'
 
 const Join = (props) => {
+  const dispatch = useDispatch()
+
+  // **** Check fullname, email, nickname, password **** //
+  const [fullname, setFullname] = useState('')
+  const [email, setEmail] = useState('')
+  const [nickname, setNickname] = useState('')
+  const [password, setPassword] = useState('')
+
+  // **** Validation msg **** //
+  const [fullnameMsg, setFullnameMsg] = useState('')
+  const [emailMsg, setEmailMsg] = useState('')
+  const [nicknameMsg, setNicknameMsg] = useState('')
+  const [passwordMsg, setPasswordMsg] = useState('')
+
+  // **** Validation **** //
+  const [isFullname, setIsFullname] = useState(false)
+  const [isEmail, setIsEmail] = useState(false)
+  const [isNickname, setIsNickname] = useState(false)
+  const [isPassword, setIsPassword] = useState(false)
+
+  // **** Full name **** //
+  const onChangeFullname = (e) => {
+    const fullnameRegex = /$/
+    const currentFullname = e.target.value
+    setFullname(currentFullname)
+
+    if (!fullnameRegex.test(currentFullname)) {
+      setFullnameMsg('이름 형식 확인')
+      setIsFullname(false)
+    } else {
+      setFullnameMsg('올바른 이름 형식')
+      setIsFullname(true)
+    }
+  }
+
+  // **** Email **** //
+  const onChangeEmail = (e) => {
+    const emailRegex = /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+    const currentEmail = e.target.value
+    setEmail(currentEmail)
+
+    if (!emailRegex.test(currentEmail)) {
+      setEmailMsg('이메일 형식 확인')
+      setIsEmail(false)
+    } else {
+      setEmailMsg('올바른 이메일 형식')
+      setIsEmail(true)
+    }
+  }
+
+  // **** Nickname **** //
+  const onChangeNickname = (e) => {
+    const nicknameRegex = /^[a-zA-Z0-9_]{3,16}$/
+    const currentNickname = e.target.value
+    setNickname(currentNickname)
+
+    if (!nicknameRegex.test(currentNickname)) {
+      setNicknameMsg('닉네임 형식 확인')
+      setIsNickname(false)
+    } else {
+      setNicknameMsg('올바른 닉네임 형식')
+      setIsNickname(true)
+    }
+  }
+
+  // **** Password **** //
+  const onChangePassword = (e) => {
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,25}$/
+    const currentPassword = e.target.value
+    setPassword(currentPassword)
+
+    if (!passwordRegex.test(currentPassword)) {
+      setPasswordMsg('숫자+영문자+특수문자 조합 6자리 이상')
+      setIsPassword(false)
+    } else {
+      setPasswordMsg('안전한 비밀번호')
+      setIsPassword(true)
+    }
+  }
+
   return (
     <>
       <Container>
@@ -51,11 +131,11 @@ const Join = (props) => {
             <Grid height="auto">
               <FormGroup>
                 <label className="form-label">Full name</label>
-                <input className="form-input" onChange></input>
+                <input className="form-input" onChange={onChangeFullname}></input>
               </FormGroup>
               <FormGroup>
                 <label className="form-label">Email address</label>
-                <input className="form-input" onChange></input>
+                <input className="form-input" onChange={onChangeEmail}></input>
               </FormGroup>
               <FormGroup>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left' }}>
@@ -64,7 +144,7 @@ const Join = (props) => {
                     <Condition>&nbsp;(only letters, numbers, and underscores)</Condition>
                   </span>
                 </div>
-                <input className="form-input" onChange></input>
+                <input className="form-input" onChange={onChangeNickname}></input>
               </FormGroup>
               <FormGroup>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left' }}>
@@ -73,7 +153,7 @@ const Join = (props) => {
                     <Condition>&nbsp;(min. 6 char)</Condition>
                   </span>
                 </div>
-                <input className="form-input" type="password" onChange></input>
+                <input className="form-input" type="password" onChange={onChangePassword}></input>
               </FormGroup>
             </Grid>
             <Grid height="auto" margin="0 0 24px 0">
