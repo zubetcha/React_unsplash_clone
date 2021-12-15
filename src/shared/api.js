@@ -3,7 +3,7 @@ import axios from 'axios'
 // ******** Axios 인스턴스 생성 ******** //
 
 const api = axios.create({
-  baseURL: 'http://13.124.48.149/',
+  baseURL: 'http://3.37.86.143/',
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
     'Content-type': 'application/json; charset=UTF-8',
@@ -32,7 +32,7 @@ export const apis = {
   onePost: (boardId) => api.get(`/api/board/detail/${boardId}`),
 
   // **** user **** //
-  join: (email, password, name, nickname) => api.post('/user/join', { username: email, password: password, name: name, nickname: nickname }),
+  join: (email, password, fullname, nickname) => api.post('/user/join', { username: email, password: password, name: fullname, nickname: nickname }),
   login: (email, password) => api.post('/user/login', { username: email, password: password }),
 
   // **** tag **** //

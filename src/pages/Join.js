@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
+import { actionCreators as userActions } from '../redux/modules/user'
 
-// elements
+// elements & components
 import { Grid, Text } from '../elements'
 
 // React-icons
@@ -17,12 +18,6 @@ const Join = (props) => {
   const [nickname, setNickname] = useState('')
   const [password, setPassword] = useState('')
 
-  // **** Validation msg **** //
-  const [fullnameMsg, setFullnameMsg] = useState('')
-  const [emailMsg, setEmailMsg] = useState('')
-  const [nicknameMsg, setNicknameMsg] = useState('')
-  const [passwordMsg, setPasswordMsg] = useState('')
-
   // **** Validation **** //
   const [isFullname, setIsFullname] = useState(false)
   const [isEmail, setIsEmail] = useState(false)
@@ -31,15 +26,13 @@ const Join = (props) => {
 
   // **** Full name **** //
   const onChangeFullname = (e) => {
-    const fullnameRegex = /$/
+    const fullnameRegex = /^[a-zA-Z ]*$/
     const currentFullname = e.target.value
     setFullname(currentFullname)
 
     if (!fullnameRegex.test(currentFullname)) {
-      setFullnameMsg('이름 형식 확인')
       setIsFullname(false)
     } else {
-      setFullnameMsg('올바른 이름 형식')
       setIsFullname(true)
     }
   }
@@ -51,10 +44,8 @@ const Join = (props) => {
     setEmail(currentEmail)
 
     if (!emailRegex.test(currentEmail)) {
-      setEmailMsg('이메일 형식 확인')
       setIsEmail(false)
     } else {
-      setEmailMsg('올바른 이메일 형식')
       setIsEmail(true)
     }
   }
@@ -66,26 +57,31 @@ const Join = (props) => {
     setNickname(currentNickname)
 
     if (!nicknameRegex.test(currentNickname)) {
-      setNicknameMsg('닉네임 형식 확인')
       setIsNickname(false)
     } else {
-      setNicknameMsg('올바른 닉네임 형식')
       setIsNickname(true)
     }
   }
 
   // **** Password **** //
   const onChangePassword = (e) => {
-    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,25}$/
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,20}$/
     const currentPassword = e.target.value
     setPassword(currentPassword)
 
     if (!passwordRegex.test(currentPassword)) {
-      setPasswordMsg('숫자+영문자+특수문자 조합 6자리 이상')
       setIsPassword(false)
     } else {
-      setPasswordMsg('안전한 비밀번호')
       setIsPassword(true)
+    }
+  }
+
+  const clickJoin = () => {
+    if (fullname === '' || email === '' || nickname === '' || password === '') {
+      window.alert('Pleas fill in all blanks.')
+      return
+    } else {
+      dispatch(userActions.joinDB(email, password, fullname, nickname))
     }
   }
 
@@ -101,8 +97,8 @@ const Join = (props) => {
               </a>
             </div>
             <TextBox>
-              <h1 className="join-title">Creation starts here</h1>
-              <h2 className="join-desc">Access 3,432,589 free, high-resolution photos you can’t find anywhere else</h2>
+              <p className="join-title">Creation starts here</p>
+              <p className="join-desc">Access 3,432,589 free, high-resolution photos you can’t find anywhere else</p>
             </TextBox>
             <TextBox>
               <p className="image-info">Uploaded over 8 years ago by Shane Colella</p>
@@ -129,35 +125,37 @@ const Join = (props) => {
               <FormSeperator>OR</FormSeperator>
             </Grid>
             <Grid height="auto">
-              <FormGroup>
+              <FormGroup className={`${fullname.length > 0 && !isFullname ? 'has-error' : 'success'}`}>
                 <label className="form-label">Full name</label>
-                <input className="form-input" onChange={onChangeFullname}></input>
+                <input className="form-input" name="fullname" onChange={onChangeFullname}></input>
               </FormGroup>
-              <FormGroup>
+              <FormGroup className={`${email.length > 0 && !isEmail ? 'has-error' : 'success'}`}>
                 <label className="form-label">Email address</label>
-                <input className="form-input" onChange={onChangeEmail}></input>
+                <input className="form-input" name="email" onChange={onChangeEmail}></input>
               </FormGroup>
-              <FormGroup>
+              <FormGroup className={`${nickname.length > 0 && !isNickname ? 'has-error' : 'success'}`}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left' }}>
                   <label className="form-label">Username</label>
                   <span>
-                    <Condition>&nbsp;(only letters, numbers, and underscores)</Condition>
+                    <Validation>&nbsp;(only letters, numbers, and underscores & min. 3 char, max. 16 char)</Validation>
                   </span>
                 </div>
-                <input className="form-input" onChange={onChangeNickname}></input>
+                <input className="form-input" name="nickname" onChange={onChangeNickname} maxLength="16"></input>
               </FormGroup>
-              <FormGroup>
+              <FormGroup className={`${password.length > 0 && !isPassword ? 'has-error' : 'success'}`}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left' }}>
                   <label className="form-label">Password</label>
                   <span>
-                    <Condition>&nbsp;(min. 6 char)</Condition>
+                    <Validation>&nbsp;(only letters, numbers, and special char & min. 6 char, max. 20 char)</Validation>
                   </span>
                 </div>
-                <input className="form-input" type="password" onChange={onChangePassword}></input>
+                <input className="form-input" type="password" name="password" onChange={onChangePassword} maxLength="20"></input>
               </FormGroup>
             </Grid>
             <Grid height="auto" margin="0 0 24px 0">
-              <JoinBtn>Join</JoinBtn>
+              <JoinBtn type="submit" disabled={!(isFullname && isEmail && isNickname && isPassword)} onClick={clickJoin}>
+                Join
+              </JoinBtn>
             </Grid>
             <Grid margin="0 0 24px" height="auto" align="center">
               <Notification>
@@ -247,6 +245,18 @@ const JoinRight = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  .has-error {
+    .form-label {
+      color: #e25c3d;
+    }
+    .form-input {
+      border: 1px solid #e25c3d;
+      &:focus {
+        border: 1px solid #e25c3d;
+      }
+    }
+  }
 `
 
 const JoinTitle = styled.h1`
@@ -324,9 +334,8 @@ const FormGroup = styled.div`
     color: #111111;
     display: block;
     width: 100%;
-    height: ${(props) => props.height};
-    margin: ${(props) => props.margin};
-    padding: ${(props) => props.padding};
+    height: 40px;
+    padding: 6px 12px;
     font-size: 15px;
     line-height: 1.6;
     color: #111111;
@@ -348,7 +357,7 @@ const FormGroup = styled.div`
   }
 `
 
-const Condition = styled.p`
+const Validation = styled.p`
   color: #767676;
   font-size: 15px;
   font-weight: 400;
@@ -369,6 +378,12 @@ const JoinBtn = styled.button`
   border-radius: 4px;
   touch-action: manipulation;
   cursor: pointer;
+
+  :disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 `
 
 const Notification = styled.p`
