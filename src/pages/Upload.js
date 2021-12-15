@@ -29,7 +29,7 @@ const Upload = (props) => {
         setImgfile(file_picture)
       }
       
-    }
+    };
     
   };
   console.log(imgfile)

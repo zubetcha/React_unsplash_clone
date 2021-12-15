@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Image = (props) => {
 
-    const {shape, src, size} = props;
+    const { _onClick, shape, src, size} = props;
 
     const styles = {
         src: src,
@@ -38,7 +38,7 @@ const Image = (props) => {
     return <ImageFull {...styles}></ImageFull>
   }
   if (shape === 'logo') {
-    return <ImageLogo {...styles}></ImageLogo>
+    return <ImageLogo onClick={_onClick} {...styles}></ImageLogo>
   }
 }
 
@@ -47,6 +47,7 @@ Image.defaultProps = {
   src: 'https://github.com/Leejunmyung/image/blob/master/unsplash_logo.png?raw=true',
   width: '100%',
   height: '170px',
+  _onClick: ()=>{},
 }
 
 const ImageSmall = styled.div`

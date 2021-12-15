@@ -8,6 +8,7 @@ import styled from "styled-components";
 import Logo from "../static/MainLogo.png";
 import { IoNotifications } from "react-icons/io5"
 import { IoReorderThreeOutline } from "react-icons/io5"
+import {history} from "../redux/configureStore";
 
 const Header = (props) => {
 
@@ -15,7 +16,7 @@ const Header = (props) => {
     <Head>
         <Grid height="62px" flex="flex; justify-content:space-around;align-items:center">
             <Grid width="50px">
-                <Image shape="logo" src={Logo}></Image>
+                <Image _onClick={()=>{history.push("/")}} shape="logo" src={Logo}></Image>
             </Grid>
             <Grid flex="flex; align-items:center" width="auto">
                 <Button height="40px" width="50px" borderRadius="20px 0px 0px 20px" bg="#eee" color="#767676" text={<SearchIcon/>}></Button>
@@ -29,9 +30,9 @@ const Header = (props) => {
             </Grid>
             <Grid width="1px" bg="#d1d1d1" height="32px"/>
             <Grid width="auto">
-                <Text>Login</Text>
+                <Text _onClick={()=>{history.push("/login")}}>Log in</Text>
             </Grid>
-            <Button text="Submit a photo" width="130px" bg="#fff" color="black" border="1px solid black" height="32px"></Button>
+            <Button _onClick={()=>{history.push("/upload")}} text="Submit a photo" width="130px" bg="#fff" color="black" border="1px solid black" height="32px"></Button>
             <IoNotifications size="30px"></IoNotifications>
             <Image shape="circle" size="40px" src="https://image.shutterstock.com/image-vector/default-avatar-profile-trendy-style-260nw-1759726295.jpg"></Image>
             <IoReorderThreeOutline size="30px"></IoReorderThreeOutline>
