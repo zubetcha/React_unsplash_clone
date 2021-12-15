@@ -41,8 +41,10 @@ const Header = (props) => {
 };
 
 const Head = styled.div`
-    /* position: fixed;
-    top: 0; */
+    position: fixed; width: 100%;
+    background: #fff;
+    top: 0;
+    z-index: 5;
     
 `;
 export default Header;
