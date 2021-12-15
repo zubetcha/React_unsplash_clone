@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+// elements
+
 // react-icons
 import { MdClose } from 'react-icons/md'
 
@@ -33,6 +35,7 @@ const Upload = (props) => {
                 </div>
               </UploadHeader>
               <UploadBody>
+                {/* **** 이미지 업로드 전 **** */}
                 <div className="input-area">
                   <button className="input-btn">
                     <div className="drop-area">
@@ -45,7 +48,6 @@ const Upload = (props) => {
                       </div>
                     </div>
                   </button>
-                  {/* 파일 여러개 업로드 multiple */}
                   <input className="input-file" type="file" accept="image/jpeg, image/jpg" data-test="uploader-input"></input>
                   <div className="file-info-area">
                     <div className="input-file-info">
@@ -77,6 +79,21 @@ const Upload = (props) => {
                     </div>
                   </div>
                 </div>
+
+                {/* **** 이미지 업로드 후 **** */}
+                {/* <div className="preview-area">
+                  <div className="preview-title">
+                    <h2 className="title">Select size</h2>
+                    <div className="select-btn">
+                      <button className="small size-btn">small</button>
+                      <button className="medium size-btn">medium</button>
+                      <button className="large size-btn">large</button>
+                    </div>
+                  </div>
+                  <div className="preview-box">
+                    <Uploadform size="large" />
+                  </div>
+                </div> */}
               </UploadBody>
               <UploadFooter>
                 <div>
@@ -86,7 +103,7 @@ const Upload = (props) => {
                 </div>
                 <div className="footer-btn">
                   <button className="cancel-btn">Cancel</button>
-                  <button className="submit-btn" disabled={() => {}}>
+                  <button className="submit-btn" disabled>
                     Submit to Unsplash
                   </button>
                 </div>
@@ -270,7 +287,6 @@ const UploadBody = styled.div`
         }
       }
     }
-
     .file-info-area {
       margin-top: auto;
       .input-file-info {
@@ -298,6 +314,53 @@ const UploadBody = styled.div`
                 color: #111;
               }
             }
+          }
+        }
+      }
+    }
+  }
+
+  .preview-area {
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+
+    .preview-box {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .preview-title {
+      text-align: center;
+      color: #111;
+      font-size: 28px;
+      line-height: 1.6;
+      padding: 10px;
+
+      .title {
+        margin: 12px 0 24px;
+      }
+      .select-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        .size-btn {
+          outline: none;
+          border: none;
+          background-color: #111;
+          color: #fff;
+          cursor: pointer;
+          padding: 6px 12px;
+          border-radius: 20px;
+          transition: background-color 0.1s ease-in-out;
+
+          &:hover {
+            background-color: #333;
           }
         }
       }
