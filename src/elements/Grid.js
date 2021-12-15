@@ -32,7 +32,7 @@ Grid.defaultProps = {
   children: null,
   flex: false,
   width: '100%',
-  height: false,
+  height: 'false',
   padding: false,
   margin: false,
   align: false,

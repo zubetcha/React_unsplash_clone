@@ -8,16 +8,31 @@ import { MdClose } from 'react-icons/md'
 
 const Upload = (props) => {
   const { completed } = props
-  const picture = React.useRef('')
-  const [test, setTest] = React.useState("");
-  const is_file = picture.current.value? true: false
-  console.log(picture)
-  console.log(is_file)
-  const selectPicture = (e) => { 
-    console.log(e.target.value)
-    
+  // const picture = React.useRef('')
+   // const is_file = picture.current.value? true: false
 
+  // const [img, setImg] = React.useState([]);
+  const [imgfile, setImgfile] = React.useState("");
+
+  const handleChangeFile = (e) => { 
+    console.log(e.target.files)
+    setImgfile(e.target.files);
+    // setImg([]);
+    let reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+
+    reader.onload= () => {
+      const file = reader.result;
+      if(file){
+        var file_picture = file.toString()
+
+        setImgfile(file_picture)
+      }
+      
+    }
+    
   };
+  console.log(imgfile)
   React.useEffect(() => {
   }, [])
 
@@ -52,7 +67,7 @@ const Upload = (props) => {
                 {/* **** 이미지 업로드 전 **** */}
                 <div className="input-area">
                   <button className="input-btn">
-                    {picture.current.value? '':<div className="drop-area">
+                    {imgfile ?<></>:<div className="drop-area">
                       <div className="img-area">
                         <img src="https://unsplash.com/a/img/uploader/dropbox-empty-illustration/2x.png"></img>
                       </div>
@@ -60,10 +75,11 @@ const Upload = (props) => {
                         Drag and drop up to 1 images <br />
                         or <span className="highlight-browse">Browse</span> to choose a file
                       </div>
-                    </div>}
+                    </div> }
+                    
                   </button>
-                  {/* value={test} onChange={setTest} */}
-                  <input ref={picture} onChange={selectPicture} className="input-file" type="file" accept="image/jpeg, image/jpg" data-test="uploader-input"></input>
+                  {/* ref={picture} onChange={selectPicture} */}
+                  <input onChange={handleChangeFile} className="input-file" type="file" accept="image/jpeg, image/jpg" data-test="uploader-input"></input>
                   <div className="file-info-area">
                     <div className="input-file-info">
                       <ul className="info-list">
