@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 
 // elements
 import { Grid, Text } from '../elements'
@@ -50,11 +51,11 @@ const Join = (props) => {
             <Grid height="auto">
               <FormGroup>
                 <label className="form-label">Full name</label>
-                <input className="form-input"></input>
+                <input className="form-input" onChange></input>
               </FormGroup>
               <FormGroup>
                 <label className="form-label">Email address</label>
-                <input className="form-input"></input>
+                <input className="form-input" onChange></input>
               </FormGroup>
               <FormGroup>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left' }}>
@@ -63,7 +64,7 @@ const Join = (props) => {
                     <Condition>&nbsp;(only letters, numbers, and underscores)</Condition>
                   </span>
                 </div>
-                <input className="form-input"></input>
+                <input className="form-input" onChange></input>
               </FormGroup>
               <FormGroup>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left' }}>
@@ -72,7 +73,7 @@ const Join = (props) => {
                     <Condition>&nbsp;(min. 6 char)</Condition>
                   </span>
                 </div>
-                <input className="form-input"></input>
+                <input className="form-input" type="password" onChange></input>
               </FormGroup>
             </Grid>
             <Grid height="auto" margin="0 0 24px 0">

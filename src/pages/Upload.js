@@ -233,9 +233,6 @@ const UploadBody = styled.div`
     height: 100%;
 
     .input-file {
-      display: none;
-      padding: initial;
-      border: initial;
     }
 
     .input-btn {
