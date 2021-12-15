@@ -10,7 +10,7 @@ const Sub = (props) => {
     return (
         <>
         <Header></Header>
-        <Grid position="relative">
+        <Grid margin="117px 0px 0px 0px" position="relative">
             <Grid flex="flex; align-items:center" margin="0px auto" height="400px" width="1175px" position="relative">
                 <Grid padding="0px 150px 0px 0px">
                     <Text size="45px" color="#e" bold>Holidays</Text>

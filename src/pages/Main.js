@@ -5,6 +5,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import CenterFocusWeakIcon from '@material-ui/icons/CenterFocusWeak';
 import Scroll from "../components/Scroll"
 import Masonry from "../components/Masonry";
+import mainback from "../static/MainBackground.jpg"
 
 
 const Main = (props) => {
@@ -28,7 +29,7 @@ const Main = (props) => {
                     <Text color="#fff">Trending: flower, wallpapers, backgrounds, happy, love</Text>
                 </Grid>
             </Grid>
-            <Image shape="full" src="https://images.unsplash.com/photo-1637935142056-03d421b2b13c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80"></Image>
+            <Image shape="full" src={mainback}></Image>
         </Grid>
         <Grid>
         <Masonry></Masonry>
