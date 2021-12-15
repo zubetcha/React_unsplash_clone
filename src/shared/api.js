@@ -32,7 +32,7 @@ export const apis = {
   onePost: (boardId) => api.get(`/api/board/detail/${boardId}`),
 
   // **** user **** //
-  join: (email, password, name, nickname) => api.post('/user/join', { username: email, password: password, name: name, nickname: nickname }),
+  join: (email, password, fullname, nickname) => api.post('/user/join', { username: email, password: password, name: fullname, nickname: nickname }),
   login: (email, password) => api.post('/user/login', { username: email, password: password }),
 
   // **** tag **** //

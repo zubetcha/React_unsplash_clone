@@ -1,13 +1,60 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+import { actionCreators as userActions } from '../redux/modules/user'
 
 // elements & components
-import { Button, Grid, Text } from '../elements'
+import { Grid, Text } from '../elements'
 
-// react-cions
+// React-icons
 import { BsFacebook } from 'react-icons/bs'
 
 const Login = (props) => {
+  const dispatch = useDispatch()
+
+  // **** Check email, password **** //
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  // **** Validation **** //
+  const [isEmail, setIsEmail] = useState(false)
+  const [isPassword, setIsPassword] = useState(false)
+
+  // **** Email **** //
+  const onChangeEmail = (e) => {
+    const emailRegex = /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+    const currentEmail = e.target.value
+    setEmail(currentEmail)
+
+    if (!emailRegex.test(currentEmail)) {
+      setIsEmail(false)
+    } else {
+      setIsEmail(true)
+    }
+  }
+
+  // **** Password **** //
+  const onChangePassword = (e) => {
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,20}$/
+    const currentPassword = e.target.value
+    setPassword(currentPassword)
+
+    if (!passwordRegex.test(currentPassword)) {
+      setIsPassword(false)
+    } else {
+      setIsPassword(true)
+    }
+  }
+
+  const clickLogin = () => {
+    if (email === '' || password === '') {
+      window.alert('Please fill in all blanks.')
+      return
+    } else {
+      dispatch(userActions.logInDB(email, password))
+    }
+  }
+
   return (
     <>
       <Grid height="100vh" overflowY="hidden">
@@ -34,23 +81,25 @@ const Login = (props) => {
                   <FormSeperator>OR</FormSeperator>
                 </Grid>
                 <Grid margin="20px 0" height="auto">
-                  <FormGroup>
+                  <FormGroup className={`${email.length > 0 && !isEmail ? 'has-error' : 'success'}`}>
                     <label className="form-label">Email address</label>
-                    <input className="form-input"></input>
+                    <input className="form-input" name="email" onChange={onChangeEmail}></input>
+                    {email.length > 0 && !isEmail && <span className="email-validation">Please check your email format.</span>}
                   </FormGroup>
-                  <FormGroup>
+                  <FormGroup className={`${password.length > 0 && !isPassword ? 'has-' : 'success'}`}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                       <label className="form-label">Password</label>
                       <span>
                         <FindPassword>Forgot your password?</FindPassword>
                       </span>
                     </div>
-                    <input className="form-input"></input>
+                    <input className="form-input" type="password" name="password" onChange={onChangePassword} maxLength="20"></input>
                   </FormGroup>
                 </Grid>
-
                 <Grid height="auto" margin="0 0 24px 0">
-                  <LoginBtn>Login</LoginBtn>
+                  <LoginBtn type="submit" disabled={!(email.length !== 0 && password.length !== 0)} onClick={clickLogin}>
+                    Login
+                  </LoginBtn>
                 </Grid>
                 <Grid margin="32px 0 0 0" height="auto" align="center">
                   <Question>Don't you have an account?&nbsp;</Question>
@@ -72,6 +121,22 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .has-error {
+    .form-label {
+      color: #e25c3d;
+    }
+    .form-input {
+      border: 1px solid #e25c3d;
+      &:focus {
+        border: 1px solid #e25c3d;
+      }
+    }
+    .email-validation {
+      font-size: 12px;
+      color: #e25c3d;
+    }
+  }
 `
 
 const LoginLogo = styled.img`
@@ -156,9 +221,8 @@ const FormGroup = styled.div`
     color: #111111;
     display: block;
     width: 100%;
-    height: ${(props) => props.height};
-    margin: ${(props) => props.margin};
-    padding: ${(props) => props.padding};
+    height: 40px;
+    padding: 6px 12px;
     font-size: 15px;
     line-height: 1.6;
     color: #111111;
@@ -206,6 +270,12 @@ const LoginBtn = styled.button`
   border-radius: 4px;
   touch-action: manipulation;
   cursor: pointer;
+
+  :disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 `
 
 const Question = styled.p`

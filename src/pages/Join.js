@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
+import { actionCreators as userActions } from '../redux/modules/user'
 
-// elements
+// elements & components
 import { Grid, Text } from '../elements'
 
 // React-icons
@@ -75,7 +76,14 @@ const Join = (props) => {
     }
   }
 
-  console.log(isFullname, isEmail, isNickname, isPassword)
+  const clickJoin = () => {
+    if (fullname === '' || email === '' || nickname === '' || password === '') {
+      window.alert('Pleas fill in all blanks.')
+      return
+    } else {
+      dispatch(userActions.joinDB(email, password, fullname, nickname))
+    }
+  }
 
   return (
     <>
@@ -89,8 +97,8 @@ const Join = (props) => {
               </a>
             </div>
             <TextBox>
-              <h1 className="join-title">Creation starts here</h1>
-              <h2 className="join-desc">Access 3,432,589 free, high-resolution photos you can’t find anywhere else</h2>
+              <p className="join-title">Creation starts here</p>
+              <p className="join-desc">Access 3,432,589 free, high-resolution photos you can’t find anywhere else</p>
             </TextBox>
             <TextBox>
               <p className="image-info">Uploaded over 8 years ago by Shane Colella</p>
@@ -145,7 +153,7 @@ const Join = (props) => {
               </FormGroup>
             </Grid>
             <Grid height="auto" margin="0 0 24px 0">
-              <JoinBtn type="submit" disabled={!(isFullname && isEmail && isNickname && isPassword)} onClick>
+              <JoinBtn type="submit" disabled={!(isFullname && isEmail && isNickname && isPassword)} onClick={clickJoin}>
                 Join
               </JoinBtn>
             </Grid>
