@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Grid = (props) => {
-  const { position, children, flex, align, width, padding, margin, _onClick, bg, height, overflowY, verticalAlign, alignItems, maxWidth } = props
+  const { position, children, flex, align, width, padding, margin, _onClick, bg, height, overflowY, verticalAlign, alignItems, maxWidth, flexDirection, justifyContent } = props
   const styles = {
     flex: flex,
     position: position,
@@ -18,6 +18,8 @@ const Grid = (props) => {
     verticalAlign: verticalAlign,
     alignItems: alignItems,
     maxWidth: maxWidth,
+    flexDirection: flexDirection,
+    justifyContent: justifyContent,
   }
 
   return (
@@ -44,6 +46,8 @@ Grid.defaultProps = {
   verticalAlign: false,
   alignItems: false,
   maxWidth: '',
+  flexDirection: false,
+  justifyContent: false,
 }
 
 const GridBox = styled.div`
@@ -62,6 +66,8 @@ const GridBox = styled.div`
   vertical-align: ${(props) => (props.verticalAlign ? `${props.verticalAlign};` : '')};
   align-items: ${(props) => (props.alignItems ? `${props.alignItems};` : '')};
   max-width: ${(props) => (props.maxWidth ? `${props.maxWidth};` : '')};
+  flex-direction: ${(props) => (props.flexDirection ? `${props.flexDirection};` : '')};
+  justify-content: ${(props) => (props.justifyContent ? `${props.justifyContent};` : '')};
 `
 
 export default Grid

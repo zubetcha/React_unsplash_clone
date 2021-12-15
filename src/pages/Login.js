@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { actionCreators as userActions } from '../redux/modules/user'
+import { history } from '../redux/configureStore'
 
 // elements & components
 import { Grid, Text } from '../elements'
@@ -63,9 +64,14 @@ const Login = (props) => {
             <Grid height="590px">
               <Grid maxWidth="550px" margin="0 auto">
                 <Grid align="center" height="164px" margin="0 0 32px 0">
-                  <a href="/">
-                    <LoginLogo src="https://unsplash.com/assets/core/logo-black-df2168ed0c378fa5506b1816e75eb379d06cfcd0af01e07a2eb813ae9b5d7405.svg"></LoginLogo>
-                  </a>
+                  <div>
+                    <LoginLogo
+                      onClick={() => {
+                        history.push('/')
+                      }}
+                      src="https://unsplash.com/assets/core/logo-black-df2168ed0c378fa5506b1816e75eb379d06cfcd0af01e07a2eb813ae9b5d7405.svg"
+                    ></LoginLogo>
+                  </div>
                   <LoginTitle>Login</LoginTitle>
                   <Text size="15px" margin="0 0 32px 0">
                     Welcome back.
@@ -103,8 +109,13 @@ const Login = (props) => {
                 </Grid>
                 <Grid margin="32px 0 0 0" height="auto" align="center">
                   <Question>Don't you have an account?&nbsp;</Question>
-                  {/* history push('/join') */}
-                  <JoinLink>Join</JoinLink>
+                  <JoinLink
+                    onClick={() => {
+                      history.push('/join')
+                    }}
+                  >
+                    Join
+                  </JoinLink>
                 </Grid>
               </Grid>
             </Grid>
@@ -144,20 +155,18 @@ const LoginLogo = styled.img`
   height: 64px;
   margin-bottom: 24px;
   vertical-align: middle;
-  box-sizing: border-box;
+  cursor: pointer;
 `
 
 const LoginTitle = styled.h1`
   font-size: 28px;
   font-weight: bold;
   margin: 0 0 8px 0;
-  line-height: 1.6;
 `
 
 const SocialLogin = styled.a`
   border-radius: 4px;
   display: inline-flex;
-  box-sizing: border-box;
   color: #fff;
   width: 100%;
   height: 44px;
@@ -165,10 +174,7 @@ const SocialLogin = styled.a`
   justify-content: center;
   align-items: center;
   padding: 9px 18px;
-  font-size: 15px;
-  line-height: 1.6;
   font-weight: 500;
-  cursor: pointer;
   border: 1px solid transparent;
 
   transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out, color 0.1s ease-in-out;
@@ -184,7 +190,6 @@ const SocialLogin = styled.a`
 
 const FormSeperator = styled.p`
   display: block;
-  color: #111111;
   margin: auto;
   font-size: 12px;
   text-transform: uppercase;
@@ -194,13 +199,8 @@ const FormSeperator = styled.p`
 
 const FormGroup = styled.div`
   margin-bottom: 24px;
-  box-sizing: ${(props) => props.boxSizing};
 
   .form-label {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #111111;
-    box-sizing: border-box;
     display: inline-flex;
     -webkit-box-align: baseline;
     -webkit-align-items: baseline;
@@ -210,27 +210,17 @@ const FormGroup = styled.div`
     margin-bottom: 6px;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    font-weight: 400;
-    box-sizing: border-box;
   }
 
   .form-input {
-    font-size: 15px;
-    line-height: 1.6;
     height: 40px;
-    color: #111111;
     display: block;
     width: 100%;
-    height: 40px;
     padding: 6px 12px;
-    font-size: 15px;
-    line-height: 1.6;
-    color: #111111;
     background-color: transparent;
     background-image: none;
     box-sizing: ${(props) => props.boxSizing};
     border: 1px solid #767676;
-    outline: none;
     border-radius: 4px;
     -webkit-transition: border-color ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s;
@@ -246,11 +236,7 @@ const FormGroup = styled.div`
 
 const FindPassword = styled.a`
   color: #767676;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.6;
   transition: color 0.1s ease-in-out, fill 0.1s ease-in-out, opacity 0.1s ease-in-out;
-  cursor: pointer;
   text-decoration: underline;
 
   &:hover {
@@ -265,11 +251,8 @@ const LoginBtn = styled.button`
   text-align: center;
   vertical-align: middle;
   padding: 9px 18px;
-  font-size: 15px;
-  line-height: 1.6;
   border-radius: 4px;
   touch-action: manipulation;
-  cursor: pointer;
 
   :disabled {
     opacity: 0.7;
@@ -280,20 +263,12 @@ const LoginBtn = styled.button`
 
 const Question = styled.p`
   display: inline-block;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.6;
-  color: #111111;
   margin: 0;
 `
 
 const JoinLink = styled.a`
   color: #767676;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.6;
   transition: color 0.1s ease-in-out, fill 0.1s ease-in-out, opacity 0.1s ease-in-out;
-  cursor: pointer;
   text-decoration: underline;
 
   &:hover {
