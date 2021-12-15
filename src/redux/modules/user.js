@@ -26,32 +26,13 @@ const joinDB = (email, password, fullname, nickname) => {
     await apis
       .join(email, password, fullname, nickname)
       .then((res) => {
-        console.log(res.data)
-        //   if (res.data.errorMsg === '이미 존재하는 이메일입니다') {
-        //     window.alert('이미 존재하는 이메일입니다.')
-        //     return
-        //   }
-        //   if (res.data.errorMsg === '이메일은 필수 입력 값입니다') {
-        //     window.alert('이메일은 필수 입력 값입니다.')
-        //     return
-        //   }
-        //   if (res.data.errorMsg === '패스워드는 필수 입력 값입니다') {
-        //     window.alert('패스워드는 필수 입력 값입니다.')
-        //     return
-        //   }
-        //   if (res.data.errorMsg === '이름은 필수 입력 값입니다') {
-        //     window.alert('이름은 필수 입력 값입니다.')
-        //     return
-        //   }
-        //   if (res.data.errorMsg === '닉네임은 필수 입력 값입니다') {
-        //     window.alert('닉네임은 필수 입력 값입니다.')
-        //     return
-        //   }
-        // history.push('/login')
-        // window.alert('Congratuation! After login, enjoy Unsplash.')
+        history.push('/login')
+        window.alert('Congratuation! After login, enjoy Unsplash.')
       })
       .catch((err) => {
-        console.log('회원가입에 문제가 발생했습니다.', err)
+        const errorMsg = err.response.data.errorMsg
+        window.alert(errorMsg)
+        console.log('회원가입에 문제가 발생했습니다.', errorMsg)
       })
   }
 }
@@ -61,13 +42,13 @@ const logInDB = (email, password) => {
     await apis
       .login(email, password)
       .then((res) => {
-        console.log(res.data)
-        console.log(res.headers)
-        setCookie('token', res.headers.Authorization, 3)
-        localStorage.setItem('userId', res.data.user.userId)
-        localStorage.setItem('nickname', res.data.user.nickname)
-        // dispatch(logIn({}))
-        // history.replace('/')
+        const user_id = res.data.userId
+        const nickname = res.data.nickname
+        setCookie('token', res.headers.authorization, 3)
+        localStorage.setItem('userId', user_id)
+        localStorage.setItem('nickname', nickname)
+        dispatch(logIn({ email: email, user_id: user_id, nickname: nickname }))
+        history.replace('/')
       })
       .catch((err) => {
         console.log('로그인에 문제가 발생했습니다.', err)
