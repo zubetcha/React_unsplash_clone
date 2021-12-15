@@ -8,10 +8,24 @@ import { MdClose } from 'react-icons/md'
 
 const Upload = (props) => {
   const { completed } = props
+  const picture = React.useRef('')
+  const [test, setTest] = React.useState("");
+  const is_file = picture.current.value? true: false
+  console.log(picture)
+  console.log(is_file)
+  const selectPicture = (e) => { 
+    console.log(e.target.value)
+    
+
+  };
+  React.useEffect(() => {
+  }, [])
 
   if (completed) {
     return <div></div>
   }
+
+
 
   return (
     <>
@@ -38,7 +52,7 @@ const Upload = (props) => {
                 {/* **** 이미지 업로드 전 **** */}
                 <div className="input-area">
                   <button className="input-btn">
-                    <div className="drop-area">
+                    {picture.current.value? '':<div className="drop-area">
                       <div className="img-area">
                         <img src="https://unsplash.com/a/img/uploader/dropbox-empty-illustration/2x.png"></img>
                       </div>
@@ -46,9 +60,10 @@ const Upload = (props) => {
                         Drag and drop up to 1 images <br />
                         or <span className="highlight-browse">Browse</span> to choose a file
                       </div>
-                    </div>
+                    </div>}
                   </button>
-                  <input className="input-file" type="file" accept="image/jpeg, image/jpg" data-test="uploader-input"></input>
+                  {/* value={test} onChange={setTest} */}
+                  <input ref={picture} onChange={selectPicture} className="input-file" type="file" accept="image/jpeg, image/jpg" data-test="uploader-input"></input>
                   <div className="file-info-area">
                     <div className="input-file-info">
                       <ul className="info-list">
@@ -233,7 +248,7 @@ const UploadBody = styled.div`
     height: 100%;
 
     .input-file {
-      display: none;
+      /* display: none; */
       padding: initial;
       border: initial;
     }
