@@ -13,7 +13,7 @@ const Main = (props) => {
     return (
         <>
         <Header></Header>
-        <Grid position="relative">
+        <Grid margin="117px 0px 0px 0px" position="relative">
             <Grid margin="0px auto" width="900px" position="relative">
                 <Grid position="absolute; top:40px">
                     <Text size="45px" color="#fff" bold>Unsplash</Text>
@@ -33,10 +33,6 @@ const Main = (props) => {
         <Grid>
         <Masonry></Masonry>
         </Grid>
-        
-            
-        
-        
         </>
     );
 };
