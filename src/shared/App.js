@@ -17,10 +17,10 @@ function App() {
       <Route path="/" exact  component={Main}/>
       <Route path="/sub/:tag" exact  component={Sub}/>
       <Route path="/login" exact component={Login} />
-      <Route path="/Join" exact component={Join} />
+      <Route path="/join" exact component={Join} />
       <Route path="/detail" exact component={Detail} />
-      <Route path="/Edit" exact component={Edit} />
-      <Route path="/Upload" exact component={Upload} />
+      <Route path="/edit" exact component={Edit} />
+      <Route path="/upload" exact component={Upload} />
     </ConnectedRouter>
     </>
   )

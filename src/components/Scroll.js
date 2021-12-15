@@ -1,54 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import {history} from "../redux/configureStore";
 
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`scrollable-auto-tabpanel-${index}`}
-      aria-labelledby={`scrollable-auto-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `scrollable-auto-tab-${index}`,
-    'aria-controls': `scrollable-auto-tabpanel-${index}`,
-  };
-}
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    position:"relative",
-    flexGrow: 0.6,
-    width: '90%',
-  },
-}));
-
-export default function ScrollableTabsButtonAuto() {
+const Scroll = (props) => {
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      position:"relative",
+      flexGrow: 0.6,
+      width: '90%',
+    },
+  }));
+  
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -67,23 +32,24 @@ export default function ScrollableTabsButtonAuto() {
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
         >
-          <Tab label="Holidays" {...a11yProps(0)} />
-          <Tab label="Blockchain" {...a11yProps(1)} />
-          <Tab label="Wallpapaers" {...a11yProps(2)} />
-          <Tab label="3D Renders" {...a11yProps(3)} />
-          <Tab label="Textures & Patterns" {...a11yProps(4)} />
-          <Tab label="Architecture" {...a11yProps(5)} />
-          <Tab label="Experimental" {...a11yProps(6)} />
-          <Tab label="Nature" {...a11yProps(7)} />
-          <Tab label="Business & Work" {...a11yProps(8)} />
-          <Tab label="Fashion" {...a11yProps(9)} />
-          <Tab label="Food & Drink" {...a11yProps(10)} />
-          <Tab label="Health & Wellness" {...a11yProps(11)} />
-          <Tab label="Current Events" {...a11yProps(12)} />
-          <Tab label="People" {...a11yProps(13)} />
-          <Tab label="Interiors" {...a11yProps(14)} />
+          <Tab onClick={()=>{history.push(`/sub/${'Holidays'}`)}} label="Holidays"/>
+          <Tab onClick={()=>{history.push(`/sub/${'Blockchain'}`)}} label="Blockchain"  />
+          <Tab onClick={()=>{history.push(`/sub/${'Wallpapers'}`)}} label="Wallpapers"  />
+          <Tab onClick={()=>{history.push(`/sub/${'3DRenders'}`)}} label="3D Renders" />
+          <Tab onClick={()=>{history.push(`/sub/${'Textures&Patterns'}`)}} label="Textures & Patterns"  />
+          <Tab onClick={()=>{history.push(`/sub/${'Architecture'}`)}} label="Architecture"  />
+          <Tab onClick={()=>{history.push(`/sub/${'Experimental'}`)}} label="Experimental"  />
+          <Tab onClick={()=>{history.push(`/sub/${'Nature'}`)}} label="Nature"  />
+          <Tab onClick={()=>{history.push(`/sub/${'Business&Work'}`)}} label="Business & Work"  />
+          <Tab onClick={()=>{history.push(`/sub/${'Fashion'}`)}} label="Fashion"  />
+          <Tab onClick={()=>{history.push(`/sub/${'Food&Drink'}`)}} label="Food & Drink"  />
+          <Tab onClick={()=>{history.push(`/sub/${'Health&Wellness'}`)}} label="Health & Wellness"  />
+          <Tab onClick={()=>{history.push(`/sub/${'CurrentEvents'}`)}} label="Current Events" />
+          <Tab onClick={()=>{history.push(`/sub/${'People'}`)}} label="People" />
+          <Tab onClick={()=>{history.push(`/sub/${'Interiors'}`)}} label="Interiors" />
         </Tabs>
-      
     </div>
   );
-}
+};
+
+export default Scroll;
