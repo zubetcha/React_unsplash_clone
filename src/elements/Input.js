@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Grid, Text } from '.'
 
 const Input = (props) => {
-  const { label, placeholder,search_box, type, value, margin, padding, boxSizing, _onChange,width, height, condition, conditionInfo } = props
+  const { label, textarea, nomal, placeholder,search_box, type, value, margin, padding, boxSizing, _onChange,width, height, condition, conditionInfo } = props
   const styles = {
     margin: margin,
     padding: padding,
@@ -33,6 +34,28 @@ const Input = (props) => {
       </>
     )
   }
+
+  if(textarea){
+    return (
+        <Grid>
+            <Text size="16px"  align="left" >{label}</Text>
+            <Textarea rows="7" {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></Textarea>
+
+            
+        </Grid>
+    );
+}
+
+if(nomal){
+  return (
+      <Grid>
+          <Text size="16px"  align="left" >{label}</Text>
+          <InputBox {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></InputBox>
+
+          
+      </Grid>
+  );
+}
   
 
   return (
@@ -135,6 +158,31 @@ const SearchBox = styled.div`
   }
     
 `;
+
+const Textarea = styled.textarea`
+width:100%;
+padding:10px;
+box-sizing:border-box;
+margin:15px 0;
+font-family: 'Noto Sans KR';
+
+`;
+
+const InputBox = styled.input`
+    display:block;
+    width: 100%;
+    height:${(props)=> props.height};
+    padding: ${(props)=> props.padding};
+    box-sizing: ${(props)=> props.boxSizing};
+    border:1px solid #c4c4c4;
+    border-radius:4px;
+    color:#c4c4c4;
+    font-size:13px;
+    margin:15px 0;
+    font-family: 'Noto Sans KR';
+`;
+
+
 
 
 export default Input

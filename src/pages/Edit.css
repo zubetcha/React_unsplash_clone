@@ -1,0 +1,36 @@
+@media (min-width: 1400px) {
+  .modal-content {
+    padding-left: 520px;
+    padding-right: 520px;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-info {
+  }
+}
+
+@media (min-width: 768px) {
+  .modal-content {
+    padding-bottom: 0px;
+    padding-top: 130px;
+  }
+
+  .modal-info {
+  }
+
+  .image-cnt {
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1399px) {
+  .modal-content {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+}
+
+@media (max-widht: 767px) {
+  .image-cnt {
+  }
+}
