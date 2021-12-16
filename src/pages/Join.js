@@ -217,7 +217,7 @@ const JoinLogo = styled.img`
   cursor: pointer;
 `
 
-const TextBox = styled.p`
+const TextBox = styled.div`
   color: #fff;
   margin: 0;
 

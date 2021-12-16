@@ -1,11 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { actionCreators as cardActions } from '../redux/modules/card'
 
 // elements & components
 import Header from '../components/Header'
-import Masonry from '../components/Masonry'
 import CardTest from '../components/CardTest'
 import { Grid, Image, Text } from '../elements'
 
@@ -22,9 +21,13 @@ const Mypage = (props) => {
 
   const nickname = localStorage.getItem('nickname')
 
-  const test = () => {
-    dispatch(cardActions.userCardDB())
-  }
+  const user_card_list = useSelector((state) => state.card.user_card_list)
+
+  React.useEffect(() => {
+    if (user_card_list.length === 0) {
+      dispatch(cardActions.userCardDB())
+    }
+  }, [])
 
   return (
     <>
@@ -87,29 +90,19 @@ const Mypage = (props) => {
                     Stats
                   </ListBtn>
                 </ListItem>
-                <ListItem>
-                  <ListBtn onClick={test}>Card 확인</ListBtn>
-                </ListItem>
               </MyList>
             </Grid>
           </Grid>
         </Grid>
-        <Grid>
+        <Grid height="2000px">
           <div style={styles.card_container}>
-            <CardTest src="https://picsum.photos/200/300?image=279" size="small"></CardTest>
-            <CardTest src="https://picsum.photos/400/400?image=400" size="medium"></CardTest>
-            <CardTest src="https://picsum.photos/600/400?image=501" size="large"></CardTest>
-            <CardTest src="https://picsum.photos/200/200?image=998" size="large"></CardTest>
-            <CardTest src="https://picsum.photos/500/400?image=287" size="medium"></CardTest>
-            <CardTest src="https://picsum.photos/400/600?image=957" size="small"></CardTest>
-            <CardTest src="https://picsum.photos/200/300?image=916" size="small"></CardTest>
-            <CardTest src="https://picsum.photos/200/300?image=279" size="medium"></CardTest>
-            <CardTest src="https://picsum.photos/400/400?image=400" size="large"></CardTest>
-            <CardTest src="https://picsum.photos/600/400?image=501" size="small"></CardTest>
-            <CardTest src="https://picsum.photos/200/200?image=998" size="medium"></CardTest>
-            <CardTest src="https://picsum.photos/500/400?image=287" size="large"></CardTest>
-            <CardTest src="https://picsum.photos/400/600?image=957" size="small"></CardTest>
-            <CardTest src="https://picsum.photos/200/300?image=916" size="medium"></CardTest>
+            {user_card_list.map((c) => {
+              return (
+                <div key={c.boardId}>
+                  <CardTest {...c} />
+                </div>
+              )
+            })}
           </div>
         </Grid>
       </Grid>
@@ -122,6 +115,7 @@ const styles = {
     margin: '30px 0px 0px 0px',
     padding: 0,
     width: '80vw',
+    height: '2000px',
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, 400px)',
     gridAutoRows: '10px',

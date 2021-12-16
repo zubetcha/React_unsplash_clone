@@ -1,5 +1,9 @@
 import React from 'react'
+import { actionCreators as userActions } from '../redux/modules/user'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { Grid, Text, Button, Image, Input } from '../elements'
+
 import SearchIcon from '@material-ui/icons/Search'
 import CenterFocusWeakIcon from '@material-ui/icons/CenterFocusWeak'
 import Scroll from '../components/Scroll'
@@ -11,14 +15,40 @@ import { IoReorderThreeOutline } from 'react-icons/io5'
 import { history } from '../redux/configureStore'
 
 const Header = (props) => {
+  const dispatch = useDispatch()
+
   const { Mypage } = props
-  const [search, setSearch] = React.useState("");
+  const [search, setSearch] = React.useState('')
+
+  const user_id = localStorage.getItem('userId')
+  const nickname = localStorage.getItem('nickname')
+  const is_login = user_id !== null ? true : false
 
   const change_text = (e) => {
     setSearch(e.target.value)
   }
 
-  const nickname = localStorage.getItem('nickname')
+  const logOut = () => {
+    dispatch(userActions.logOutDB())
+  }
+
+  const clickSubmit = () => {
+    if (!is_login) {
+      window.alert('로그인 후 이용하실 수 있습니다.')
+      history.push('/login')
+    } else {
+      history.push('/upload')
+    }
+  }
+
+  const clickMypage = () => {
+    if (!is_login) {
+      window.alert('로그인 후 이용하실 수 있습니다.')
+      history.push('/login')
+    } else {
+      history.push(`/mypage/${nickname}`)
+    }
+  }
 
   if (Mypage) {
     return (
@@ -35,39 +65,43 @@ const Header = (props) => {
           </Grid>
           <Grid flex="flex; align-items:center" maxWidth="1300px">
             <Button height="40px" width="50px" borderRadius="20px 0px 0px 20px" bg="#eee" color="#767676" text={<SearchIcon />}></Button>
-            <Input value={search} _onChange={change_text}  placeholder="Search free high-resolution photos" width="1000px"></Input>
-            <Button _onClick={()=>{history.push(`/sub/${search}`)}} height="40px" width="50px" borderRadius="0px 20px 20px 0px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
+            <Input value={search} _onChange={change_text} search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
+            <Button
+              _onClick={() => {
+                history.push(`/sub/${search}`)
+              }}
+              height="40px"
+              width="50px"
+              borderRadius="0px 20px 20px 0px"
+              bg="#eee"
+              color="#767676"
+              text={<CenterFocusWeakIcon />}
+            ></Button>
           </Grid>
           <Grid flex="flex; align-items:center; justify-content:space-between" width="230px">
-            <NavMenu>Explore</NavMenu>
+            {!is_login ? <NavMenu>Explore</NavMenu> : null}
             <NavMenu>Advertise</NavMenu>
             <NavMenu>Blog</NavMenu>
           </Grid>
           <Grid width="1px" bg="#d1d1d1" height="32px" />
-          {/* <Grid width="auto"> */}
-          <NavMenu
-            onClick={() => {
-              history.push('/login')
-            }}
-          >
-            Log&nbsp;in
-          </NavMenu>
-          {/* </Grid> */}
-          <SubmitBtn
-            onClick={() => {
-              history.push('/upload')
-            }}
-          >
-            Submit&nbsp;a&nbsp;photo
-          </SubmitBtn>
+          {is_login ? (
+            <NavMenu onClick={logOut}>Log&nbsp;Out</NavMenu>
+          ) : (
+            <NavMenu
+              onClick={() => {
+                history.push('/login')
+              }}
+            >
+              Log&nbsp;in
+            </NavMenu>
+          )}
+          <SubmitBtn onClick={clickSubmit}>Submit&nbsp;a&nbsp;photo</SubmitBtn>
           <NavIcon>
             <IoNotifications className="header-icon" size="24px"></IoNotifications>
           </NavIcon>
           <NavIcon>
             <Image
-              _onClick={() => {
-                history.push(`/mypage/${nickname}`)
-              }}
+              _onClick={clickMypage}
               cursor="pointer"
               shape="circle"
               size="40px"
@@ -97,41 +131,41 @@ const Header = (props) => {
         <Grid flex="flex; align-items:center" maxWidth="1300px">
           <Button height="40px" width="50px" borderRadius="20px 0px 0px 20px" bg="#eee" color="#767676" text={<SearchIcon />}></Button>
           <Input value={search} _onChange={change_text} search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
-          <Button _onClick={()=>{history.push(`/sub/${search}`)}} height="40px" width="50px" borderRadius="0px 20px 20px 0px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
+          <Button
+            _onClick={() => {
+              history.push(`/sub/${search}`)
+            }}
+            height="40px"
+            width="50px"
+            borderRadius="0px 20px 20px 0px"
+            bg="#eee"
+            color="#767676"
+            text={<CenterFocusWeakIcon />}
+          ></Button>
         </Grid>
         <Grid flex="flex; align-items:center; justify-content:space-between" width="230px">
-          <NavMenu>Explore</NavMenu>
+          {!is_login ? <NavMenu>Explore</NavMenu> : null}
           <NavMenu>Advertise</NavMenu>
           <NavMenu>Blog</NavMenu>
         </Grid>
         <Grid width="1px" bg="#d1d1d1" height="32px" />
-        <NavMenu
-          onClick={() => {
-            history.push('/login')
-          }}
-        >
-          Log&nbsp;in
-        </NavMenu>
-        <SubmitBtn
-          onClick={() => {
-            history.push('/upload')
-          }}
-        >
-          Submit&nbsp;a&nbsp;photo
-        </SubmitBtn>
+        {is_login ? (
+          <NavMenu onClick={logOut}>Log&nbsp;Out</NavMenu>
+        ) : (
+          <NavMenu
+            onClick={() => {
+              history.push('/login')
+            }}
+          >
+            Log&nbsp;in
+          </NavMenu>
+        )}
+        <SubmitBtn onClick={clickSubmit}>Submit&nbsp;a&nbsp;photo</SubmitBtn>
         <NavIcon>
           <IoNotifications className="header-icon" size="24px"></IoNotifications>
         </NavIcon>
         <NavIcon>
-          <Image
-            _onClick={() => {
-              history.push(`/mypage/${nickname}`)
-            }}
-            cursor="pointer"
-            shape="circle"
-            size="40px"
-            src="https://image.shutterstock.com/image-vector/default-avatar-profile-trendy-style-260nw-1759726295.jpg"
-          ></Image>
+          <Image _onClick={clickMypage} cursor="pointer" shape="circle" size="40px" src="https://image.shutterstock.com/image-vector/default-avatar-profile-trendy-style-260nw-1759726295.jpg"></Image>
         </NavIcon>
         <NavIcon>
           <IoReorderThreeOutline className="header-icon" size="30px"></IoReorderThreeOutline>
