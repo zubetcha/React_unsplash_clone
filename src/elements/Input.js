@@ -3,13 +3,14 @@ import styled from 'styled-components'
 import { Grid, Text } from '.'
 
 const Input = (props) => {
-  const { label, textarea,textarea2, nomal, placeholder,search_box, type, value, margin, padding, boxSizing, _onChange,width, height, condition, conditionInfo } = props
+  const { label, textarea, textarea2, nomal, placeholder, search_box, type, value, margin, padding, boxSizing, _onChange, width, height, condition, conditionInfo, maxWidth } = props
   const styles = {
     margin: margin,
     padding: padding,
     boxSizing: boxSizing,
     height: height,
     width: width,
+    maxWidth: maxWidth,
   }
 
   // 유효성 검사에 부합하지 않으면 label, inputbox 컬러 변함
@@ -25,44 +26,41 @@ const Input = (props) => {
     )
   }
 
-  if(search_box){
+  if (search_box) {
     return (
       <>
-       <SearchBox {...styles}>
-        <input className="form-input" {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></input>
-      </SearchBox>
+        <SearchBox {...styles}>
+          <input className="form-input" {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></input>
+        </SearchBox>
       </>
     )
   }
 
-  if(textarea){
+  if (textarea) {
     return (
-        <Grid>
-            <Text size="16px"  align="left" >{label}</Text>
-            <Textarea rows="7" {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></Textarea>
-        </Grid>
-    );
-}
-
-if(textarea2){
-  return (
-      
-        <Textarea rows="3" {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></Textarea>
-      
-  );
-}
-
-if(nomal){
-  return (
       <Grid>
-          <Text size="16px"  align="left" >{label}</Text>
-          <InputBox {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></InputBox>
-
-          
+        <Text size="16px" align="left">
+          {label}
+        </Text>
+        <Textarea rows="7" {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></Textarea>
       </Grid>
-  );
-}
-  
+    )
+  }
+
+  if (textarea2) {
+    return <Textarea rows="3" {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></Textarea>
+  }
+
+  if (nomal) {
+    return (
+      <Grid>
+        <Text size="16px" align="left">
+          {label}
+        </Text>
+        <InputBox {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></InputBox>
+      </Grid>
+    )
+  }
 
   return (
     <>
@@ -107,7 +105,6 @@ const FormGroup = styled.div`
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     font-weight: 400;
-    
   }
 
   .form-input {
@@ -132,14 +129,13 @@ const FormGroup = styled.div`
       border: 1px solid #111111;
     }
   }
-`;
+`
 const SearchBox = styled.div`
   box-sizing: ${(props) => props.boxSizing};
-  width: ${(props) => props.width};
+  width: 100%;
   font-size: 15px;
   line-height: 1.6;
   color: #111111;
-
 
   .form-input {
     display: block;
@@ -162,34 +158,31 @@ const SearchBox = styled.div`
       border: 1px solid #111111;
     }
   }
-    
-`;
+`
 
 const Textarea = styled.textarea`
-width:100%;
-padding:10px;
-box-sizing:border-box;
-margin:10px 0px;
-font-family: 'Noto Sans KR';
-border: 1px solid black;
-
-`;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 10px 0px;
+  font-family: 'Noto Sans KR';
+  border: 1px solid black;
+`
 
 const InputBox = styled.input`
-    display:block;
-    width: 100%;
-    height:${(props)=> props.height};
-    padding: ${(props)=> props.padding};
-    box-sizing: ${(props)=> props.boxSizing};
-    border:1px solid #c4c4c4;
-    border-radius:4px;
-    color:#c4c4c4;
-    font-size:13px;
-    margin:15px 0;
-    font-family: 'Noto Sans KR';
-`;
-
-
+  display: block;
+  width: 100%;
+  height: ${(props) => props.height};
+  padding: ${(props) => props.padding};
+  box-sizing: ${(props) => props.boxSizing};
+  border: 1px solid #c4c4c4;
+  border-radius: 4px;
+  color: #c4c4c4;
+  font-size: 13px;
+  margin: 15px 0;
+  font-family: 'Noto Sans KR';
+  border: 1px solid black;
+`
 
 
 export default Input

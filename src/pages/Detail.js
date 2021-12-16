@@ -35,7 +35,7 @@ const Detail = (props) => {
     <>
       <ModalBody>
         <ModalOverlay>
-          <ModalContent className="modal-content">
+          <ModalContent className="detail-modal-content">
             <div></div>
             <DetailContainer>
               <ModalHeader>
@@ -104,13 +104,13 @@ const Detail = (props) => {
                   <div className="icon-box">
                     <button className="icon-btn">
                       <IoArrowRedoSharp />
-                      <span>&nbsp;Shared</span>
+                      &nbsp;Shared
                     </button>
                   </div>
                   <div className="icon-box">
                     <button className="icon-btn">
                       <MdInfo />
-                      <span>&nbsp;Info</span>
+                      &nbsp;Info
                     </button>
                   </div>
                   <div className="icon-box">
@@ -153,7 +153,6 @@ const ModalBody = styled.div`
   height: 100%;
   position: absolute;
   /* opacity: 0; */
-  box-sizing: border-box;
   z-index: 0;
   overflow-y: hidden;
 `
@@ -161,7 +160,6 @@ const ModalBody = styled.div`
 const ModalOverlay = styled.div`
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
   backface-visibility: hidden;
   overflow: auto;
   background-color: #0009;
@@ -180,12 +178,10 @@ const ModalContent = styled.div`
 `
 
 const DetailContainer = styled.div`
-  box-sizing: border-box;
   min-height: 100%;
   cursor: auto;
   display: flex;
   flex-direction: column;
-  outline: none;
   pointer-events: none;
   background-color: #999;
 
@@ -193,43 +189,29 @@ const DetailContainer = styled.div`
     padding: 4px;
 
     .icon-btn {
-      outline: none;
-      display: inline-flex;
+      display: flex;
+      align-items: center;
       background-color: #fff;
       border: 0.5px solid #d1d1d1;
-      padding: 0 9px;
+      padding: 0 12px;
       margin: 0;
       font-size: 14px;
       font-weight: 600;
-      text-align: center;
       border-radius: 4px;
       height: 32px;
       line-height: 30px;
       color: #767676;
-      cursor: pointer;
       transition: all 0.1s ease-in-out;
 
       &:hover {
         color: #111;
         border: 0.5px solid #111;
-
-        svg {
-          color: #111;
-        }
-      }
-
-      svg {
-        color: #767676;
-        font-size: 19px;
-        line-height: 30px;
-        padding-top: 5px;
       }
     }
   }
 `
 
 const ModalHeader = styled.div`
-  box-sizing: border-box;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   display: flex;
@@ -257,7 +239,6 @@ const UserProfile = styled.div`
   margin-right: 8px;
 
   img {
-    box-sizing: border-box;
     border: 0;
     outline: none;
     width: 100%;
@@ -274,10 +255,8 @@ const UserInfo = styled.div`
   flex-direction: column;
 
   .username {
-    font-size: 15px;
     line-height: 1.35;
     font-weight: 600;
-    color: #111;
     margin: 0;
     text-align: left;
   }
@@ -314,10 +293,8 @@ const DownloadToggle = styled.div`
 
   div {
     .btn {
-      outline: none;
       display: inline-flex;
       background-color: #3cb46e;
-      border: 0;
       padding: 0 11px;
       margin: 0;
       font-size: 14px;
@@ -327,7 +304,6 @@ const DownloadToggle = styled.div`
       height: 32px;
       line-height: 30px;
       color: #fff;
-      cursor: pointer;
       transition: all 0.1s ease-in-out;
 
       &:hover {
@@ -356,7 +332,6 @@ const DownloadToggle = styled.div`
 `
 const ModalImage = styled.div`
   .image-wrap {
-    box-sizing: border-box;
     padding: 10px 16px;
     background-color: #fff;
 
@@ -398,14 +373,10 @@ const ModalInfo = styled.div`
       font-size: 14px;
       width: fit-content;
       font-weight: inherit;
-      line-height: 1.6;
     }
 
     .image-info-content {
-      color: #111;
-      font-size: 15px;
       font-weight: 500;
-      line-height: 1.6;
     }
   }
 
@@ -426,8 +397,6 @@ const ModalDesc = styled.div`
     align-items: center;
     color: #767676;
     font-size: 14px;
-    font-weight: 400;
-    line-height: 1.6;
 
     .image-desc-icon {
       width: 18px;
