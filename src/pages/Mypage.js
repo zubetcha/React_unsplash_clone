@@ -1,9 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+import { actionCreators as cardActions } from '../redux/modules/card'
 
 // elements & components
 import Header from '../components/Header'
 import Masonry from '../components/Masonry'
+import CardTest from '../components/CardTest'
 import { Grid, Image, Text } from '../elements'
 
 // react-icons
@@ -15,6 +18,14 @@ import { VscFileSubmodule } from 'react-icons/vsc'
 import { BsFillBarChartFill } from 'react-icons/bs'
 
 const Mypage = (props) => {
+  const dispatch = useDispatch()
+
+  const nickname = localStorage.getItem('nickname')
+
+  const test = () => {
+    dispatch(cardActions.userCardDB())
+  }
+
   return (
     <>
       <Header Mypage />
@@ -26,7 +37,7 @@ const Mypage = (props) => {
             </Grid>
             <Grid width="66%" flex="flex" flexDirection="column" alignItems="center">
               <Grid flex="flex" flexDirection="row" alignItems="center" justifyContent="left" padding="0 0 16px 16px">
-                <Username>user fullname</Username>
+                <Username>{nickname}</Username>
                 <Grid width="auto" padding="0 0 0 24px">
                   <EditProfile>
                     <RiPencilFill className="edit-profile-icon" />
@@ -36,7 +47,7 @@ const Mypage = (props) => {
               </Grid>
               <Grid padding="0 0 16px 16px">
                 <Text margin="0" color="#111" size="15px">
-                  Download free, beautiful high-quality photos curated by *fullname*
+                  Download free, beautiful high-quality photos curated by {nickname}.
                 </Text>
               </Grid>
               <Grid flex="flex" alignItems="center" padding="0 0 16px 16px">
@@ -76,16 +87,50 @@ const Mypage = (props) => {
                     Stats
                   </ListBtn>
                 </ListItem>
+                <ListItem>
+                  <ListBtn onClick={test}>Card 확인</ListBtn>
+                </ListItem>
               </MyList>
             </Grid>
           </Grid>
         </Grid>
         <Grid>
-          <Masonry />
+          <div style={styles.card_container}>
+            <CardTest src="https://picsum.photos/200/300?image=279" size="small"></CardTest>
+            <CardTest src="https://picsum.photos/400/400?image=400" size="medium"></CardTest>
+            <CardTest src="https://picsum.photos/600/400?image=501" size="large"></CardTest>
+            <CardTest src="https://picsum.photos/200/200?image=998" size="large"></CardTest>
+            <CardTest src="https://picsum.photos/500/400?image=287" size="medium"></CardTest>
+            <CardTest src="https://picsum.photos/400/600?image=957" size="small"></CardTest>
+            <CardTest src="https://picsum.photos/200/300?image=916" size="small"></CardTest>
+            <CardTest src="https://picsum.photos/200/300?image=279" size="medium"></CardTest>
+            <CardTest src="https://picsum.photos/400/400?image=400" size="large"></CardTest>
+            <CardTest src="https://picsum.photos/600/400?image=501" size="small"></CardTest>
+            <CardTest src="https://picsum.photos/200/200?image=998" size="medium"></CardTest>
+            <CardTest src="https://picsum.photos/500/400?image=287" size="large"></CardTest>
+            <CardTest src="https://picsum.photos/400/600?image=957" size="small"></CardTest>
+            <CardTest src="https://picsum.photos/200/300?image=916" size="medium"></CardTest>
+          </div>
         </Grid>
       </Grid>
     </>
   )
+}
+
+const styles = {
+  card_container: {
+    margin: '30px 0px 0px 0px',
+    padding: 0,
+    width: '80vw',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, 400px)',
+    gridAutoRows: '10px',
+    position: 'absolute',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+  },
 }
 
 const Username = styled.p`

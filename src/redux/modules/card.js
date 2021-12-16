@@ -1,22 +1,30 @@
-import {createAction, handleActions} from "redux-actions";
-import {produce} from "immer";
-import { apis } from '../../shared/api';
-import { setCookie, deleteCookie, getCookie } from '../../shared/Cookie';
+import { createAction, handleActions } from 'redux-actions'
+import { produce } from 'immer'
+import { apis } from '../../shared/api'
+import { setCookie, deleteCookie, getCookie } from '../../shared/Cookie'
+
+const LOAD_CARD = 'LOAD_CARD'
+const ADD_CARD = 'ADD_CARD'
+const USER_CARD = 'USER_CARD'
 
 
 const SEARCH_CARD = "SEARCH_CARD";
 const LOAD_CARD = "LOAD_CARD";
 const ADD_CARD = "ADD_CARD";
+const USER_CARD = 'USER_CARD'
+
 
 const searchCard = createAction(SEARCH_CARD, (search_list) => ({search_list}));
 const getCard = createAction(LOAD_CARD, (card_list) => ({card_list}));
 const addCard = createAction(ADD_CARD, (card) => ({card}));
+const userCard = createAction(USER_CARD, (card_list) => ({ card_list }))
 
 
 
 const initialState = {  
     card_list : [],
     search_list : [],
+  user_card_list: [],
 };
 
 
@@ -80,6 +88,19 @@ const searchCardDB = (tagId) => {
     };
 };
 
+const userCardDB = () => {
+  return async function (dispatch, getState, { history }) {
+    await apis
+      .userPosts()
+      .then(function (response) {
+        console.log(response)
+        dispatch(userCard(response))
+      })
+      .catch((err) => {
+        console.log(err.response)
+      })
+  }
+}
 
 
 export default handleActions(
@@ -98,6 +119,10 @@ export default handleActions(
             produce(state, (draft) => {
                 draft.card_list.unshift(action.payload.card);
             }),
+      [USER_CARD]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user_card_list = action.payload.card_list
+      }),
         
         
     },
@@ -108,9 +133,12 @@ const actionCreators = {
     addCardDB,
     getCardDB,
     searchCardDB,
+    userCardDB,
     searchCard,
     getCard,
     addCard,
+  userCard,
 };
 
-export { actionCreators };
+
+export { actionCreators }

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Grid = (props) => {
-  const { position, children, flex, align, width, padding, margin, _onClick, bg, height, overflowY, verticalAlign, alignItems, maxWidth, flexDirection, justifyContent, borderBottom } = props
+  const { position, children, flex, align, width, padding, margin, _onClick, bg, height, overflowY, verticalAlign, alignItems, maxWidth, flexDirection, justifyContent, borderBottom, gap } = props
   const styles = {
     flex: flex,
     position: position,
@@ -21,6 +21,7 @@ const Grid = (props) => {
     flexDirection: flexDirection,
     justifyContent: justifyContent,
     borderBottom: borderBottom,
+    gap: gap,
   }
 
   return (
@@ -50,6 +51,7 @@ Grid.defaultProps = {
   flexDirection: false,
   justifyContent: false,
   borderBottom: false,
+  gap: false,
 }
 
 const GridBox = styled.div`
@@ -71,6 +73,7 @@ const GridBox = styled.div`
   flex-direction: ${(props) => (props.flexDirection ? `${props.flexDirection};` : '')};
   justify-content: ${(props) => (props.justifyContent ? `${props.justifyContent};` : '')};
   border-bottom: ${(props) => (props.borderBottom ? `${props.borderBottom};` : '')};
+  gap: ${(props) => (props.gap ? `${props.gap};` : '')};
 `
 
 export default Grid
