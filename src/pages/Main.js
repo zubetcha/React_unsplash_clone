@@ -13,7 +13,7 @@ const Main = (props) => {
   const dispatch = useDispatch()
 
   React.useEffect(() => {
-    // dispatch(cardActions.getCardDB())
+    dispatch(cardActions.getCardDB())
   }, [])
 
   return (
@@ -49,3 +49,4 @@ const Main = (props) => {
 }
 
 export default Main
+
