@@ -3,14 +3,12 @@ import styled from 'styled-components'
 import { Grid, Text } from '.'
 
 const Input = (props) => {
-  const { label, textarea, textarea2, nomal, placeholder, search_box, type, value, margin, padding, boxSizing, _onChange, width, height, condition, conditionInfo, maxWidth } = props
+  const { label, textarea, textarea2, nomal, placeholder, search_box, type, value, margin, padding, _onChange, width, height, condition, conditionInfo } = props
   const styles = {
     margin: margin,
     padding: padding,
-    boxSizing: boxSizing,
     height: height,
     width: width,
-    maxWidth: maxWidth,
   }
 
   // 유효성 검사에 부합하지 않으면 label, inputbox 컬러 변함
@@ -80,21 +78,18 @@ Input.defaultProps = {
   value: '',
   margin: '0',
   padding: '6px 12px',
-  boxSizing: 'border-box',
   _onChange: () => {},
   height: '40px',
 }
 
 const FormGroup = styled.div`
   margin-bottom: 24px;
-  box-sizing: ${(props) => props.boxSizing};
   width: ${(props) => props.width};
   font-size: 15px;
   line-height: 1.6;
   color: #111111;
 
   .form-label {
-    box-sizing: border-box;
     display: inline-flex;
     -webkit-box-align: baseline;
     -webkit-align-items: baseline;
@@ -118,7 +113,6 @@ const FormGroup = styled.div`
     color: #111111;
     background-color: transparent;
     background-image: none;
-    box-sizing: ${(props) => props.boxSizing};
     border: 1 px solid #767676;
     border-radius: 4 px;
     -webkit-transition: border-color ease-in-out 0.15s;
@@ -131,7 +125,6 @@ const FormGroup = styled.div`
   }
 `
 const SearchBox = styled.div`
-  box-sizing: ${(props) => props.boxSizing};
   width: 100%;
   font-size: 15px;
   line-height: 1.6;
@@ -147,7 +140,6 @@ const SearchBox = styled.div`
     line-height: 1.6;
     color: #111111;
     background: #eee;
-    box-sizing: ${(props) => props.boxSizing};
     border: none;
     border-radius: 1 px;
     -webkit-transition: border-color ease-in-out 0.15s;
@@ -155,7 +147,7 @@ const SearchBox = styled.div`
     cursor: text;
 
     &:focus {
-      border: 1px solid #111111;
+      border: none;
     }
   }
 `
@@ -163,7 +155,6 @@ const SearchBox = styled.div`
 const Textarea = styled.textarea`
   width: 100%;
   padding: 10px;
-  box-sizing: border-box;
   margin: 10px 0px;
   font-family: 'Noto Sans KR';
   border: 1px solid black;
@@ -174,7 +165,6 @@ const InputBox = styled.input`
   width: 100%;
   height: ${(props) => props.height};
   padding: ${(props) => props.padding};
-  box-sizing: ${(props) => props.boxSizing};
   border: 1px solid #c4c4c4;
   border-radius: 4px;
   color: #c4c4c4;
@@ -183,6 +173,5 @@ const InputBox = styled.input`
   font-family: 'Noto Sans KR';
   border: 1px solid black;
 `
-
 
 export default Input

@@ -40,7 +40,7 @@ const CardTest = (props) => {
           ...styles[props.size],
         }}
       >
-        <img width="100%" height="100%" src={props.src} onClick={openDetail}></img>
+        <img width="100%" height="100%" src={props.img} onClick={openDetail}></img>
       </div>
       {showDetail ? (
         <ModalBody onClick={closeDetail}>
@@ -56,7 +56,7 @@ const CardTest = (props) => {
                       <img src="https://images.unsplash.com/placeholder-avatars/extra-large.jpg?dpr=2&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff"></img>
                     </UserProfile>
                     <UserInfo>
-                      <p className="username">ZUBETCHA</p>
+                      <p className="username">{props.nickname}</p>
                       <div className="user-status-flex">
                         <p className="user-status">Available for hire</p>
                         <IoCheckmarkCircleSharp />
@@ -90,7 +90,7 @@ const CardTest = (props) => {
                   <div>
                     <div className="image-wrap">
                       <div className="image-container">
-                        <img src="https://images.unsplash.com/photo-1639365095893-0269096a3ba3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2969&q=80"></img>
+                        <img src={props.img}></img>
                       </div>
                     </div>
                   </div>
@@ -99,7 +99,7 @@ const CardTest = (props) => {
                   <div className="image-info">
                     <div>
                       <h3 className="image-info-title">Views</h3>
-                      <span className="image-info-content">--</span>
+                      <span className="image-info-content">{props.views}</span>
                     </div>
                     <div>
                       <h3 className="image-info-title">Downloads</h3>
@@ -108,7 +108,7 @@ const CardTest = (props) => {
                     <div>
                       <h3 className="image-info-title">Featured in</h3>
                       <span className="image-info-content">
-                        <a>Tagname</a>
+                        <a>{props.tagname}</a>
                       </span>
                     </div>
                   </div>
@@ -137,19 +137,19 @@ const CardTest = (props) => {
                     <span className="image-desc-icon">
                       <IoLocationSharp />
                     </span>
-                    <p className="image-desc-text">Location</p>
+                    <p className="image-desc-text">{props.location}</p>
                   </div>
                   <div className="image-desc">
                     <span className="image-desc-icon">
                       <FiCalendar />
                     </span>
-                    <p className="image-desc-text">Modified At</p>
+                    <p className="image-desc-text">{props.modifiedAt}</p>
                   </div>
                   <div className="image-desc">
                     <span className="image-desc-icon">
                       <MdOutlineDescription />
                     </span>
-                    <p className="image-desc-text">Description</p>
+                    <p className="image-desc-text">{props.description}</p>
                   </div>
                 </ModalDesc>
               </DetailContainer>
@@ -182,7 +182,7 @@ const ModalBody = styled.div`
   height: 100%;
   position: absolute;
   /* opacity: 0; */
-  z-index: 0;
+  z-index: 1000;
   top: 0;
   right: 0;
   bottom: 0;
