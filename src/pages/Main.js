@@ -12,9 +12,10 @@ import { actionCreators as cardActions } from "../redux/modules/card";
 
 const Main = (props) => {
     const dispatch = useDispatch();
-    const test = () => {
-        dispatch(cardActions.getCardDB())
-    }
+    
+    React.useEffect(() => {
+        // dispatch(cardActions.getCardDB())
+    }, []);
 
     return (
         <>
@@ -37,7 +38,6 @@ const Main = (props) => {
             <Image shape="full" src={mainback}></Image>
         </Grid>
         <Grid>
-            <button onClick={()=>{test()}}>확인</button>
         <Masonry></Masonry>
         </Grid>
         </>
