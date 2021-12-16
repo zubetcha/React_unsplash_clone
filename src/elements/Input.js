@@ -132,8 +132,7 @@ const FormGroup = styled.div`
 `
 const SearchBox = styled.div`
   box-sizing: ${(props) => props.boxSizing};
-  width: ${(props) => props.width};
-  max-width: ${(props) => props.maxWidth};
+  width: 100%;
   font-size: 15px;
   line-height: 1.6;
   color: #111111;

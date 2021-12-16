@@ -137,7 +137,6 @@ const ModalBody = styled.div`
   height: 100%;
   position: absolute;
   /* opacity: 0; */
-  box-sizing: border-box;
   z-index: 0;
   overflow-y: hidden;
 `
