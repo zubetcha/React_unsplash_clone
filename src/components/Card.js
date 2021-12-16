@@ -8,7 +8,7 @@ const Card = (props) => {
       style={{
         ...styles.card,
         ...styles[props.size],
-      }} onClick={()=>{history.push(`/detail/${props.key}`)}}
+      }} onClick={()=>{history.push(`/detail/${props.id}`)}}
     >
       <img width="100%" height="100%" src={props.src}></img>
     </div>
