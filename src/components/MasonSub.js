@@ -1,13 +1,14 @@
 import React from "react";
 import Card from "./Card";
+import { useSelector } from "react-redux";
 
 const Masonry = (props) => {
-    
+    const search_list = useSelector((state)=>state.card.search_list)
     return (
         <div style={styles.card_container}>
-            <Card src="https://picsum.photos/200/300?image=279" size="small"></Card>
-            <Card src="https://picsum.photos/400/400?image=400" size="medium"></Card>
-            <Card src="https://picsum.photos/600/400?image=501" size="large"></Card>
+            {/* {card_list.map((c,idx) => {
+                return  <Card key={c.boardId} src={c.img} size={c.size}></Card>
+            })} */}
         </div>
     );
 

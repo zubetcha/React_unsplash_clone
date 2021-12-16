@@ -184,4 +184,5 @@ const InputBox = styled.input`
   border: 1px solid black;
 `
 
+
 export default Input

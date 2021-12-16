@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import './Detail.css'
+import { useDispatch, useSelector } from 'react-redux'
+import {history} from '../redux/configureStore'
+import { actionCreators as cardActions } from '../redux/modules/card'
 
 // react-icons
 import { IoCheckmarkCircleSharp } from 'react-icons/io5'
@@ -15,6 +18,16 @@ import { FiCalendar } from 'react-icons/fi'
 import { MdOutlineDescription } from 'react-icons/md'
 
 const Detail = (props) => {
+
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+
+    dispatch(cardActions.getCardDB());
+
+  }, []);
+
+
   return (
     <>
       <ModalBody>

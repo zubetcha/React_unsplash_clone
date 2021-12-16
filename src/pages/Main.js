@@ -10,25 +10,11 @@ import { useDispatch } from 'react-redux'
 import { actionCreators as cardActions } from '../redux/modules/card'
 
 const Main = (props) => {
-  const dispatch = useDispatch()
-  const test = () => {
-    dispatch(cardActions.getCardDB())
-  }
-
-  return (
-    <>
-      <Header></Header>
-      <Grid margin="117px 0px 0px 0px" position="relative">
-        <Grid margin="0px auto" width="900px" position="relative">
-          <Grid position="absolute; top:40px">
-            <Text size="45px" color="#fff" bold>
-              Unsplash
-            </Text>
-            <Text size="25px" color="#fff" bold>
-              The internet's source of freely-usable images.
-              <br />
-              Powered by creators everywhere.
-            </Text>
+    const dispatch = useDispatch();
+    
+    React.useEffect(() => {
+        // dispatch(cardActions.getCardDB())
+    }, []);
 
             <Grid flex="flex; align-items:center" width="auto">
               <Button height="40px" width="50px" bg="#eee" color="#767676" text={<SearchIcon />}></Button>
@@ -38,16 +24,7 @@ const Main = (props) => {
             <Text color="#fff">Trending: flower, wallpapers, backgrounds, happy, love</Text>
           </Grid>
         </Grid>
-        <Image shape="full" src={mainback}></Image>
-      </Grid>
-      <Grid>
-        <button
-          onClick={() => {
-            test()
-          }}
-        >
-          확인
-        </button>
+        <Grid>
         <Masonry></Masonry>
       </Grid>
     </>

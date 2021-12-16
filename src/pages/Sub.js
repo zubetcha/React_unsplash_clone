@@ -2,11 +2,19 @@ import React from "react";
 import Header from "../components/Header";
 import SubTitle from "../components/SubTitle";
 import {Grid, Image, Text, Input,Button} from "../elements";
-import Masonry from "../components/Masonry";
+import MasonSub from "../components/MasonSub";
+import { useDispatch } from "react-redux";
+import { actionCreators as cardActions } from "../redux/modules/card";
 
 
 const Sub = (props) => {
     const param = props.match.params.tag
+
+    const dispatch = useDispatch();
+    
+    React.useEffect(() => {
+        // dispatch(cardActions.searchCardDB(param))
+    }, []);
     
 
     return (
@@ -66,7 +74,7 @@ const Sub = (props) => {
             </Grid>
         </Grid>
         <Grid>
-        <Masonry></Masonry>
+        <MasonSub></MasonSub>
         </Grid>
         
             
