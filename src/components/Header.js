@@ -63,7 +63,7 @@ const Header = (props) => {
               src={Logo}
             ></Image>
           </Grid>
-          <Grid flex="flex; align-items:center" maxWidth="1300px">
+          <Grid flex="flex; align-items:center" maxWidth="2000px">
             <Button height="40px" width="50px" borderRadius="20px 0px 0px 20px" bg="#eee" color="#767676" text={<SearchIcon />}></Button>
             <Input value={search} _onChange={change_text} search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
             <Button
@@ -78,7 +78,7 @@ const Header = (props) => {
               text={<CenterFocusWeakIcon />}
             ></Button>
           </Grid>
-          <Grid flex="flex; align-items:center; justify-content:space-between" width="230px">
+          <Grid flex="flex; align-items:center; justify-content:center" width="230px">
             {!is_login ? <NavMenu>Explore</NavMenu> : null}
             <NavMenu>Advertise</NavMenu>
             <NavMenu>Blog</NavMenu>
