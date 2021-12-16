@@ -24,7 +24,6 @@ const Upload = (props) => {
   const [location, setLocations] = React.useState("");
   const [textarea, setTexts] = React.useState("");
   const [size, setSizes] = React.useState("small");
-  console.log(fileInput)
 
   const change_text = (e) => {
     setTexts(e.target.value);
@@ -252,10 +251,9 @@ const Upload = (props) => {
                 </div>
                 <div className="footer-btn">
                   <button className="cancel-btn">Cancel</button>
-                  <button onClick={()=>{addCard()}} className="submit-btn" disabled>
+                  <button onClick={()=>{addCard()}} className="submit-btn">
                     Submit to Unsplash
                   </button>
-                  <button onClick={()=>{addCard()}}>확인</button>
                 </div>
               </UploadFooter>
             </div>
