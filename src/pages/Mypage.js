@@ -22,6 +22,7 @@ const Mypage = (props) => {
   const nickname = localStorage.getItem('nickname')
 
   const user_card_list = useSelector((state) => state.card.user_card_list)
+  console.log(user_card_list)
 
   React.useEffect(() => {
     if (user_card_list.length === 0) {
