@@ -3,14 +3,16 @@ import styled from 'styled-components'
 
 const Card = (props) => {
   return (
-    <div
-      style={{
-        ...styles.card,
-        ...styles[props.size],
-      }}
-    >
-      <img width="100%" height="100%" src={props.src}></img>
-    </div>
+    <>
+      <div
+        style={{
+          ...styles.card,
+          ...styles[props.size],
+        }}
+      >
+        <img width="100%" height="100%" src={props.src}></img>
+      </div>
+    </>
   )
 }
 
