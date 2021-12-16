@@ -2,25 +2,21 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Image = (props) => {
+  const { _onClick, shape, src, size, cursor } = props
 
-    const { _onClick, shape, src, size} = props;
+  const styles = {
+    src: src,
+    size: size,
+    cursor: cursor,
+  }
 
-    const styles = {
-        src: src,
-        size: size,
-    }
+  if (shape === 'circle') {
+    return <ImageCircle onClick={_onClick} {...styles}></ImageCircle>
+  }
 
-    if(shape === "circle"){
-        return (
-            <ImageCircle {...styles}></ImageCircle>
-        );
-    };
-    
-    if(shape === "small"){
-        return (
-            <ImageSmall {...styles}></ImageSmall>
-        );
-    };
+  if (shape === 'small') {
+    return <ImageSmall {...styles}></ImageSmall>
+  }
 
   if (shape === 'small') {
     return <ImageSmall {...styles}></ImageSmall>
@@ -47,7 +43,8 @@ Image.defaultProps = {
   src: 'https://github.com/Leejunmyung/image/blob/master/unsplash_logo.png?raw=true',
   width: '100%',
   height: '170px',
-  _onClick: ()=>{},
+  _onClick: () => {},
+  pointer: 'default',
 }
 
 const ImageSmall = styled.div`
@@ -72,34 +69,33 @@ const ImageBig = styled.div`
 `
 
 const ImageFull = styled.div`
-
-    width: 100%;
-    height:530px; 
-    background-image: url("${(props) => props.src}");
-    background-size: cover;
-    background-position:center;
-    background-color:rgba(0, 0, 0, 0.5);
-    background-blend-mode:multiply;
+  width: 100%;
+  height: 530px;
+  background-image: url('${(props) => props.src}');
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: multiply;
 `
 const ImageLogo = styled.div`
-    width: 50px;
-    height: 50px;
-    background-image: url("${(props) => props.src}");
-    background-size: cover;
-    margin:10px 0; 
+  width: 50px;
+  height: 50px;
+  background-image: url('${(props) => props.src}');
+  background-size: cover;
+  margin: 10px 0;
+  cursor: pointer;
 `
 
 const ImageCircle = styled.div`
-    --size: ${(props) => props.size};
-    width: var(--size);
-    height: var(--size);
-    border-radius: var(--size);
+  --size: ${(props) => props.size};
+  width: var(--size);
+  height: var(--size);
+  border-radius: var(--size);
 
-    background-image: url("${(props) => props.src}");
-    background-size: cover;
-    margin: 4px;
-`;
+  background-image: url('${(props) => props.src}');
+  background-size: cover;
+  margin: 4px;
+  cursor: ${(props) => (props.cursor ? `${props.cursor};` : '')};
+`
 
-
-
-export default Image;
+export default Image
