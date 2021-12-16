@@ -51,7 +51,7 @@ const logInDB = (email, password) => {
         history.replace('/')
       })
       .catch((err) => {
-        console.log('로그인에 문제가 발생했습니다.', err)
+        console.log('로그인에 문제가 발생했습니다.', err.response)
       })
   }
 }
@@ -60,10 +60,9 @@ const logOutDB = () => {
   return async function (dispatch, getState, { history }) {
     deleteCookie('token')
     localStorage.removeItem('userId')
-    localStorage.removeItem('nickname').then(() => {
-      dispatch(logOut())
-      history.replace('/')
-    })
+    localStorage.removeItem('nickname')
+    dispatch(logOut())
+    history.replace('/')
   }
 }
 
