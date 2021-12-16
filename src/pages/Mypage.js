@@ -22,7 +22,11 @@ const Mypage = (props) => {
   const nickname = localStorage.getItem('nickname')
 
   const user_card_list = useSelector((state) => state.card.user_card_list)
-  console.log(user_card_list)
+
+  const ClickNotPrepared = () => {
+    window.alert('준비중입니다.')
+    return
+  }
 
   React.useEffect(() => {
     if (user_card_list.length === 0) {
@@ -80,13 +84,13 @@ const Mypage = (props) => {
                   </ListBtn>
                 </ListItem>
                 <ListItem>
-                  <ListBtn>
+                  <ListBtn onClick={ClickNotPrepared}>
                     <VscFileSubmodule className="list-icon" />
                     Collections
                   </ListBtn>
                 </ListItem>
                 <ListItem>
-                  <ListBtn>
+                  <ListBtn onClick={ClickNotPrepared}>
                     <BsFillBarChartFill className="list-icon" />
                     Stats
                   </ListBtn>
@@ -116,7 +120,7 @@ const styles = {
     margin: '30px 0px 0px 0px',
     padding: 0,
     width: '80vw',
-    height: '2000px',
+    height: '150%',
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, 400px)',
     gridAutoRows: '10px',

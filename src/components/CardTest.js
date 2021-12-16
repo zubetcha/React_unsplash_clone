@@ -454,7 +454,7 @@ const ModalDesc = styled.div`
       margin: 0 7px 0 0;
 
       svg {
-        font-size: 16px;
+        font-size: 20px;
         padding-top: 5px;
       }
     }

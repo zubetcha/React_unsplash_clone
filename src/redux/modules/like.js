@@ -4,3 +4,6 @@ import { apis } from '../../shared/api'
 
 /* Action type */
 const CLICK_LIKE = 'CLICK_LIKE'
+const CANCEL_LIKE = 'CANCEL_LIKE'
+
+/*  */
