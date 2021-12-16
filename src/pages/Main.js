@@ -13,7 +13,7 @@ const Main = (props) => {
     const dispatch = useDispatch();
     
     React.useEffect(() => {
-        // dispatch(cardActions.getCardDB())
+        dispatch(cardActions.getCardDB())
     }, []);
 
             <Grid flex="flex; align-items:center" width="auto">

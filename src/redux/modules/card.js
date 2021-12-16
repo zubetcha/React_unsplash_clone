@@ -11,20 +11,24 @@ const USER_CARD = 'USER_CARD'
 const SEARCH_CARD = "SEARCH_CARD";
 const LOAD_CARD = "LOAD_CARD";
 const ADD_CARD = "ADD_CARD";
+const ONE_CARD = "ONE_CARD";
 const USER_CARD = 'USER_CARD'
 
 
 const searchCard = createAction(SEARCH_CARD, (search_list) => ({search_list}));
 const getCard = createAction(LOAD_CARD, (card_list) => ({card_list}));
 const addCard = createAction(ADD_CARD, (card) => ({card}));
+const getOneCard = createAction(ONE_CARD, (card) => ({card}));
 const userCard = createAction(USER_CARD, (card_list) => ({ card_list }))
+
 
 
 
 const initialState = {  
     card_list : [],
     search_list : [],
-  user_card_list: [],
+    one_card: "",
+    user_card_list: [],
 };
 
 
@@ -61,12 +65,12 @@ const addCardDB = (img, tag, location, content, size) => {
     };
 };
 
-const getCardDB = () => {
+const getCardDB = (id) => {
     return async function (dispatch, getState, {history}){
         
-        await apis.allPosts().then(function(response){
+        await apis.allPosts(id).then(function(response){
+            console.log(response)
             dispatch(getCard(response.data))
-            
         }).catch((err) => {
             console.log(err.response)
         })
@@ -87,6 +91,20 @@ const searchCardDB = (tagId) => {
 
     };
 };
+
+
+const getOneCardDB = (id) => {
+    return async function (dispatch, getState, {history}){
+        await apis.onePost(id).then(function(response){
+            console.log(response)
+            dispatch(getOneCard(response))
+        }).catch((err) => {
+            console.log(err.response)
+        })
+
+    };
+};
+
 
 const userCardDB = () => {
   return async function (dispatch, getState, { history }) {
@@ -109,6 +127,10 @@ export default handleActions(
         [LOAD_CARD]: (state, action) =>
             produce(state, (draft) => {
                 draft.card_list = action.payload.card_list;
+            }),
+        [ONE_CARD]: (state, action) =>
+            produce(state, (draft) => {
+                draft.one_item = action.payload.card;
             }),
         [SEARCH_CARD]: (state, action) =>
             produce(state, (draft) => {
@@ -133,11 +155,17 @@ const actionCreators = {
     addCardDB,
     getCardDB,
     searchCardDB,
+    getOneCardDB,
+    searchCard,
+    getCard,
+    addCard,
+    getOneCard
     userCardDB,
     searchCard,
     getCard,
     addCard,
-  userCard,
+    userCard,
+
 };
 
 
