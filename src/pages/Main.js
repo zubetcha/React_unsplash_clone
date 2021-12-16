@@ -6,10 +6,15 @@ import CenterFocusWeakIcon from '@material-ui/icons/CenterFocusWeak';
 import Scroll from "../components/Scroll"
 import Masonry from "../components/Masonry";
 import mainback from "../static/MainBackground.jpg"
+import { useDispatch } from "react-redux";
+import { actionCreators as cardActions } from "../redux/modules/card";
 
 
 const Main = (props) => {
-
+    const dispatch = useDispatch();
+    const test = () => {
+        dispatch(cardActions.getCardDB())
+    }
 
     return (
         <>
@@ -32,6 +37,7 @@ const Main = (props) => {
             <Image shape="full" src={mainback}></Image>
         </Grid>
         <Grid>
+            <button onClick={()=>{test()}}>확인</button>
         <Masonry></Masonry>
         </Grid>
         </>

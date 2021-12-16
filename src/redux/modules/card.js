@@ -5,19 +5,17 @@ import { setCookie, deleteCookie, getCookie } from '../../shared/Cookie';
 
 
 
-
-const LOG_IN = "LOG_IN";
-
-
+const LOAD_CARD = "LOAD_CARD";
+const ADD_CARD = "ADD_CARD";
 
 
-const logIn = createAction(LOG_IN, (user) => ({user}));
+const getCard = createAction(LOAD_CARD, (card_list) => ({card_list}));
+const addCard = createAction(ADD_CARD, (card) => ({card}));
 
 
 
 const initialState = {  
-    nickname: null,
-    is_login: false,
+    card_list : [],
 };
 
 
@@ -27,8 +25,8 @@ const addCardDB = (img, tag, location, content, size) => {
         const nick = localStorage.getItem('nickname')
         const token = getCookie('token')
         const addFormData = new FormData()
-        console.log(nick)
-        console.log(token)
+        // console.log(nick)
+        // console.log(token)
         const card_info = {
             nickname: nick,
             tagname: tag,
@@ -46,6 +44,8 @@ const addCardDB = (img, tag, location, content, size) => {
               token }
           }).then(function(response){
             console.log(response)
+            dispatch(addCard(response))
+            // history.push("/");
         }).catch((err) => {
             console.log(err.response)
         })
@@ -55,34 +55,38 @@ const addCardDB = (img, tag, location, content, size) => {
     };
 };
 
-const logInDB = (email, password) => {
-    return async function (dispatch, getState, { history }) {
-      await apis
-        .login(email, password)
-        .then((res) => {
-          const user_id = res.data.userId
-          const nickname = res.data.nickname
-          setCookie('token', res.headers.authorization, 3)
-          localStorage.setItem('userId', user_id)
-          localStorage.setItem('nickname', nickname)
-          dispatch(logIn({ email: email, user_id: user_id, nickname: nickname }))
-          history.replace('/')
+const getCardDB = () => {
+    return async function (dispatch, getState, {history}){
+        
+        await apis.allPosts().then(function(response){
+            console.log(response)
+            dispatch(getCard(response))
+            
+        }).catch((err) => {
+            console.log(err.response)
         })
-        .catch((err) => {
-          console.log('로그인에 문제가 발생했습니다.', err)
-        })
-    }
-  }
+        
+
+    };
+};
+
+
 
 
 
 export default handleActions(
     {
         
-        [LOG_IN]: (state, action) =>
+        [LOAD_CARD]: (state, action) =>
             produce(state, (draft) => {
-                // draft.nickname = action.payload.user
+                draft.card_list = action.payload.card_list;
             }),
+        [ADD_CARD]: (state, action) =>
+            produce(state, (draft) => {
+                console.log(action.payload.card)
+                draft.card_list.unshift(action.payload.card);
+            }),
+        
         
     },
     initialState
@@ -90,6 +94,7 @@ export default handleActions(
 
 const actionCreators = {
     addCardDB,
+    getCardDB,
 };
 
 export { actionCreators };
