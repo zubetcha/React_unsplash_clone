@@ -20,10 +20,13 @@ import { MdOutlineDescription } from 'react-icons/md'
 const Detail = (props) => {
 
   const dispatch = useDispatch();
+  const card_id = props.match.params.id;
+  const card = useSelector((state) => state.card.one_card)
+  console.log(card)
 
   React.useEffect(() => {
 
-    dispatch(cardActions.getCardDB());
+    dispatch(cardActions.getOneCardDB(card_id));
 
   }, []);
 

@@ -13,7 +13,7 @@ const Sub = (props) => {
     const dispatch = useDispatch();
     
     React.useEffect(() => {
-        // dispatch(cardActions.searchCardDB(param))
+        dispatch(cardActions.searchCardDB(param))
     }, []);
     
 
