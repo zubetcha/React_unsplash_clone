@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Grid, Text } from '.'
 
 const Input = (props) => {
-  const { label, textarea, nomal, placeholder,search_box, type, value, margin, padding, boxSizing, _onChange,width, height, condition, conditionInfo } = props
+  const { label, textarea,textarea2, nomal, placeholder,search_box, type, value, margin, padding, boxSizing, _onChange,width, height, condition, conditionInfo } = props
   const styles = {
     margin: margin,
     padding: padding,
@@ -40,10 +40,16 @@ const Input = (props) => {
         <Grid>
             <Text size="16px"  align="left" >{label}</Text>
             <Textarea rows="7" {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></Textarea>
-
-            
         </Grid>
     );
+}
+
+if(textarea2){
+  return (
+      
+        <Textarea rows="3" {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></Textarea>
+      
+  );
 }
 
 if(nomal){
@@ -163,8 +169,9 @@ const Textarea = styled.textarea`
 width:100%;
 padding:10px;
 box-sizing:border-box;
-margin:15px 0;
+margin:10px 0px;
 font-family: 'Noto Sans KR';
+border: 1px solid black;
 
 `;
 
@@ -180,6 +187,7 @@ const InputBox = styled.input`
     font-size:13px;
     margin:15px 0;
     font-family: 'Noto Sans KR';
+    border: 1px solid black;
 `;
 
 
