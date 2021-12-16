@@ -341,6 +341,7 @@ const FormGroup = styled.div`
 `
 
 const Validation = styled.p`
+  font-size: 12px;
   color: #767676;
   cursor: text;
   margin: 0 0 6px 0;

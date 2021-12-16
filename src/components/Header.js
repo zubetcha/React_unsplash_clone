@@ -35,6 +35,7 @@ const Header = (props) => {
             <Button height="40px" width="50px" borderRadius="20px 0px 0px 20px" bg="#eee" color="#767676" text={<SearchIcon />}></Button>
             <Input value={search} _onChange={change_text}  placeholder="Search free high-resolution photos" width="1000px"></Input>
             <Button _onClick={()=>{history.push(`/sub/${search}`)}} height="40px" width="50px" borderRadius="0px 20px 20px 0px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
+
           </Grid>
           <Grid flex="flex; align-items:center; justify-content:space-between" width="230px">
             <Text>Explore</Text>
@@ -62,9 +63,17 @@ const Header = (props) => {
             border="1px solid black"
             height="32px"
           ></Button>
-          <IoNotifications size="30px"></IoNotifications>
-          <Image shape="circle" size="40px" src="https://image.shutterstock.com/image-vector/default-avatar-profile-trendy-style-260nw-1759726295.jpg"></Image>
-          <IoReorderThreeOutline size="30px"></IoReorderThreeOutline>
+          <IoNotifications className="header-icon" size="30px"></IoNotifications>
+          <Image
+            _onClick={() => {
+              history.push('/mypage/userId')
+            }}
+            cursor="pointer"
+            shape="circle"
+            size="40px"
+            src="https://image.shutterstock.com/image-vector/default-avatar-profile-trendy-style-260nw-1759726295.jpg"
+          ></Image>
+          <IoReorderThreeOutline className="header-icon" size="30px"></IoReorderThreeOutline>
         </Grid>
       </Head>
     )
@@ -86,9 +95,10 @@ const Header = (props) => {
           <Button height="40px" width="50px" borderRadius="20px 0px 0px 20px" bg="#eee" color="#767676" text={<SearchIcon />}></Button>
           <Input value={search} _onChange={change_text} search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
           <Button _onClick={()=>{history.push(`/sub/${search}`)}} height="40px" width="50px" borderRadius="0px 20px 20px 0px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
+
         </Grid>
         <Grid flex="flex; align-items:center; justify-content:space-between" width="230px">
-          <Text>Explore</Text>
+          <Text width="auto">Explore</Text>
           <Text>Advertise</Text>
           <Text>Blog</Text>
         </Grid>
@@ -113,9 +123,17 @@ const Header = (props) => {
           border="1px solid black"
           height="32px"
         ></Button>
-        <IoNotifications size="30px"></IoNotifications>
-        <Image shape="circle" size="40px" src="https://image.shutterstock.com/image-vector/default-avatar-profile-trendy-style-260nw-1759726295.jpg"></Image>
-        <IoReorderThreeOutline size="30px"></IoReorderThreeOutline>
+        <IoNotifications className="header-icon" size="30px"></IoNotifications>
+        <Image
+          _onClick={() => {
+            history.push('/mypage/userId')
+          }}
+          cursor="pointer"
+          shape="circle"
+          size="40px"
+          src="https://image.shutterstock.com/image-vector/default-avatar-profile-trendy-style-260nw-1759726295.jpg"
+        ></Image>
+        <IoReorderThreeOutline className="header-icon" size="30px"></IoReorderThreeOutline>
       </Grid>
       <Grid height="55px" flex="flex; align-items:center; justify-content:space-around">
         <Scrollone />
@@ -132,5 +150,9 @@ const Head = styled.div`
   background: #fff;
   top: 0;
   z-index: 5;
+
+  .header-icon {
+    cursor: pointer;
+  }
 `
 export default Header
