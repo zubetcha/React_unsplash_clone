@@ -12,6 +12,11 @@ import { history } from '../redux/configureStore'
 
 const Header = (props) => {
   const { Mypage } = props
+  const [search, setSearch] = React.useState("");
+
+  const change_text = (e) => {
+    setSearch(e.target.value)
+  }
 
   if (Mypage) {
     return (
@@ -28,8 +33,8 @@ const Header = (props) => {
           </Grid>
           <Grid flex="flex; align-items:center" width="auto">
             <Button height="40px" width="50px" borderRadius="20px 0px 0px 20px" bg="#eee" color="#767676" text={<SearchIcon />}></Button>
-            <Input search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
-            <Button height="40px" width="50px" borderRadius="0px 20px 20px 0px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
+            <Input value={search} _onChange={change_text}  placeholder="Search free high-resolution photos" width="1000px"></Input>
+            <Button _onClick={()=>{history.push(`/sub/${search}`)}} height="40px" width="50px" borderRadius="0px 20px 20px 0px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
           </Grid>
           <Grid flex="flex; align-items:center; justify-content:space-between" width="230px">
             <Text>Explore</Text>
@@ -79,8 +84,8 @@ const Header = (props) => {
         </Grid>
         <Grid flex="flex; align-items:center" width="auto">
           <Button height="40px" width="50px" borderRadius="20px 0px 0px 20px" bg="#eee" color="#767676" text={<SearchIcon />}></Button>
-          <Input search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
-          <Button height="40px" width="50px" borderRadius="0px 20px 20px 0px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
+          <Input value={search} _onChange={change_text} search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
+          <Button _onClick={()=>{history.push(`/sub/${search}`)}} height="40px" width="50px" borderRadius="0px 20px 20px 0px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
         </Grid>
         <Grid flex="flex; align-items:center; justify-content:space-between" width="230px">
           <Text>Explore</Text>

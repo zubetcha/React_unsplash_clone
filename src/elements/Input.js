@@ -187,7 +187,6 @@ const InputBox = styled.input`
     font-size:13px;
     margin:15px 0;
     font-family: 'Noto Sans KR';
-    border: 1px solid black;
 `;
 
 

@@ -1,25 +1,16 @@
 import React from "react";
 import Card from "./Card";
+import { useSelector } from "react-redux";
 
 const Masonry = (props) => {
-    
+    const card_list = useSelector((state)=>state.card.card_list)
+    console.log(card_list)
     return (
         <div style={styles.card_container}>
-            <Card src="https://picsum.photos/200/300?image=279" size="small"></Card>
-            <Card src="https://picsum.photos/400/400?image=400" size="medium"></Card>
-            <Card src="https://picsum.photos/600/400?image=501" size="large"></Card>
-            <Card src="https://picsum.photos/200/200?image=998" size="large"></Card>
-            <Card src="https://picsum.photos/500/400?image=287" size="medium"></Card>
-            <Card src="https://picsum.photos/400/600?image=957" size="small"></Card>
-            <Card src="https://picsum.photos/200/300?image=916" size="small"></Card>
-            <Card src="https://picsum.photos/200/300?image=279" size="medium"></Card>
-            <Card src="https://picsum.photos/400/400?image=400" size="large"></Card>
-            <Card src="https://picsum.photos/600/400?image=501" size="small"></Card>
-            <Card src="https://picsum.photos/200/200?image=998" size="medium"></Card>
-            <Card src="https://picsum.photos/500/400?image=287" size="large"></Card>
-            <Card src="https://picsum.photos/400/600?image=957" size="small"></Card>
-            <Card src="https://picsum.photos/200/300?image=916" size="medium"></Card>
-            
+            {card_list.map((c,idx) => {
+                return  <Card key={c.boardId} src={c.img} size={c.size}></Card>
+            })}
+           
         </div>
     );
 
