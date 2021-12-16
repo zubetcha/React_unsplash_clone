@@ -30,6 +30,7 @@ export const apis = {
   deletePost: (boardId) => api.delete(`/api/board/detail/${boardId}`),
   allPosts: () => api.get('/api/main'),
   onePost: (boardId) => api.get(`/api/board/detail/${boardId}`),
+  userPosts: () => api.get(`api/user/mypage/boardlist`),
 
   // **** user **** //
   join: (email, password, fullname, nickname) => api.post('/user/join', { username: email, password: password, name: fullname, nickname: nickname }),

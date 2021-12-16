@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { actionCreators as userActions } from '../redux/modules/user'
+import { history } from '../redux/configureStore'
 
 // elements & components
 import { Grid, Text } from '../elements'
@@ -91,10 +92,14 @@ const Join = (props) => {
         <JoinLeft>
           <JoinContent>
             <div>
-              {/* history.push('/') */}
-              <a>
-                <LoginLogo src="https://unsplash.com/assets/core/logo-white-8962708214629a3e8f9fbf5b87b70c3ace41c4175cbcc267f7fbb8449ac45bdd.svg"></LoginLogo>
-              </a>
+              <div>
+                <JoinLogo
+                  onClick={() => {
+                    history.push('/')
+                  }}
+                  src="https://unsplash.com/assets/core/logo-white-8962708214629a3e8f9fbf5b87b70c3ace41c4175cbcc267f7fbb8449ac45bdd.svg"
+                ></JoinLogo>
+              </div>
             </div>
             <TextBox>
               <p className="join-title">Creation starts here</p>
@@ -111,8 +116,13 @@ const Join = (props) => {
               <JoinTitle>Join Unsplash</JoinTitle>
               <Text size="15px" margin="16px 0" align="center">
                 Already have an account?&nbsp;
-                {/* history.push('/login') */}
-                <NotiLink>Login</NotiLink>
+                <NotiLink
+                  onClick={() => {
+                    history.push('/login')
+                  }}
+                >
+                  Login
+                </NotiLink>
               </Text>
             </Grid>
             <Grid height="auto">
@@ -174,14 +184,13 @@ const Join = (props) => {
 }
 
 const Container = styled.div`
-  box-sizing: border-box;
   width: 100vw;
   height: 100vh;
   background-color: #fff;
   display: flex;
+  z-index: 10;
 `
 const JoinLeft = styled.div`
-  box-sizing: border-box;
   width: 40%;
   background-image: url(https://images.unsplash.com/photo-1639322601997-3a876953f829?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1376&q=80);
   background-size: cover;
@@ -191,7 +200,6 @@ const JoinLeft = styled.div`
 `
 
 const JoinContent = styled.div`
-  box-sizing: border-box;
   padding: 8% 10%;
   display: flex;
   flex-direction: column;
@@ -201,12 +209,12 @@ const JoinContent = styled.div`
   height: 100%;
   overflow-y: scroll;
 `
-const LoginLogo = styled.img`
+const JoinLogo = styled.img`
   width: 36px;
   height: 36px;
   margin-bottom: 24px;
   vertical-align: middle;
-  box-sizing: border-box;
+  cursor: pointer;
 `
 
 const TextBox = styled.p`
@@ -228,15 +236,12 @@ const TextBox = styled.p`
   }
 
   .image-info {
-    font-size: 15px;
     font-weight: 500;
-    line-height: 1.6;
     margin: 16px 0;
   }
 `
 
 const JoinRight = styled.div`
-  box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: scroll;
   padding: 0 8%;
@@ -270,7 +275,6 @@ const JoinTitle = styled.h1`
 const SocialLogin = styled.a`
   border-radius: 4px;
   display: inline-flex;
-  box-sizing: border-box;
   color: #fff;
   width: 100%;
   height: 44px;
@@ -278,12 +282,8 @@ const SocialLogin = styled.a`
   justify-content: center;
   align-items: center;
   padding: 9px 18px;
-  font-size: 15px;
-  line-height: 1.6;
   font-weight: 500;
-  cursor: pointer;
   border: 1px solid transparent;
-
   transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out, color 0.1s ease-in-out;
 
   svg {
@@ -297,7 +297,6 @@ const SocialLogin = styled.a`
 
 const FormSeperator = styled.p`
   display: block;
-  color: #111111;
   margin: auto;
   font-size: 12px;
   text-transform: uppercase;
@@ -307,13 +306,8 @@ const FormSeperator = styled.p`
 
 const FormGroup = styled.div`
   margin-bottom: 24px;
-  box-sizing: ${(props) => props.boxSizing};
 
   .form-label {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #111111;
-    box-sizing: border-box;
     display: inline-flex;
     -webkit-box-align: baseline;
     -webkit-align-items: baseline;
@@ -324,31 +318,20 @@ const FormGroup = styled.div`
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     font-weight: 400;
-    box-sizing: border-box;
   }
 
   .form-input {
-    font-size: 15px;
-    line-height: 1.6;
     height: 40px;
-    color: #111111;
     display: block;
     width: 100%;
-    height: 40px;
     padding: 6px 12px;
-    font-size: 15px;
-    line-height: 1.6;
-    color: #111111;
     background-color: transparent;
     background-image: none;
-    box-sizing: ${(props) => props.boxSizing};
     border: 1px solid #767676;
-    outline: none;
     border-radius: 4px;
     -webkit-transition: border-color ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s;
     cursor: text;
-    box-sizing: border-box;
 
     &:focus {
       border: 1px solid #111111;
@@ -359,9 +342,6 @@ const FormGroup = styled.div`
 
 const Validation = styled.p`
   color: #767676;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.6;
   cursor: text;
   margin: 0 0 6px 0;
 `
@@ -373,11 +353,8 @@ const JoinBtn = styled.button`
   text-align: center;
   vertical-align: middle;
   padding: 9px 18px;
-  font-size: 15px;
-  line-height: 1.6;
   border-radius: 4px;
   touch-action: manipulation;
-  cursor: pointer;
 
   :disabled {
     opacity: 0.7;
@@ -389,8 +366,6 @@ const JoinBtn = styled.button`
 const Notification = styled.p`
   display: inline-block;
   font-size: 13px;
-  font-weight: 400;
-  line-height: 1.6;
   color: #767676;
   margin: 0;
 `
@@ -398,10 +373,7 @@ const Notification = styled.p`
 const NotiLink = styled.a`
   color: #767676;
   font-size: 13px;
-  font-weight: 400;
-  line-height: 1.6;
   transition: color 0.1s ease-in-out, fill 0.1s ease-in-out, opacity 0.1s ease-in-out;
-  cursor: pointer;
   text-decoration: underline;
 
   &:hover {

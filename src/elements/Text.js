@@ -2,11 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Text = (props) => {
-  const { bold, color, size, align, margin, children, _onClick } = props
+  const { bold, color, size, align, margin, children, _onClick, lineHeight } = props
 
-  const styles = { margin: margin, bold: bold, color: color, size: size, align: align }
+  const styles = { margin: margin, bold: bold, color: color, size: size, align: align, lineHeight: lineHeight }
 
-  return <P onClick={_onClick} {...styles}>{children}</P>
+  return (
+    <P onClick={_onClick} {...styles}>
+      {children}
+    </P>
+  )
 }
 
 Text.defaultProps = {
@@ -16,7 +20,10 @@ Text.defaultProps = {
   size: '18px',
   align: false,
   margin: false,
-  _onClick:()=>{},
+  _onClick: () => {},
+
+  // 주혜 추가
+  lineHeight: 1.6,
 }
 
 const P = styled.p`
@@ -25,7 +32,7 @@ const P = styled.p`
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? '600' : '400')};
   text-align: ${(props) => (props.align ? `${props.align}` : '')};
-  line-height: 1.6;
+  line-height: ${(props) => props.lineHeight};
 `
 
 export default Text
