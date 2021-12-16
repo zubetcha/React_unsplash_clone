@@ -27,7 +27,7 @@ const joinDB = (email, password, fullname, nickname) => {
       .join(email, password, fullname, nickname)
       .then((res) => {
         history.push('/login')
-        window.alert('Congratuation! After login, enjoy Unsplash.')
+        window.alert('Welcome! After login, enjoy Unsplash.')
       })
       .catch((err) => {
         const errorMsg = err.response.data.errorMsg
