@@ -1,5 +1,6 @@
 import React from 'react'
 import { actionCreators as userActions } from '../redux/modules/user'
+import { actionCreators as cardActions } from '../redux/modules/card'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Grid, Text, Button, Image, Input } from '../elements'
@@ -14,6 +15,7 @@ import { IoNotifications } from 'react-icons/io5'
 import { IoReorderThreeOutline } from 'react-icons/io5'
 import { history } from '../redux/configureStore'
 
+
 const Header = (props) => {
   const dispatch = useDispatch()
 
@@ -24,8 +26,10 @@ const Header = (props) => {
   const nickname = localStorage.getItem('nickname')
   const is_login = user_id !== null ? true : false
 
+  
   const change_text = (e) => {
     setSearch(e.target.value)
+    console.log(e.target.value)
   }
 
   const logOut = () => {
@@ -68,7 +72,9 @@ const Header = (props) => {
             <Input value={search} _onChange={change_text} search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
             <Button
               _onClick={() => {
+                dispatch(cardActions.searchCardDB(search))
                 history.push(`/sub/${search}`)
+                
               }}
               height="40px"
               width="50px"
@@ -135,6 +141,7 @@ const Header = (props) => {
           <Input value={search} _onChange={change_text} search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
           <Button
             _onClick={() => {
+              dispatch(cardActions.searchCardDB(search))
               history.push(`/sub/${search}`)
             }}
             height="40px"
