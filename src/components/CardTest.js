@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import './Detail.css'
 import { useDispatch, useSelector } from 'react-redux'
+import { actionCreators as likeActions } from '../redux/modules/like'
 
 // react-icons
 import { IoCheckmarkCircleSharp } from 'react-icons/io5'
@@ -19,13 +20,20 @@ import { MdClose } from 'react-icons/md'
 const CardTest = (props) => {
   const dispatch = useDispatch()
 
-  const userId = localStorage.getItem('userId')
+  const userId = Number(localStorage.getItem('userId'))
   const boardId = props.boardId
+  console.log(userId)
 
-  const like_list = useSelector((state) => state.like.like_list)
+  const like_user_list = useSelector((state) => state.like.like_list[boardId])
+  console.log(like_user_list)
+  // const is_me = like_user_list.indexOf(userId) === -1 ? false : true
+  // console.log(is_me)
+  const is_me = like_user_list !== undefined && like_user_list.indexOf(userId) > -1 ? true : false
+  console.log(is_me)
 
   const [showDetail, setShowDetail] = React.useState(false)
-  const [like, setLike] = React.useState(false)
+  const [like, setLike] = React.useState(is_me === true ? true : false) // is_me ? true : false
+  console.log(like)
 
   const openDetail = () => {
     setShowDetail(true)
@@ -37,11 +45,23 @@ const CardTest = (props) => {
 
   const clickLike = () => {
     if (!like) {
+      dispatch(likeActions.clickLikeDB(boardId, userId))
       setLike(true)
     } else {
+      dispatch(likeActions.cancelLikeDB(boardId, userId))
       setLike(false)
     }
   }
+
+  // React.useEffect(() => {
+  //   if (like_list.length === 0) {
+  //     dispatch(likeActions.getLikeUserDB())
+  //   }
+  // }, [])
+
+  React.useEffect(() => {
+    dispatch(likeActions.getLikeUserDB(boardId))
+  }, [])
 
   window.addEventListener('keyup', (e) => {
     if (showDetail && e.key === 'Escape') {
