@@ -20,6 +20,13 @@ import { MdOutlineDescription } from 'react-icons/md'
 
 const Detail = (props) => {
   const dispatch = useDispatch()
+
+  window.addEventListener('keyup', (e) => {
+    if (e.key === 'Escape') {
+      history.replace('/')
+    }
+  })
+
   const card_id = props.match.params.id
   const userId = Number(localStorage.getItem('userId'))
   const card = useSelector((state) => state.card.one_card)
@@ -134,16 +141,16 @@ const Detail = (props) => {
                 <div className="image-info">
                   <div>
                     <h3 className="image-info-title">Views</h3>
-                    <span className="image-info-content">--</span>
+                    <span className="image-info-content">{card.view}</span>
                   </div>
                   <div>
-                    <h3 className="image-info-title">Downloads</h3>
-                    <span className="image-info-content">657</span>
+                    <h3 className="image-info-title">Likes</h3>
+                    <span className="image-info-content">{card.likeCnt}</span>
                   </div>
                   <div>
                     <h3 className="image-info-title">Featured in</h3>
                     <span className="image-info-content">
-                      <a>Tagname</a>
+                      <a>{card.tagname}</a>
                     </span>
                   </div>
                 </div>
@@ -178,7 +185,7 @@ const Detail = (props) => {
                   <span className="image-desc-icon">
                     <FiCalendar />
                   </span>
-                  <p className="image-desc-text">Modified At</p>
+                  <p className="image-desc-text">{card.modifiedAt}</p>
                 </div>
                 <div className="image-desc">
                   <span className="image-desc-icon">

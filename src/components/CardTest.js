@@ -15,12 +15,6 @@ const CardTest = (props) => {
     setShowDetail(false)
   }
 
-  window.addEventListener('keyup', (e) => {
-    if (showDetail && e.key === 'Escape') {
-      setShowDetail(false)
-    }
-  })
-
   return (
     <>
       <div
