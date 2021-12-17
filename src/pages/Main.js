@@ -1,16 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../components/Header'
 import { Grid, Image, Text, Input, Button } from '../elements'
 import SearchIcon from '@material-ui/icons/Search'
 import CenterFocusWeakIcon from '@material-ui/icons/CenterFocusWeak'
-import Scroll from '../components/Scroll'
 import Masonry from '../components/Masonry'
 import mainback from '../static/MainBackground.jpg'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { actionCreators as cardActions } from '../redux/modules/card'
+
 
 const Main = (props) => {
   const dispatch = useDispatch()
+  const card_list = useSelector((state)=>state.card.card_list)
+
+  // const [cards, setCards] = useState([])
+  // const [count, setCounts] = useState(0)
+  // const [loading, setLoading] = useState(false)
+
+  // React.useEffect(() => {
+  //   setLoading(true)
+  //   for(let i=count; i<count+10; i++){
+  //     setCards.push(card_list[i])
+  //     setCards(cur => [...cur,i])
+  //   }
+  //   setLoading(false)
+
+  // })
 
   React.useEffect(() => {
     dispatch(cardActions.getCardDB())

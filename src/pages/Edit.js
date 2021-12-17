@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import { Grid, Input } from '../elements';
 import {useDispatch ,useSelector } from "react-redux";
 import { actionCreators as cardActions } from '../redux/modules/card';
+import { history } from '../redux/configureStore';
 
 const Edit = (props) => {
   const card_list = useSelector((state) => state.card.card_list);
@@ -41,6 +42,7 @@ const Edit = (props) => {
   const change_text = (e) => {
     setTexts(e.target.value)
   }
+
   const change_location = (e) => {
     setLocations(e.target.value)
   }
@@ -52,7 +54,13 @@ const Edit = (props) => {
 
   const edit_card = () => {
     // console.log(card_id, option_list[tag], location, textarea)
-    dispatch(cardActions.editCardDB(card_id, option_list[tag], location, textarea))
+    if(location == "" || textarea == ""){
+      window.alert("게시물을 모두 작성해주세요")
+      return ;
+    }else{
+      dispatch(cardActions.editCardDB(card_id, option_list[tag], location, textarea))
+    }
+    
   }
   return (
     <>
@@ -90,7 +98,7 @@ const Edit = (props) => {
                         </select>
               </Grid>
               <Grid align="right" margin="40px 0px 0px 0px" >
-                <Button style={{margin:"0px 10px 0px 0px"}} variant="outlined">Cancel</Button>
+                <Button onClick={() => {history.replace('/')}} style={{margin:"0px 10px 0px 0px"}} variant="outlined">Cancel</Button>
                 <Button onClick={() =>{edit_card()}} variant="contained">Update info</Button>
               </Grid>
               </div>
