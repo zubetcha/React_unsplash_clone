@@ -1,40 +1,52 @@
-import React from 'react';
-import styled from 'styled-components';
-import {history} from '../redux/configureStore';
-import { useDispatch } from 'react-redux';
-import { actionCreators as cardActions } from '../redux/modules/card';
-import { getCookie } from '../shared/Cookie';
+import React from 'react'
+import styled from 'styled-components'
+import { history } from '../redux/configureStore'
+import { useDispatch } from 'react-redux'
+import { actionCreators as cardActions } from '../redux/modules/card'
+import { getCookie } from '../shared/Cookie'
 
 const Card = (props) => {
-  const dispatch = useDispatch();
-  const token = getCookie('token');
-  const nickname = localStorage.getItem('nickname');
+  const dispatch = useDispatch()
+  const token = getCookie('token')
+  const nickname = localStorage.getItem('nickname')
   return (
-    
     <div
       style={{
         ...styles.card,
         ...styles[props.size],
-      }} 
+      }}
     >
-      <img onClick={()=>{history.push(`/detail/${props.id}`)}} width="100%" height="100%" src={props.src}></img>
+      <img
+        onClick={() => {
+          history.push(`/detail/${props.id}`)
+        }}
+        width="100%"
+        height="100%"
+        src={props.src}
+      ></img>
       <Container>
-        {token && nickname == props.name && 
-        <>
-        <button onClick={()=>{history.push(`/edit/${props.id}`)}} className="icon-btn">
-        &nbsp;Edit
-        </button>
-        <button onClick={()=>{dispatch(cardActions.deleteCardDB(props.id))}} className="icon-btn2">
-        &nbsp;Delete
-        </button>
-        </>
-        
-        }
-      
-    </Container>
+        {token && nickname == props.name && (
+          <>
+            <button
+              onClick={() => {
+                history.push(`/edit/${props.id}`)
+              }}
+              className="icon-btn"
+            >
+              &nbsp;Edit
+            </button>
+            <button
+              onClick={() => {
+                dispatch(cardActions.deleteCardDB(props.id))
+              }}
+              className="icon-btn2"
+            >
+              &nbsp;Delete
+            </button>
+          </>
+        )}
+      </Container>
     </div>
-    
-    
   )
 }
 
@@ -55,8 +67,7 @@ const styles = {
   },
 }
 
-const Container= styled.div`
-
+const Container = styled.div`
   .icon-btn {
     position: absolute;
     top: 10px;
@@ -103,9 +114,6 @@ const Container= styled.div`
       border: 0.5px solid #111;
     }
   }
-`;
-
-  
-
+`
 
 export default Card
