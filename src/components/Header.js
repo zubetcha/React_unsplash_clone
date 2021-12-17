@@ -53,8 +53,8 @@ const Header = (props) => {
   if (Mypage) {
     return (
       <Head>
-        <Grid height="62px" flex="flex; justify-content:space-around;align-items:center">
-          <Grid width="50px" margin="0 12px">
+        <Grid padding="0 10px" height="62px" flex="flex; justify-content:space-around;align-items:center">
+          <Grid width="50px">
             <Image
               _onClick={() => {
                 history.push('/')
@@ -63,7 +63,7 @@ const Header = (props) => {
               src={Logo}
             ></Image>
           </Grid>
-          <Grid flex="flex; align-items:center" maxWidth="1300px">
+          <Grid flex="flex; align-items:center" maxWidth="2400px">
             <Button height="40px" width="50px" borderRadius="20px 0px 0px 20px" bg="#eee" color="#767676" text={<SearchIcon />}></Button>
             <Input value={search} _onChange={change_text} search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
             <Button
@@ -78,28 +78,30 @@ const Header = (props) => {
               text={<CenterFocusWeakIcon />}
             ></Button>
           </Grid>
-          <Grid flex="flex; align-items:center; justify-content:space-between" width="230px">
+          <Grid flex="flex; align-items:center; justify-content:center" width="auto" padding="0 6px">
             {!is_login ? <NavMenu>Explore</NavMenu> : null}
             <NavMenu>Advertise</NavMenu>
             <NavMenu>Blog</NavMenu>
           </Grid>
           <Grid width="1px" bg="#d1d1d1" height="32px" />
-          {is_login ? (
-            <NavMenu onClick={()=>{logOut()}}>Log&nbsp;Out</NavMenu>
-          ) : (
-            <NavMenu
-              onClick={() => {
-                history.push('/login')
-              }}
-            >
-              Log&nbsp;in
-            </NavMenu>
-          )}
+          <Grid width="auto" padding="0 6px">
+            {is_login ? (
+              <NavMenu onClick={logOut}>Log&nbsp;Out</NavMenu>
+            ) : (
+              <NavMenu
+                onClick={() => {
+                  history.push('/login')
+                }}
+              >
+                Log&nbsp;in
+              </NavMenu>
+            )}
+          </Grid>
           <SubmitBtn onClick={clickSubmit}>Submit&nbsp;a&nbsp;photo</SubmitBtn>
           <NavIcon>
             <IoNotifications className="header-icon" size="24px"></IoNotifications>
           </NavIcon>
-          <NavIcon>
+          <NavProfile>
             <Image
               _onClick={clickMypage}
               cursor="pointer"
@@ -107,7 +109,7 @@ const Header = (props) => {
               size="40px"
               src="https://image.shutterstock.com/image-vector/default-avatar-profile-trendy-style-260nw-1759726295.jpg"
             ></Image>
-          </NavIcon>
+          </NavProfile>
           <NavIcon>
             <IoReorderThreeOutline className="header-icon" size="30px"></IoReorderThreeOutline>
           </NavIcon>
@@ -118,8 +120,8 @@ const Header = (props) => {
 
   return (
     <Head>
-      <Grid height="62px" flex="flex; justify-content:space-around;align-items:center">
-        <Grid width="50px" margin="0 12px">
+      <Grid padding="0 10px" height="62px" flex="flex; justify-content:space-around;align-items:center">
+        <Grid width="50px">
           <Image
             _onClick={() => {
               history.push('/')
@@ -128,7 +130,7 @@ const Header = (props) => {
             src={Logo}
           ></Image>
         </Grid>
-        <Grid flex="flex; align-items:center" maxWidth="1300px">
+        <Grid flex="flex; align-items:center" maxWidth="2400px">
           <Button height="40px" width="50px" borderRadius="20px 0px 0px 20px" bg="#eee" color="#767676" text={<SearchIcon />}></Button>
           <Input value={search} _onChange={change_text} search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
           <Button
@@ -143,30 +145,32 @@ const Header = (props) => {
             text={<CenterFocusWeakIcon />}
           ></Button>
         </Grid>
-        <Grid flex="flex; align-items:center; justify-content:space-between" width="230px">
+        <Grid flex="flex; align-items:center; justify-content:center" width="auto" padding="0 6px">
           {!is_login ? <NavMenu>Explore</NavMenu> : null}
           <NavMenu>Advertise</NavMenu>
           <NavMenu>Blog</NavMenu>
         </Grid>
         <Grid width="1px" bg="#d1d1d1" height="32px" />
-        {is_login ? (
-          <NavMenu onClick={logOut}>Log&nbsp;Out</NavMenu>
-        ) : (
-          <NavMenu
-            onClick={() => {
-              history.push('/login')
-            }}
-          >
-            Log&nbsp;in
-          </NavMenu>
-        )}
+        <Grid width="auto" padding="0 6px">
+          {is_login ? (
+            <NavMenu onClick={logOut}>Log&nbsp;Out</NavMenu>
+          ) : (
+            <NavMenu
+              onClick={() => {
+                history.push('/login')
+              }}
+            >
+              Log&nbsp;in
+            </NavMenu>
+          )}
+        </Grid>
         <SubmitBtn onClick={clickSubmit}>Submit&nbsp;a&nbsp;photo</SubmitBtn>
         <NavIcon>
           <IoNotifications className="header-icon" size="24px"></IoNotifications>
         </NavIcon>
-        <NavIcon>
+        <NavProfile>
           <Image _onClick={clickMypage} cursor="pointer" shape="circle" size="40px" src="https://image.shutterstock.com/image-vector/default-avatar-profile-trendy-style-260nw-1759726295.jpg"></Image>
-        </NavIcon>
+        </NavProfile>
         <NavIcon>
           <IoReorderThreeOutline className="header-icon" size="30px"></IoReorderThreeOutline>
         </NavIcon>
@@ -190,7 +194,7 @@ const Head = styled.div`
 
 const NavMenu = styled.a`
   width: auto;
-  padding: 0 11px;
+  padding: 20px 6px;
   font-size: 14px;
   font-weight: 600;
   color: #767676;
@@ -214,6 +218,11 @@ const NavIcon = styled.button`
       color: #111;
     }
   }
+`
+
+const NavProfile = styled.div`
+  height: 100%;
+  padding: 3px 0;
 `
 
 const SubmitBtn = styled.button`

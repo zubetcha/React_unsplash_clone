@@ -38,4 +38,7 @@ export const apis = {
 
   // **** tag **** //
   tagPosts: (tagId) => api.get(`/api/tag/${tagId}`),
+
+  // **** like **** //
+  like: (boardId) => api.post(`/api/board/like/${boardId}`),
 }

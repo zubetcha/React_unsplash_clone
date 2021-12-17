@@ -8,20 +8,17 @@ const LOAD_CARD = 'LOAD_CARD'
 const ADD_CARD = 'ADD_CARD'
 const ONE_CARD = 'ONE_CARD'
 const EDIT_CARD = 'EDIT_CARD'
-const USER_CARD = 'USER_CARD'
 
 const searchCard = createAction(SEARCH_CARD, (search_list) => ({ search_list }))
 const getCard = createAction(LOAD_CARD, (card_list) => ({ card_list }))
 const addCard = createAction(ADD_CARD, (card) => ({ card }))
 const getOneCard = createAction(ONE_CARD, (card) => ({ card }))
 const editCard = createAction(EDIT_CARD, (card) => ({ card }))
-const userCard = createAction(USER_CARD, (user_card_list) => ({ user_card_list }))
 
 const initialState = {
   card_list: [],
   search_list: [],
   one_card: '',
-  user_card_list: [],
 }
 
 //미들웨어
@@ -123,19 +120,6 @@ const editCardDB = (id, tag, location, content,) => {
   }
 }
 
-const userCardDB = () => {
-  return async function (dispatch, getState, { history }) {
-    await apis
-      .userPosts()
-      .then(function (response) {
-        dispatch(userCard(response.data))
-      })
-      .catch((err) => {
-        console.log(err.response)
-      })
-  }
-}
-
 export default handleActions(
   {
     [LOAD_CARD]: (state, action) =>
@@ -163,10 +147,6 @@ export default handleActions(
       produce(state, (draft) => {
         draft.card_list.unshift(action.payload.card)
       }),
-    [USER_CARD]: (state, action) =>
-      produce(state, (draft) => {
-        draft.user_card_list = action.payload.user_card_list
-      }),
   },
   initialState
 )
@@ -181,8 +161,6 @@ const actionCreators = {
   getCard,
   addCard,
   getOneCard,
-  userCardDB,
-  userCard,
 }
 
 export { actionCreators }

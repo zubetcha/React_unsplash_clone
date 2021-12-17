@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import './Detail.css'
+import { useDispatch, useSelector } from 'react-redux'
 
 // react-icons
 import { IoCheckmarkCircleSharp } from 'react-icons/io5'
@@ -16,7 +17,15 @@ import { MdOutlineDescription } from 'react-icons/md'
 import { MdClose } from 'react-icons/md'
 
 const CardTest = (props) => {
+  const dispatch = useDispatch()
+
+  const userId = localStorage.getItem('userId')
+  const boardId = props.boardId
+
+  const like_list = useSelector((state) => state.like.like_list)
+
   const [showDetail, setShowDetail] = React.useState(false)
+  const [like, setLike] = React.useState(false)
 
   const openDetail = () => {
     setShowDetail(true)
@@ -24,6 +33,14 @@ const CardTest = (props) => {
 
   const closeDetail = () => {
     setShowDetail(false)
+  }
+
+  const clickLike = () => {
+    if (!like) {
+      setLike(true)
+    } else {
+      setLike(false)
+    }
   }
 
   window.addEventListener('keyup', (e) => {
@@ -65,7 +82,7 @@ const CardTest = (props) => {
                   </UserBox>
                   <Toggle>
                     <div className="icon-box">
-                      <button className="icon-btn">
+                      <button className={`${like ? 'icon-btn like' : 'icon-btn non-like'}`} onClick={clickLike}>
                         <HiHeart />
                       </button>
                     </div>
@@ -178,9 +195,10 @@ const styles = {
 }
 
 const ModalBody = styled.div`
-  width: 100vw;
+  width: 99vw;
   height: 100%;
   position: absolute;
+  /* backface-visibility: hidden; */
   /* opacity: 0; */
   z-index: 1000;
   top: 0;
@@ -192,22 +210,22 @@ const ModalBody = styled.div`
 
 const ModalOverlay = styled.div`
   width: 100%;
-  height: 100%;
+  height: 150%;
   backface-visibility: hidden;
   overflow: auto;
   background-color: #0009;
   position: fixed;
-  top: 0;
+  top: -396px;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 5;
+  z-index: 10;
   overflow-y: hidden;
 
   .close-detail-btn {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: -390px;
+    left: 10px;
     margin: 8px 0 0 8px;
     padding: 0;
     outline: none;
@@ -243,11 +261,11 @@ const DetailContainer = styled.div`
       display: flex;
       align-items: center;
       background-color: #fff;
-      border: 0.5px solid #d1d1d1;
-      padding: 0 12px;
+      border: 1px solid #d1d1d1;
+      padding: 0 10px;
       margin: 0;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 400;
       border-radius: 4px;
       height: 32px;
       line-height: 30px;
@@ -256,7 +274,25 @@ const DetailContainer = styled.div`
 
       &:hover {
         color: #111;
-        border: 0.5px solid #111;
+        border: 1px solid #111;
+      }
+
+      svg {
+        font-size: 20px;
+      }
+    }
+
+    .like {
+      padding: 0 10px;
+      border: 1px solid #f15151;
+      background-color: #f15151;
+      color: #fff;
+      transition: background-color 0.1s ease-in-out;
+
+      &:hover {
+        border: 1px solid #df5151;
+        background-color: #df5151;
+        color: #fff;
       }
     }
   }
@@ -454,7 +490,7 @@ const ModalDesc = styled.div`
       margin: 0 7px 0 0;
 
       svg {
-        font-size: 16px;
+        font-size: 20px;
         padding-top: 5px;
       }
     }

@@ -8,15 +8,18 @@ import { apis } from '../../shared/api'
 const LOG_IN = 'LOG_IN'
 const LOG_OUT = 'LOG_OUT'
 const GET_USER = 'GET_USER'
+const USER_CARD = 'USER_CARD'
 
 // **** Action creator **** //
 const logIn = createAction(LOG_IN, (user) => ({ user }))
 const logOut = createAction(LOG_OUT, (user) => ({ user }))
+const userCard = createAction(USER_CARD, (user_card_list) => ({ user_card_list }))
 
 // **** Initial data **** //
 const initialState = {
   user: null,
   is_login: false,
+  user_card_list: [],
 }
 
 // **** Middleware **** //
@@ -66,6 +69,19 @@ const logOutDB = () => {
   }
 }
 
+const userCardDB = () => {
+  return async function (dispatch, getState, { history }) {
+    await apis
+      .userPosts()
+      .then(function (response) {
+        dispatch(userCard(response.data))
+      })
+      .catch((err) => {
+        console.log(err.response)
+      })
+  }
+}
+
 // **** Reducer **** //
 export default handleActions(
   {
@@ -79,6 +95,10 @@ export default handleActions(
         draft.user = null
         draft.is_login = false
       }),
+    [USER_CARD]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user_card_list = action.payload.user_card_list
+      }),
   },
   initialState
 )
@@ -89,6 +109,8 @@ const actionCreators = {
   logInDB,
   logOutDB,
   logOut,
+  userCardDB,
+  userCard,
 }
 
 export { actionCreators }

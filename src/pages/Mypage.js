@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { actionCreators as cardActions } from '../redux/modules/card'
+import { actionCreators as userActions } from '../redux/modules/user'
 
 // elements & components
 import Header from '../components/Header'
@@ -21,19 +21,24 @@ const Mypage = (props) => {
 
   const nickname = localStorage.getItem('nickname')
 
-  const user_card_list = useSelector((state) => state.card.user_card_list)
+  const user_card_list = useSelector((state) => state.user.user_card_list)
   console.log(user_card_list)
+
+  const ClickNotPrepared = () => {
+    window.alert('준비중입니다.')
+    return
+  }
 
   React.useEffect(() => {
     if (user_card_list.length === 0) {
-      dispatch(cardActions.userCardDB())
+      dispatch(userActions.userCardDB())
     }
   }, [])
 
   return (
     <>
       <Header Mypage />
-      <Grid height="100%" padding="62px 0 0">
+      <Grid height="100%" padding="62px 0 0" overflowX="hidden">
         <Grid maxWidth="1320px" padding="60px 12px 72px" margin="0 auto">
           <Grid flex="flex" alignItems="center">
             <Grid width="34%" flex="flex" justifyContent="right" margin="0 32px 0 auto">
@@ -63,7 +68,7 @@ const Mypage = (props) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid height="56px" margin="0 0 56px 0" borderBottom="1px solid #d1d1d1">
+        <Grid height="56px" margin="0 0 30px 0" borderBottom="1px solid #d1d1d1">
           <Grid flex="flex" height="100%" alignItems="center" justifyContent="left" width="auto">
             <Grid flex="flex" width="auto" height="100%">
               <MyList>
@@ -80,13 +85,13 @@ const Mypage = (props) => {
                   </ListBtn>
                 </ListItem>
                 <ListItem>
-                  <ListBtn>
+                  <ListBtn onClick={ClickNotPrepared}>
                     <VscFileSubmodule className="list-icon" />
                     Collections
                   </ListBtn>
                 </ListItem>
                 <ListItem>
-                  <ListBtn>
+                  <ListBtn onClick={ClickNotPrepared}>
                     <BsFillBarChartFill className="list-icon" />
                     Stats
                   </ListBtn>
@@ -97,13 +102,15 @@ const Mypage = (props) => {
         </Grid>
         <Grid height="2000px">
           <div style={styles.card_container}>
-            {user_card_list.map((c) => {
-              return (
-                <div key={c.boardId}>
-                  <CardTest {...c} />
-                </div>
-              )
-            })}
+            {user_card_list.length > 0
+              ? user_card_list.map((c) => {
+                  return (
+                    <div key={c.boardId}>
+                      <CardTest {...c} />
+                    </div>
+                  )
+                })
+              : null}
           </div>
         </Grid>
       </Grid>
@@ -113,10 +120,10 @@ const Mypage = (props) => {
 
 const styles = {
   card_container: {
-    margin: '30px 0px 0px 0px',
+    margin: '20px 0 0',
     padding: 0,
-    width: '80vw',
-    height: '2000px',
+    width: '100vw',
+    height: '140%',
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, 400px)',
     gridAutoRows: '10px',
@@ -125,6 +132,7 @@ const styles = {
     transform: 'translateX(-50%)',
     justifyContent: 'center',
     backgroundColor: 'white',
+    backfaceVisibility: 'hidden',
   },
 }
 
