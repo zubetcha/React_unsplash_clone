@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import './Detail.css'
 import { useDispatch, useSelector } from 'react-redux'
-import {history} from '../redux/configureStore'
+import { history } from '../redux/configureStore'
 import { actionCreators as cardActions } from '../redux/modules/card'
+import { apis } from '../shared/api'
 
 // react-icons
 import { IoCheckmarkCircleSharp } from 'react-icons/io5'
@@ -18,18 +19,64 @@ import { FiCalendar } from 'react-icons/fi'
 import { MdOutlineDescription } from 'react-icons/md'
 
 const Detail = (props) => {
-
-  const dispatch = useDispatch();
-  const card_id = props.match.params.id;
+  const dispatch = useDispatch()
+  const card_id = props.match.params.id
+  const userId = Number(localStorage.getItem('userId'))
   const card = useSelector((state) => state.card.one_card)
   console.log(card)
 
+  const [action, setAction] = React.useState(null)
+
+  const clickLike = () => {
+    if (action === null) {
+      apis
+        .clickLike(card_id)
+        .then((res) => {
+          console.log(res)
+          setAction('liked')
+        })
+        .catch((err) => {
+          console.log('좋아요 클릭에 문제가 발생했습니다.', err.response)
+        })
+    } else if (action === 'liked') {
+      apis
+        .clickLike(card_id)
+        .then((res) => {
+          console.log(res)
+          setAction(null)
+        })
+        .catch((err) => {
+          console.log('좋아요 취소에 문제가 발생했습니다.', err.response)
+        })
+    }
+  }
+
   React.useEffect(() => {
+    apis
+      .getLikeUser(card_id)
+      .then((res) => {
+        const user_list = res.data.userIds
+        console.log(user_list)
+        if (user_list.length > 0) {
+          user_list.map((user) => {
+            if (user === userId) {
+              setAction('liked')
+            } else {
+              setAction(null)
+            }
+          })
+        } else if (user_list.length === 0) {
+          setAction(null)
+        }
+      })
+      .catch((err) => {
+        console.log('유저 정보를 불러오는 데 실패했습니다.', err.response)
+      })
+  }, [])
 
-    dispatch(cardActions.getOneCardDB(card_id));
-
-  }, []);
-
+  React.useEffect(() => {
+    dispatch(cardActions.getOneCardDB(card_id))
+  }, [])
 
   return (
     <>
@@ -53,7 +100,7 @@ const Detail = (props) => {
                 </UserBox>
                 <Toggle>
                   <div className="icon-box">
-                    <button className="icon-btn">
+                    <button onClick={clickLike} className={`${action === 'liked' ? 'icon-btn like' : 'icon-btn'}`}>
                       <HiHeart />
                     </button>
                   </div>
@@ -149,11 +196,16 @@ const Detail = (props) => {
 }
 
 const ModalBody = styled.div`
-  width: 100vw;
+  width: 99vw;
   height: 100%;
   position: absolute;
+  backface-visibility: hidden;
   /* opacity: 0; */
-  z-index: 0;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   overflow-y: hidden;
 `
 
@@ -168,7 +220,24 @@ const ModalOverlay = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 5;
+  z-index: 10;
+
+  .close-detail-btn {
+    position: fixed;
+    top: 0;
+    left: 10px;
+    margin: 8px 0 0 8px;
+    padding: 0;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    .close-detail-icon {
+      font-size: 24px;
+      color: #fff;
+    }
+  }
 `
 
 const ModalContent = styled.div`
@@ -192,11 +261,11 @@ const DetailContainer = styled.div`
       display: flex;
       align-items: center;
       background-color: #fff;
-      border: 0.5px solid #d1d1d1;
-      padding: 0 12px;
+      border: 1px solid #d1d1d1;
+      padding: 0 10px;
       margin: 0;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 400;
       border-radius: 4px;
       height: 32px;
       line-height: 30px;
@@ -205,7 +274,25 @@ const DetailContainer = styled.div`
 
       &:hover {
         color: #111;
-        border: 0.5px solid #111;
+        border: 1px solid #111;
+      }
+
+      svg {
+        font-size: 20px;
+      }
+    }
+
+    .like {
+      padding: 0 10px;
+      border: 1px solid #f15151;
+      background-color: #f15151;
+      color: #fff;
+      transition: background-color 0.1s ease-in-out;
+
+      &:hover {
+        border: 1px solid #df5151;
+        background-color: #df5151;
+        color: #fff;
       }
     }
   }
@@ -403,7 +490,7 @@ const ModalDesc = styled.div`
       margin: 0 7px 0 0;
 
       svg {
-        font-size: 16px;
+        font-size: 20px;
         padding-top: 5px;
       }
     }
