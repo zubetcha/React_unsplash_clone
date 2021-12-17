@@ -98,7 +98,7 @@ const getOneCardDB = (id) => {
   }
 }
 
-const editCardDB = (id, tag, location, content,) => {
+const editCardDB = (id, tag, location, content) => {
   return async function (dispatch, getState, { history }) {
     // console.log(id, tag, location, content)
     // return;
@@ -110,7 +110,7 @@ const editCardDB = (id, tag, location, content,) => {
     }
 
     await apis
-      .editPost(id, card_info,{
+      .editPost(id, card_info, {
         headers: { Authorization: token },
       })
       .then(function (response) {
@@ -130,7 +130,7 @@ const deleteCardDB = (id) => {
     // return;
     const token = getCookie('token')
     await apis
-      .deletePost(id,{
+      .deletePost(id, {
         headers: { Authorization: token },
       })
       .then(function (response) {
@@ -158,24 +158,22 @@ export default handleActions(
     [EDIT_CARD]: (state, action) =>
       produce(state, (draft) => {
         console.log(action.payload.card)
-        let idx = draft.card_list.findIndex((p) => p.boardId === action.payload.card.boardId);
+        let idx = draft.card_list.findIndex((p) => p.boardId === action.payload.card.boardId)
 
-        draft.card_list[idx] = { ...draft.card_list[idx], ...action.payload.card };
+        draft.card_list[idx] = { ...draft.card_list[idx], ...action.payload.card }
       }),
 
     [DELETE_CARD]: (state, action) =>
       produce(state, (draft) => {
-        
-
         const new_dict = draft.card_list.filter((c, idx) => {
-          return c.boardId !== action.payload.id;})
+          return c.boardId !== action.payload.id
+        })
 
         console.log(new_dict)
-        
+
         draft.card_list = new_dict
 
         console.log(draft.card_list)
-        
       }),
 
     [SEARCH_CARD]: (state, action) =>

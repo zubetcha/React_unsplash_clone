@@ -2,6 +2,7 @@ import React from 'react'
 import { actionCreators as userActions } from '../redux/modules/user'
 import { actionCreators as cardActions } from '../redux/modules/card'
 import { useDispatch, useSelector } from 'react-redux'
+import { actionCreators as cardActions } from '../redux/modules/card'
 
 import { Grid, Text, Button, Image, Input } from '../elements'
 
