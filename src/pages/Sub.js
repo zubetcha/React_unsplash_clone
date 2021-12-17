@@ -7,16 +7,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { actionCreators as cardActions } from '../redux/modules/card'
 
 const Sub = (props) => {
-  const param = props.match.params.tag
-  const search_list = useSelector((state) => state.card.search_list.photoboards)
-  console.log(search_list)
-  console.log(param)
+    const param = props.match.params.tag
+    const search_list = useSelector((state)=>state.card.search_list)
+    console.log(search_list)
 
-  const dispatch = useDispatch()
-
-  React.useEffect(() => {
-    dispatch(cardActions.searchCardDB(param))
-  }, [])
+    const dispatch = useDispatch();
+    
+    React.useEffect(() => {
+        if(search_list.photoboards == null){
+            dispatch(cardActions.searchCardDB(param))
+        }
+        
+    }, []);
 
   return (
     <>
@@ -57,12 +59,15 @@ const Sub = (props) => {
             <Button margin="10px 0px 0px 0px" height="40px" text={`Submit to ${param}`}></Button>
           </Grid>
         </Grid>
-      </Grid>
-      <Grid>
-        <MasonSub></MasonSub>
-      </Grid>
-    </>
-  )
-}
+        <Grid>
+        <MasonSub param={param}></MasonSub>
+        </Grid>
+        
+            
+        
+        
+        </>
+    );
+};
 
 export default Sub

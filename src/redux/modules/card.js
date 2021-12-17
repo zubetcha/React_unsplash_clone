@@ -19,7 +19,7 @@ const deleteCard = createAction(DELETE_CARD, (id) => ({ id }))
 
 const initialState = {
   card_list: [],
-  search_list: [],
+  search_list: [{photoboards:null}],
   one_card: '',
 }
 
@@ -71,6 +71,7 @@ const getCardDB = (id) => {
 
 const searchCardDB = (tagId) => {
   return async function (dispatch, getState, { history }) {
+    console.log(tagId)
     await apis
       .tagPosts(tagId)
       .then(function (response) {
@@ -115,6 +116,7 @@ const editCardDB = (id, tag, location, content) => {
       .then(function (response) {
         console.log(response)
         dispatch(editCard(response.data))
+        history.push('/')
       })
       .catch((err) => {
         console.log(err.response)

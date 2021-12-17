@@ -88,9 +88,6 @@ const Upload = (props) => {
         window.alert("게시물을 다 넣어주세요!")
         return;
                 
-    }else if(!fileCheck){
-        window.alert('사진을 첨부해주세요')
-        return;
     }
     dispatch(cardActions.addCardDB(fileInput.current.files[0], option_list[tag], location, textarea, size))
   }
