@@ -3,14 +3,16 @@ import thunk from 'redux-thunk'
 import { createBrowserHistory } from 'history'
 import { connectRouter } from 'connected-react-router'
 
-import User from './modules/user';
-import Card from './modules/card';
+import User from './modules/user'
+import Card from './modules/card'
+import Like from './modules/like'
 
 export const history = createBrowserHistory()
 
 const rootReducer = combineReducers({
   user: User,
   card: Card,
+  like: Like,
   router: connectRouter(history),
 })
 

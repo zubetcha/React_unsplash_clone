@@ -40,5 +40,6 @@ export const apis = {
   tagPosts: (tagId) => api.get(`/api/tag/${tagId}`),
 
   // **** like **** //
-  like: (boardId) => api.post(`/api/board/like/${boardId}`),
+  getLikeUser: (boardId) => api.get(`/api/board/like/${boardId}`),
+  clickLike: (boardId) => api.post(`/api/board/like/${boardId}`),
 }

@@ -22,7 +22,6 @@ const Mypage = (props) => {
   const nickname = localStorage.getItem('nickname')
 
   const user_card_list = useSelector((state) => state.user.user_card_list)
-  console.log(user_card_list)
 
   const ClickNotPrepared = () => {
     window.alert('준비중입니다.')
