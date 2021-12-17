@@ -8,7 +8,7 @@ const Masonry = (props) => {
     return (
         <div style={styles.card_container}>
             {card_list.map((c,idx) => {
-                return  <Card key={c.boardId} id={c.boardId} src={c.img} size={c.size}></Card>
+                return  <Card key={c.boardId} name={c.nickname} id={c.boardId} src={c.img} size={c.size}></Card>
             })}
            
         </div>
