@@ -9,14 +9,17 @@ import { actionCreators as cardActions } from "../redux/modules/card";
 
 const Sub = (props) => {
     const param = props.match.params.tag
-    const search_list = useSelector((state)=>state.card.search_list.photoboards)
+    const search_list = useSelector((state)=>state.card.search_list)
     console.log(search_list)
 
     const dispatch = useDispatch();
     
     React.useEffect(() => {
-        // dispatch(cardActions.searchCardDB(param))
-    }, [search_list]);
+        if(search_list.photoboards == null){
+            dispatch(cardActions.searchCardDB(param))
+        }
+        
+    }, []);
     
 
     return (
@@ -76,7 +79,7 @@ const Sub = (props) => {
             </Grid>
         </Grid>
         <Grid>
-        <MasonSub></MasonSub>
+        <MasonSub param={param}></MasonSub>
         </Grid>
         
             
