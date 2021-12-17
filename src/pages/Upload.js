@@ -81,10 +81,20 @@ const Upload = (props) => {
 
   //액션 디스패치
   const addCard = () => {
+    const fileCheck = document.getElementsByClassName('bfile').value;
+           
+    if(location == '' || textarea == ''){
+                
+        window.alert("게시물을 다 넣어주세요!")
+        return;
+                
+    }else if(!fileCheck){
+        window.alert('사진을 첨부해주세요')
+        return;
+    }
     dispatch(cardActions.addCardDB(fileInput.current.files[0], option_list[tag], location, textarea, size))
   }
 
-  React.useEffect(() => {}, [])
 
   return (
     <>
@@ -174,7 +184,7 @@ const Upload = (props) => {
                   )}
 
                   {/* ref={picture} onChange={selectPicture} */}
-                  <input ref={fileInput} onChange={handleChangeFile} id="input-file" type="file" accept="image/jpeg, image/jpg" data-test="uploader-input"></input>
+                  <input className="bfile" ref={fileInput} onChange={handleChangeFile} id="input-file" type="file" accept="image/jpeg, image/jpg" data-test="uploader-input"></input>
                   <div className="file-info-area">
                     <div className="input-file-info">
                       <ul className="info-list">
