@@ -8,12 +8,14 @@ const LOAD_CARD = 'LOAD_CARD'
 const ADD_CARD = 'ADD_CARD'
 const ONE_CARD = 'ONE_CARD'
 const EDIT_CARD = 'EDIT_CARD'
+const DELETE_CARD = 'DELETE_CARD'
 
 const searchCard = createAction(SEARCH_CARD, (search_list) => ({ search_list }))
 const getCard = createAction(LOAD_CARD, (card_list) => ({ card_list }))
 const addCard = createAction(ADD_CARD, (card) => ({ card }))
 const getOneCard = createAction(ONE_CARD, (card) => ({ card }))
 const editCard = createAction(EDIT_CARD, (card) => ({ card }))
+const deleteCard = createAction(DELETE_CARD, (id) => ({ id }))
 
 const initialState = {
   card_list: [],
@@ -120,29 +122,66 @@ const editCardDB = (id, tag, location, content,) => {
   }
 }
 
+const deleteCardDB = (id) => {
+  return async function (dispatch, getState, { history }) {
+    // console.log(id, tag, location, content)
+    // return;
+    const token = getCookie('token')
+    await apis
+      .deletePost(id,{
+        headers: { Authorization: token },
+      })
+      .then(function (response) {
+        console.log(response)
+        dispatch(deleteCard(id))
+      })
+      .catch((err) => {
+        console.log(err.response)
+      })
+  }
+}
+
 export default handleActions(
   {
     [LOAD_CARD]: (state, action) =>
       produce(state, (draft) => {
         draft.card_list = action.payload.card_list
       }),
+
     [ONE_CARD]: (state, action) =>
       produce(state, (draft) => {
         draft.one_card = action.payload.card
       }),
+
     [EDIT_CARD]: (state, action) =>
       produce(state, (draft) => {
         console.log(action.payload.card)
         let idx = draft.card_list.findIndex((p) => p.boardId === action.payload.card.boardId);
 
         draft.card_list[idx] = { ...draft.card_list[idx], ...action.payload.card };
-        // draft.one_card = action.payload.card
       }),
+
+    [DELETE_CARD]: (state, action) =>
+      produce(state, (draft) => {
+        
+
+        const new_dict = draft.card_list.filter((c, idx) => {
+          return c.boardId !== action.payload.id;})
+
+        console.log(new_dict)
+        
+        draft.card_list = new_dict
+
+        console.log(draft.card_list)
+        
+      }),
+
     [SEARCH_CARD]: (state, action) =>
       produce(state, (draft) => {
         console.log(action.payload.search_list)
         draft.search_list = action.payload.search_list
       }),
+
     [ADD_CARD]: (state, action) =>
       produce(state, (draft) => {
         draft.card_list.unshift(action.payload.card)
@@ -157,6 +196,7 @@ const actionCreators = {
   searchCardDB,
   getOneCardDB,
   editCardDB,
+  deleteCardDB,
   searchCard,
   getCard,
   addCard,
