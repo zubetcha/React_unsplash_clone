@@ -85,7 +85,7 @@ const Header = (props) => {
           </Grid>
           <Grid width="1px" bg="#d1d1d1" height="32px" />
           {is_login ? (
-            <NavMenu onClick={logOut}>Log&nbsp;Out</NavMenu>
+            <NavMenu onClick={()=>{logOut()}}>Log&nbsp;Out</NavMenu>
           ) : (
             <NavMenu
               onClick={() => {

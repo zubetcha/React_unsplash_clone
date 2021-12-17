@@ -33,8 +33,8 @@ const Scrollone = (props) => {
           aria-label="scrollable auto tabs example"
         >
           <Tab label="Details" />
-          <Tab label="Tags" />
-          <Tab label="Exif"/>
+          <Tab label="Exif" />
+          <Tab label="Setting"/>
         </Tabs>
     </div>
   );

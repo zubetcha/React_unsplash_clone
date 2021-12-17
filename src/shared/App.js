@@ -22,7 +22,7 @@ function App() {
         <Route path="/login" exact component={Login}/>
         <Route path="/join" exact component={Join}/>
         <Route path="/detail/:id" exact component={Detail}/>
-        <Route path="/edit" exact component={Edit}/>
+        <Route path="/edit/:id" exact component={Edit}/>
         <Route path="/upload" exact component={Upload}/>
         <Route path="/mypage/:nickname" exact component={Mypage}/>
       </ConnectedRouter>

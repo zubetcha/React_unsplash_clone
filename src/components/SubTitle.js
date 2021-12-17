@@ -114,7 +114,7 @@ const SubTitle = (props) => {
     return (
       <Grid padding="0px 150px 0px 0px">
         <Text size="45px" color="#e" bold>
-          Holidays
+          Nature
         </Text>
         <Text size="18px" color="#e">
           Let’s celebrate the magic of Mother Earth — with images of everything
