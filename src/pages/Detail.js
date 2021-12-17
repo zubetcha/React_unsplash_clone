@@ -44,7 +44,7 @@ const Detail = (props) => {
                     <img src="https://images.unsplash.com/placeholder-avatars/extra-large.jpg?dpr=2&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff"></img>
                   </UserProfile>
                   <UserInfo>
-                    <p className="username">ZUBETCHA</p>
+                    <p className="username">{card.nickname}</p>
                     <div className="user-status-flex">
                       <p className="user-status">Available for hire</p>
                       <IoCheckmarkCircleSharp />
@@ -78,7 +78,7 @@ const Detail = (props) => {
                 <div>
                   <div className="image-wrap">
                     <div className="image-container">
-                      <img src="https://images.unsplash.com/photo-1639365095893-0269096a3ba3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2969&q=80"></img>
+                      <img src={card.img}></img>
                     </div>
                   </div>
                 </div>
@@ -125,7 +125,7 @@ const Detail = (props) => {
                   <span className="image-desc-icon">
                     <IoLocationSharp />
                   </span>
-                  <p className="image-desc-text">Location</p>
+                  <p className="image-desc-text">{card.location}</p>
                 </div>
                 <div className="image-desc">
                   <span className="image-desc-icon">
@@ -137,7 +137,7 @@ const Detail = (props) => {
                   <span className="image-desc-icon">
                     <MdOutlineDescription />
                   </span>
-                  <p className="image-desc-text">Description</p>
+                  <p className="image-desc-text">{card.description}</p>
                 </div>
               </ModalDesc>
             </DetailContainer>

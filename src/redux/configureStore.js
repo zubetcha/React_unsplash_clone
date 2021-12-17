@@ -3,8 +3,8 @@ import thunk from 'redux-thunk'
 import { createBrowserHistory } from 'history'
 import { connectRouter } from 'connected-react-router'
 
-import User from './modules/user'
-import Card from './modules/card'
+import User from './modules/user';
+import Card from './modules/card';
 
 export const history = createBrowserHistory()
 

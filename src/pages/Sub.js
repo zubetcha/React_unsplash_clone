@@ -3,18 +3,20 @@ import Header from "../components/Header";
 import SubTitle from "../components/SubTitle";
 import {Grid, Image, Text, Input,Button} from "../elements";
 import MasonSub from "../components/MasonSub";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
 
 
 const Sub = (props) => {
     const param = props.match.params.tag
+    const search_list = useSelector((state)=>state.card.search_list.photoboards)
+    console.log(search_list)
 
     const dispatch = useDispatch();
     
     React.useEffect(() => {
-        dispatch(cardActions.searchCardDB(param))
-    }, []);
+        // dispatch(cardActions.searchCardDB(param))
+    }, [search_list]);
     
 
     return (
