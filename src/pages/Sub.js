@@ -62,10 +62,9 @@ const Sub = (props) => {
         <Grid>
         <MasonSub param={param}></MasonSub>
         </Grid>
+        </Grid>
         
             
-        
-        
         </>
     );
 };
