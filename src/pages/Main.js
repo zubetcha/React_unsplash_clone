@@ -7,25 +7,18 @@ import Masonry from '../components/Masonry'
 import mainback from '../static/MainBackground.jpg'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionCreators as cardActions } from '../redux/modules/card'
+import { history } from '../redux/configureStore'
 
 
 const Main = (props) => {
   const dispatch = useDispatch()
-  const card_list = useSelector((state)=>state.card.card_list)
+  const [search, setSearch] = React.useState('')
 
-  // const [cards, setCards] = useState([])
-  // const [count, setCounts] = useState(0)
-  // const [loading, setLoading] = useState(false)
+  const change_text = (e) => {
+    setSearch(e.target.value)
+    console.log(e.target.value)
+  }
 
-  // React.useEffect(() => {
-  //   setLoading(true)
-  //   for(let i=count; i<count+10; i++){
-  //     setCards.push(card_list[i])
-  //     setCards(cur => [...cur,i])
-  //   }
-  //   setLoading(false)
-
-  // })
 
   React.useEffect(() => {
     dispatch(cardActions.getCardDB())
@@ -48,8 +41,12 @@ const Main = (props) => {
 
             <Grid flex="flex; align-items:center" width="auto">
               <Button height="40px" width="50px" bg="#eee" color="#767676" text={<SearchIcon />}></Button>
-              <Input search_box placeholder="Search free high-resolution photos" width="700px"></Input>
-              <Button height="40px" width="50px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
+              <Input value={search} _onChange={change_text} search_box placeholder="Search free high-resolution photos" width="700px"></Input>
+              <Button 
+              _onClick={()=>{
+                dispatch(cardActions.searchCardDB(search))
+                history.push(`/sub/${search}`)
+              }} height="40px" width="50px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
             </Grid>
             <Text color="#fff">Trending: flower, wallpapers, backgrounds, happy, love</Text>
           </Grid>

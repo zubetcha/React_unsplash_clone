@@ -61,9 +61,13 @@ const Sub = (props) => {
         <Grid>
           <MasonSub param={param}></MasonSub>
         </Grid>
-      </Grid>
-    </>
-  )
-}
+
+        </Grid>
+        
+            
+        </>
+    );
+};
+
 
 export default Sub
