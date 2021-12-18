@@ -63,6 +63,10 @@ const Header = (props) => {
     }
   }
 
+  const notPrepared = () => {
+    window.alert('준비중입니다.')
+  }
+
   if (Mypage) {
     return (
       <Head>
@@ -70,7 +74,7 @@ const Header = (props) => {
           <Grid width="50px">
             <Image
               _onClick={() => {
-                window.location.href="/"
+                window.location.href = '/'
               }}
               shape="logo"
               src={Logo}
@@ -82,9 +86,9 @@ const Header = (props) => {
             <Button _onClick={clickSearch} height="40px" width="50px" borderRadius="0px 20px 20px 0px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
           </Grid>
           <Grid flex="flex; align-items:center; justify-content:center" width="auto" padding="0 6px">
-            {!is_login ? <NavMenu>Explore</NavMenu> : null}
-            <NavMenu>Advertise</NavMenu>
-            <NavMenu>Blog</NavMenu>
+            {!is_login ? <NavMenu onClick={notPrepared}>Explore</NavMenu> : null}
+            <NavMenu onClick={notPrepared}>Advertise</NavMenu>
+            <NavMenu onClick={notPrepared}>Blog</NavMenu>
           </Grid>
           <Grid width="1px" bg="#d1d1d1" height="32px" />
           <Grid width="auto" padding="0 6px">
@@ -101,7 +105,7 @@ const Header = (props) => {
             )}
           </Grid>
           <SubmitBtn onClick={clickSubmit}>Submit&nbsp;a&nbsp;photo</SubmitBtn>
-          <NavIcon>
+          <NavIcon onClick={notPrepared}>
             <IoNotifications className="header-icon" size="24px"></IoNotifications>
           </NavIcon>
           <NavProfile>
@@ -113,7 +117,7 @@ const Header = (props) => {
               src="https://image.shutterstock.com/image-vector/default-avatar-profile-trendy-style-260nw-1759726295.jpg"
             ></Image>
           </NavProfile>
-          <NavIcon>
+          <NavIcon onClick={notPrepared}>
             <IoReorderThreeOutline className="header-icon" size="30px"></IoReorderThreeOutline>
           </NavIcon>
         </Grid>
@@ -139,9 +143,9 @@ const Header = (props) => {
           <Button _onClick={clickSearch} height="40px" width="50px" borderRadius="0px 20px 20px 0px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
         </Grid>
         <Grid flex="flex; align-items:center; justify-content:center" width="auto" padding="0 6px">
-          {!is_login ? <NavMenu>Explore</NavMenu> : null}
-          <NavMenu>Advertise</NavMenu>
-          <NavMenu>Blog</NavMenu>
+          {!is_login ? <NavMenu onClick={notPrepared}>Explore</NavMenu> : null}
+          <NavMenu onClick={notPrepared}>Advertise</NavMenu>
+          <NavMenu onClick={notPrepared}>Blog</NavMenu>
         </Grid>
         <Grid width="1px" bg="#d1d1d1" height="32px" />
         <Grid width="auto" padding="0 6px">
@@ -158,13 +162,13 @@ const Header = (props) => {
           )}
         </Grid>
         <SubmitBtn onClick={clickSubmit}>Submit&nbsp;a&nbsp;photo</SubmitBtn>
-        <NavIcon>
+        <NavIcon onClick={notPrepared}>
           <IoNotifications className="header-icon" size="24px"></IoNotifications>
         </NavIcon>
         <NavProfile>
           <Image _onClick={clickMypage} cursor="pointer" shape="circle" size="40px" src="https://image.shutterstock.com/image-vector/default-avatar-profile-trendy-style-260nw-1759726295.jpg"></Image>
         </NavProfile>
-        <NavIcon>
+        <NavIcon onClick={notPrepared}>
           <IoReorderThreeOutline className="header-icon" size="30px"></IoReorderThreeOutline>
         </NavIcon>
       </Grid>

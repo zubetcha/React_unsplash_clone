@@ -47,7 +47,7 @@ const Mypage = (props) => {
               <Grid flex="flex" flexDirection="row" alignItems="center" justifyContent="left" padding="0 0 16px 16px">
                 <Username>{nickname}</Username>
                 <Grid width="auto" padding="0 0 0 24px">
-                  <EditProfile>
+                  <EditProfile onClick={ClickNotPrepared}>
                     <RiPencilFill className="edit-profile-icon" />
                     Edit profile
                   </EditProfile>
@@ -78,7 +78,7 @@ const Mypage = (props) => {
                   </ListBtn>
                 </ListItem>
                 <ListItem>
-                  <ListBtn>
+                  <ListBtn onClick={ClickNotPrepared}>
                     <HiHeart className="list-icon" />
                     Likes
                   </ListBtn>
@@ -99,19 +99,15 @@ const Mypage = (props) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid height="2000px">
-          <div style={styles.card_container}>
-            {user_card_list.length > 0
-              ? user_card_list.map((c) => {
-                  return (
-                    <div key={c.boardId}>
-                      <Card {...c} src={c.img} size={c.size} id={c.boardId} name={c.nickname} />
-                    </div>
-                  )
-                })
-              : null}
-          </div>
-        </Grid>
+      </Grid>
+      <Grid>
+        <div style={styles.card_container}>
+          {user_card_list.length > 0
+            ? user_card_list.map((c) => {
+                return <Card key={c.boardId} {...c} src={c.img} size={c.size} id={c.boardId} name={c.nickname} />
+              })
+            : null}
+        </div>
       </Grid>
     </>
   )
@@ -119,10 +115,9 @@ const Mypage = (props) => {
 
 const styles = {
   card_container: {
-    margin: '20px 0 0',
+    margin: '30px 0px 0px 0px',
     padding: 0,
     width: '80vw',
-    height: '100%',
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, 400px)',
     gridAutoRows: '10px',
@@ -131,7 +126,6 @@ const styles = {
     transform: 'translateX(-50%)',
     justifyContent: 'center',
     backgroundColor: 'white',
-    backfaceVisibility: 'hidden',
   },
 }
 

@@ -37,7 +37,7 @@ const Input = (props) => {
   if (textarea) {
     return (
       <Grid>
-        <Text size="16px" align="left">
+        <Text size="16px" align="left" margin="0">
           {label}
         </Text>
         <Textarea rows="7" {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></Textarea>
@@ -52,7 +52,7 @@ const Input = (props) => {
   if (nomal) {
     return (
       <Grid>
-        <Text size="16px" align="left">
+        <Text size="16px" align="left" margin="0">
           {label}
         </Text>
         <InputBox {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></InputBox>
