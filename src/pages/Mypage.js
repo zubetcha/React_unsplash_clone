@@ -5,7 +5,6 @@ import { actionCreators as userActions } from '../redux/modules/user'
 
 // elements & components
 import Header from '../components/Header'
-import CardTest from '../components/CardTest'
 import Card from '../components/Card'
 import { Grid, Image, Text } from '../elements'
 

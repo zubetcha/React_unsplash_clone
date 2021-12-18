@@ -1,7 +1,7 @@
 import { createAction, handleActions } from 'redux-actions'
 import { produce } from 'immer'
 import { apis } from '../../shared/api'
-import { setCookie, deleteCookie, getCookie } from '../../shared/Cookie'
+import { getCookie } from '../../shared/Cookie'
 
 const SEARCH_CARD = 'SEARCH_CARD'
 const LOAD_CARD = 'LOAD_CARD'
@@ -29,8 +29,6 @@ const addCardDB = (img, tag, location, content, size) => {
     const nick = localStorage.getItem('nickname')
     const token = getCookie('token')
     const addFormData = new FormData()
-    // console.log(nick)
-    // console.log(token)
     const card_info = {
       nickname: nick,
       tagname: tag,
@@ -50,7 +48,7 @@ const addCardDB = (img, tag, location, content, size) => {
         history.push('/')
       })
       .catch((err) => {
-        console.log(err.response)
+        window.alert('게시물 등록하는데 문제가 발생했습니다.', err.response)
       })
   }
 }
@@ -60,26 +58,23 @@ const getCardDB = (id) => {
     await apis
       .allPosts(id)
       .then(function (response) {
-        console.log(response)
         dispatch(getCard(response.data))
       })
       .catch((err) => {
-        console.log(err.response)
+        window.alert('게시물을 불러오는데 문제가 발생했습니다.', err.response)
       })
   }
 }
 
 const searchCardDB = (tagId) => {
   return async function (dispatch, getState, { history }) {
-    console.log(tagId)
     await apis
       .tagPosts(tagId)
       .then(function (response) {
-        console.log(response)
         dispatch(searchCard(response.data))
       })
       .catch((err) => {
-        console.log(err.response)
+        window.alert('게시물을 찾는데 문제가 발생했습니다.', err.response)
       })
   }
 }
@@ -89,19 +84,16 @@ const getOneCardDB = (id) => {
     await apis
       .onePost(id)
       .then(function (response) {
-        console.log(response)
         dispatch(getOneCard(response.data))
       })
       .catch((err) => {
-        console.log(err.response)
+        window.alert('게시물을 불러오는데 문제가 발생했습니다.', err.response)
       })
   }
 }
 
 const editCardDB = (id, tag, location, content) => {
   return async function (dispatch, getState, { history }) {
-    // console.log(id, tag, location, content)
-    // return;
     const token = getCookie('token')
     const card_info = {
       tagname: tag,
@@ -114,31 +106,27 @@ const editCardDB = (id, tag, location, content) => {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        console.log(response)
         dispatch(editCard(response.data))
         history.push('/')
       })
       .catch((err) => {
-        console.log(err.response)
+        window.alert('게시물을 수정하는데 문제가 발생했습니다.', err.response)
       })
   }
 }
 
 const deleteCardDB = (id) => {
   return async function (dispatch, getState, { history }) {
-    // console.log(id, tag, location, content)
-    // return;
     const token = getCookie('token')
     await apis
       .deletePost(id, {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        console.log(response)
         dispatch(deleteCard(id))
       })
       .catch((err) => {
-        console.log(err.response)
+        window.alert('게시물 삭제하는데 문제가 발생했습니다.', err.response)
       })
   }
 }
@@ -157,7 +145,6 @@ export default handleActions(
 
     [EDIT_CARD]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.card)
         let idx = draft.card_list.findIndex((p) => p.boardId === action.payload.card.boardId)
 
         draft.card_list[idx] = { ...draft.card_list[idx], ...action.payload.card }
@@ -169,16 +156,12 @@ export default handleActions(
           return c.boardId !== action.payload.id
         })
 
-        console.log(new_dict)
-
         draft.card_list = new_dict
 
-        console.log(draft.card_list)
       }),
 
     [SEARCH_CARD]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.search_list)
         draft.search_list = action.payload.search_list
       }),
 

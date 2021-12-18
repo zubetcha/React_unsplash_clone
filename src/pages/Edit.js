@@ -12,7 +12,6 @@ const Edit = (props) => {
   const card_list = useSelector((state) => state.card.card_list)
   const card_id = props.match.params.id
   const is_edit = card_id ? true : false
-  console.log(card_list, card_id)
   let _card = is_edit ? card_list.find((c) => c.boardId == card_id) : null
 
   const dispatch = useDispatch()

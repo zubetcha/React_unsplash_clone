@@ -38,7 +38,6 @@ const joinDB = (email, password, fullname, nickname) => {
       .catch((err) => {
         const errorMsg = err.response.data.errorMsg
         window.alert(errorMsg)
-        console.log('회원가입에 문제가 발생했습니다.', errorMsg)
       })
   }
 }
@@ -57,7 +56,7 @@ const logInDB = (email, password) => {
         history.replace('/')
       })
       .catch((err) => {
-        console.log('로그인에 문제가 발생했습니다.', err.response)
+        window.alert('로그인에 문제가 발생했습니다.', err.response)
       })
   }
 }
@@ -80,7 +79,7 @@ const userCardDB = () => {
         dispatch(userCard(response.data))
       })
       .catch((err) => {
-        console.log(err.response)
+        window.alert('유저정보를 불러오는데 문제가 발생했습니다.', err.response)
       })
   }
 }

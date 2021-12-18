@@ -81,7 +81,6 @@ const Upload = (props) => {
 
   //액션 디스패치
   const addCard = () => {
-    const fileCheck = document.getElementsByClassName('bfile').value
 
     if (location == '' || textarea == '') {
       window.alert('게시물을 다 넣어주세요!')

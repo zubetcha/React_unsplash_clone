@@ -5,8 +5,6 @@ import { actionCreators as cardActions } from "../redux/modules/card";
 
 const Masonry = (props) => {
     const card_list = useSelector((state)=>state.card.card_list)
-    const dispatch = useDispatch()
-    console.log(card_list)
 
     
     return (
