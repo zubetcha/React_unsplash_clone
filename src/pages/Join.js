@@ -77,13 +77,23 @@ const Join = (props) => {
     }
   }
 
-  const clickJoin = () => {
+  const clickJoin = (e) => {
     if (fullname === '' || email === '' || nickname === '' || password === '') {
       window.alert('Pleas fill in all blanks.')
       return
     } else {
       dispatch(userActions.joinDB(email, password, fullname, nickname))
     }
+  }
+
+  const pressEnter = (e) => {
+    if (e.key === 'Enter') {
+      clickJoin(e)
+    }
+  }
+
+  const clickNotPrepared = () => {
+    window.alert('준비중입니다.')
   }
 
   return (
@@ -126,7 +136,7 @@ const Join = (props) => {
               </Text>
             </Grid>
             <Grid height="auto">
-              <SocialLogin>
+              <SocialLogin onClick={clickNotPrepared}>
                 <BsFacebook size="17" />
                 Join using Facebook
               </SocialLogin>
@@ -159,10 +169,10 @@ const Join = (props) => {
                     <Validation>&nbsp;(only letters, numbers, and special char & min. 6 char, max. 20 char)</Validation>
                   </span>
                 </div>
-                <input className="form-input" type="password" name="password" onChange={onChangePassword} maxLength="20"></input>
+                <input className="form-input" type="password" name="password" onChange={onChangePassword} onKeyPress={pressEnter} maxLength="20"></input>
               </FormGroup>
             </Grid>
-            <Grid height="auto" margin="0 0 24px 0">
+            <Grid height="44px" margin="0 0 24px 0">
               <JoinBtn type="submit" disabled={!(isFullname && isEmail && isNickname && isPassword)} onClick={clickJoin}>
                 Join
               </JoinBtn>
@@ -171,9 +181,9 @@ const Join = (props) => {
               <Notification>
                 By joining, you agree to the&nbsp;
                 {/* history push('/join') */}
-                <NotiLink>Terms</NotiLink>
+                <NotiLink onClick={clickNotPrepared}>Terms</NotiLink>
                 &nbsp; and &nbsp;
-                <NotiLink>Privacy Policy.</NotiLink>
+                <NotiLink onClick={clickNotPrepared}>Privacy Policy.</NotiLink>
               </Notification>
             </Grid>
           </Grid>
@@ -348,6 +358,8 @@ const Validation = styled.p`
 `
 
 const JoinBtn = styled.button`
+  height: 44px;
+  font-size: 15px;
   width: 100%;
   color: #ffffff;
   background-color: #111111;

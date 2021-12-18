@@ -17,20 +17,28 @@ import { MdInfo } from 'react-icons/md'
 import { BsThreeDots } from 'react-icons/bs'
 import { FiCalendar } from 'react-icons/fi'
 import { MdOutlineDescription } from 'react-icons/md'
+import { IoCloseSharp } from 'react-icons/io5'
 
 const Detail = (props) => {
   const dispatch = useDispatch()
 
-  window.addEventListener('keyup', (e) => {
-    if (e.key === 'Escape') {
-      history.replace('/')
-    }
-  })
+  // window.addEventListener('keyup', (e) => {
+  //   if (e.key === 'Escape') {
+  //     history.goBack()
+  //   }
+  // })
+
+  const clickClose = () => {
+    history.goBack()
+  }
+
+  const clickNotPrepared = () => {
+    window.alert('준비중입니다.')
+  }
 
   const card_id = props.match.params.id
   const userId = Number(localStorage.getItem('userId'))
   const card = useSelector((state) => state.card.one_card)
-  console.log(card)
 
   const [action, setAction] = React.useState(null)
 
@@ -89,8 +97,12 @@ const Detail = (props) => {
     <>
       <ModalBody>
         <ModalOverlay>
+          <div>
+            <button className="close-detail-btn" onClick={clickClose}>
+              <IoCloseSharp className="close-detail-icon" />
+            </button>
+          </div>
           <ModalContent className="detail-modal-content">
-            <div></div>
             <DetailContainer>
               <ModalHeader>
                 <UserBox>
@@ -112,16 +124,18 @@ const Detail = (props) => {
                     </button>
                   </div>
                   <div className="icon-box">
-                    <button className="icon-btn">
+                    <button className="icon-btn" onClick={clickNotPrepared}>
                       <GoPlus />
                     </button>
                   </div>
                   <DownloadToggle>
                     <div>
-                      <button className="download-btn btn">Download free</button>
+                      <button className="download-btn btn" onClick={clickNotPrepared}>
+                        Download free
+                      </button>
                     </div>
                     <div>
-                      <button className="size-btn btn">
+                      <button className="size-btn btn" onClick={clickNotPrepared}>
                         <IoIosArrowDown />
                       </button>
                     </div>
@@ -156,19 +170,19 @@ const Detail = (props) => {
                 </div>
                 <div className="image-toggle">
                   <div className="icon-box">
-                    <button className="icon-btn">
+                    <button className="icon-btn" onClick={clickNotPrepared}>
                       <IoArrowRedoSharp />
                       &nbsp;Shared
                     </button>
                   </div>
                   <div className="icon-box">
-                    <button className="icon-btn">
+                    <button className="icon-btn" onClick={clickNotPrepared}>
                       <MdInfo />
                       &nbsp;Info
                     </button>
                   </div>
                   <div className="icon-box">
-                    <button className="icon-btn">
+                    <button className="icon-btn" onClick={clickNotPrepared}>
                       <BsThreeDots />
                     </button>
                   </div>

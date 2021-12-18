@@ -9,17 +9,20 @@ const LOG_IN = 'LOG_IN'
 const LOG_OUT = 'LOG_OUT'
 const GET_USER = 'GET_USER'
 const USER_CARD = 'USER_CARD'
+const LOADING = 'LOADING'
 
 // **** Action creator **** //
 const logIn = createAction(LOG_IN, (user) => ({ user }))
 const logOut = createAction(LOG_OUT, (user) => ({ user }))
 const userCard = createAction(USER_CARD, (user_card_list) => ({ user_card_list }))
+const loading = createAction(LOADING, (is_loading) => ({ is_loading }))
 
 // **** Initial data **** //
 const initialState = {
   user: null,
   is_login: false,
   user_card_list: [],
+  is_loading: false,
 }
 
 // **** Middleware **** //

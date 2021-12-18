@@ -56,6 +56,16 @@ const Login = (props) => {
     }
   }
 
+  const pressEnter = (e) => {
+    if (e.key === 'Enter') {
+      clickLogin(e)
+    }
+  }
+
+  const clickNotPrepared = () => {
+    window.alert('준비중입니다.')
+  }
+
   return (
     <>
       <Grid height="100vh" overflowY="hidden">
@@ -78,7 +88,7 @@ const Login = (props) => {
                   </Text>
                 </Grid>
                 <Grid height="auto">
-                  <SocialLogin>
+                  <SocialLogin onClick={clickNotPrepared}>
                     <BsFacebook size="17" />
                     Login with Facebook
                   </SocialLogin>
@@ -96,10 +106,10 @@ const Login = (props) => {
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                       <label className="form-label">Password</label>
                       <span>
-                        <FindPassword>Forgot your password?</FindPassword>
+                        <FindPassword onClick={clickNotPrepared}>Forgot your password?</FindPassword>
                       </span>
                     </div>
-                    <input className="form-input" type="password" name="password" onChange={onChangePassword} maxLength="20"></input>
+                    <input className="form-input" type="password" name="password" onChange={onChangePassword} onKeyPress={pressEnter} maxLength="20"></input>
                   </FormGroup>
                 </Grid>
                 <Grid height="auto" margin="0 0 24px 0">
@@ -245,6 +255,8 @@ const FindPassword = styled.a`
 `
 
 const LoginBtn = styled.button`
+  height: 44px;
+  font-size: 15px;
   width: 100%;
   color: #ffffff;
   background-color: #111111;
