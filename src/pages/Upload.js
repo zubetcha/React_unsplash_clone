@@ -81,17 +81,14 @@ const Upload = (props) => {
 
   //액션 디스패치
   const addCard = () => {
-    const fileCheck = document.getElementsByClassName('bfile').value;
-           
-    if(location == '' || textarea == ''){
-                
-        window.alert("게시물을 다 넣어주세요!")
-        return;
-                
+    const fileCheck = document.getElementsByClassName('bfile').value
+
+    if (location == '' || textarea == '') {
+      window.alert('게시물을 다 넣어주세요!')
+      return
     }
     dispatch(cardActions.addCardDB(fileInput.current.files[0], option_list[tag], location, textarea, size))
   }
-
 
   return (
     <>
@@ -235,7 +232,14 @@ const Upload = (props) => {
                   </a>
                 </div>
                 <div className="footer-btn">
-                  <button className="cancel-btn">Cancel</button>
+                  <button
+                    className="cancel-btn"
+                    onClick={() => {
+                      history.goBack()
+                    }}
+                  >
+                    Cancel
+                  </button>
                   <button
                     onClick={() => {
                       addCard()

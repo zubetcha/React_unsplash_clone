@@ -15,7 +15,6 @@ import { IoNotifications } from 'react-icons/io5'
 import { IoReorderThreeOutline } from 'react-icons/io5'
 import { history } from '../redux/configureStore'
 
-
 const Header = (props) => {
   const dispatch = useDispatch()
 
@@ -26,7 +25,6 @@ const Header = (props) => {
   const nickname = localStorage.getItem('nickname')
   const is_login = user_id !== null ? true : false
 
-  
   const change_text = (e) => {
     setSearch(e.target.value)
     console.log(e.target.value)
@@ -54,6 +52,18 @@ const Header = (props) => {
     }
   }
 
+  const clickSearch = (e) => {
+    dispatch(cardActions.searchCardDB(search))
+    history.push(`/sub/${search}`)
+    setSearch('')
+  }
+
+  const pressEnter = (e) => {
+    if (e.key === 'Enter') {
+      clickSearch(e)
+    }
+  }
+
   if (Mypage) {
     return (
       <Head>
@@ -69,20 +79,8 @@ const Header = (props) => {
           </Grid>
           <Grid flex="flex; align-items:center" maxWidth="2400px">
             <Button height="40px" width="50px" borderRadius="20px 0px 0px 20px" bg="#eee" color="#767676" text={<SearchIcon />}></Button>
-            <Input value={search} _onChange={change_text} search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
-            <Button
-              _onClick={() => {
-                dispatch(cardActions.searchCardDB(search))
-                history.push(`/sub/${search}`)
-                
-              }}
-              height="40px"
-              width="50px"
-              borderRadius="0px 20px 20px 0px"
-              bg="#eee"
-              color="#767676"
-              text={<CenterFocusWeakIcon />}
-            ></Button>
+            <Input value={search} _onChange={change_text} _onKeyPress={pressEnter} search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
+            <Button _onClick={clickSearch} height="40px" width="50px" borderRadius="0px 20px 20px 0px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
           </Grid>
           <Grid flex="flex; align-items:center; justify-content:center" width="auto" padding="0 6px">
             {!is_login ? <NavMenu>Explore</NavMenu> : null}
@@ -138,19 +136,8 @@ const Header = (props) => {
         </Grid>
         <Grid flex="flex; align-items:center" maxWidth="2400px">
           <Button height="40px" width="50px" borderRadius="20px 0px 0px 20px" bg="#eee" color="#767676" text={<SearchIcon />}></Button>
-          <Input value={search} _onChange={change_text} search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
-          <Button
-            _onClick={() => {
-              dispatch(cardActions.searchCardDB(search))
-              history.push(`/sub/${search}`)
-            }}
-            height="40px"
-            width="50px"
-            borderRadius="0px 20px 20px 0px"
-            bg="#eee"
-            color="#767676"
-            text={<CenterFocusWeakIcon />}
-          ></Button>
+          <Input value={search} _onChange={change_text} _onKeyPress={pressEnter} search_box placeholder="Search free high-resolution photos" width="1000px"></Input>
+          <Button _onClick={clickSearch} height="40px" width="50px" borderRadius="0px 20px 20px 0px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
         </Grid>
         <Grid flex="flex; align-items:center; justify-content:center" width="auto" padding="0 6px">
           {!is_login ? <NavMenu>Explore</NavMenu> : null}

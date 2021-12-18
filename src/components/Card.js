@@ -79,7 +79,7 @@ const Container = styled.div`
     padding: 0 12px;
     margin: 0;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     border-radius: 4px;
     height: 32px;
     line-height: 30px;
@@ -97,19 +97,20 @@ const Container = styled.div`
     right: 10px;
     display: flex;
     align-items: center;
-    background-color: #fff;
-    border: 0.5px solid #d1d1d1;
+    background-color: transparent;
+    border: 0.5px solid transparent;
     padding: 0 12px;
     margin: 0;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     border-radius: 4px;
     height: 32px;
     line-height: 30px;
-    color: #767676;
+    color: transparent;
     transition: all 0.1s ease-in-out;
 
     &:hover {
+      background-color: #fff;
       color: #111;
       border: 0.5px solid #111;
     }

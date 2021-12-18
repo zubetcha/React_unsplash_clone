@@ -6,6 +6,7 @@ import { actionCreators as userActions } from '../redux/modules/user'
 // elements & components
 import Header from '../components/Header'
 import CardTest from '../components/CardTest'
+import Card from '../components/Card'
 import { Grid, Image, Text } from '../elements'
 
 // react-icons
@@ -105,7 +106,7 @@ const Mypage = (props) => {
               ? user_card_list.map((c) => {
                   return (
                     <div key={c.boardId}>
-                      <CardTest {...c} />
+                      <Card {...c} src={c.img} size={c.size} id={c.boardId} name={c.nickname} />
                     </div>
                   )
                 })
@@ -121,8 +122,8 @@ const styles = {
   card_container: {
     margin: '20px 0 0',
     padding: 0,
-    width: '100vw',
-    height: '140%',
+    width: '80vw',
+    height: '100%',
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, 400px)',
     gridAutoRows: '10px',

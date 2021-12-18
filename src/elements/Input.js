@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Grid, Text } from '.'
 
 const Input = (props) => {
-  const { label, textarea, textarea2, nomal, placeholder, search_box, type, value, margin, padding, _onChange, width, height, condition, conditionInfo } = props
+  const { label, textarea, textarea2, nomal, placeholder, search_box, type, value, margin, padding, _onChange, width, height, condition, conditionInfo, _onKeyPress } = props
   const styles = {
     margin: margin,
     padding: padding,
@@ -28,7 +28,7 @@ const Input = (props) => {
     return (
       <>
         <SearchBox {...styles}>
-          <input className="form-input" {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange}></input>
+          <input className="form-input" {...styles} type={type} placeholder={placeholder} value={value} onChange={_onChange} onKeyPress={_onKeyPress}></input>
         </SearchBox>
       </>
     )
@@ -80,6 +80,7 @@ Input.defaultProps = {
   padding: '6px 12px',
   _onChange: () => {},
   height: '40px',
+  _onkeypress: () => {},
 }
 
 const FormGroup = styled.div`
