@@ -158,7 +158,16 @@ const Textarea = styled.textarea`
   padding: 10px;
   margin: 10px 0px;
   font-family: 'Noto Sans KR';
-  border: 1px solid black;
+  font-size: 13px;
+  border-radius: 4px;
+  border: 1px solid #d1d1d1;
+  transition: border 0.1s ease-in-out;
+  resize: none;
+
+  &:focus {
+    outline: none;
+    border: 1px solid #111;
+  }
 `
 
 const InputBox = styled.input`
@@ -166,13 +175,17 @@ const InputBox = styled.input`
   width: 100%;
   height: ${(props) => props.height};
   padding: ${(props) => props.padding};
-  border: 1px solid #c4c4c4;
   border-radius: 4px;
-  color: #c4c4c4;
+  color: #111;
   font-size: 13px;
-  margin: 15px 0;
+  margin: 10px 0;
   font-family: 'Noto Sans KR';
-  border: 1px solid black;
+  border: 1px solid #d1d1d1;
+  transition: border 0.1s ease-in-out;
+
+  &:focus {
+    border: 1px solid #111;
+  }
 `
 
 export default Input

@@ -70,12 +70,12 @@ const Upload = (props) => {
   }
 
   const closeModal = () => {
-    history.push('/')
+    history.goBack()
   }
 
   window.addEventListener('keyup', (e) => {
     if (e.key === 'Escape') {
-      history.push('/')
+      history.goBack()
     }
   })
 
@@ -106,7 +106,13 @@ const Upload = (props) => {
                   <h4 className="header-title">Submit to Unsplash</h4>
                 </div>
                 <div>
-                  <a className="header-info" href>
+                  <a
+                    className="header-info"
+                    href
+                    onClick={() => {
+                      window.alert('준비중입니다.')
+                    }}
+                  >
                     Need help?
                   </a>
                 </div>
@@ -129,7 +135,7 @@ const Upload = (props) => {
                           </label>
                         </div>
                         <div className="text-area">
-                          Drag and drop up to 1 images <br />
+                          Drag and drop up to 1 image <br />
                           or <span className="highlight-browse">Browse</span> to choose a file
                         </div>
                       </div>
@@ -138,7 +144,7 @@ const Upload = (props) => {
                   {imgfile ? (
                     <>
                       <Grid width="380px">
-                        <select onChange={handleClick} style={{ width: '380px', border: '1px solid black' }} class="dropdown">
+                        <select onChange={handleClick} className="dropdown">
                           <option value="0">Holidays</option>
                           <option value="1">Blockchain</option>
                           <option value="2">Wallpapers</option>
@@ -155,8 +161,8 @@ const Upload = (props) => {
                           <option value="13">People</option>
                           <option value="14">Interiors</option>
                         </select>
-                        <Input value={location} _onChange={change_location} nomal placeholder="location"></Input>
-                        <Input value={textarea} _onChange={change_text} textarea2 placeholder="Add a description(optional)"></Input>
+                        <Input value={location} _onChange={change_location} nomal placeholder="location" padding="10px"></Input>
+                        <Input value={textarea} _onChange={change_text} textarea2 placeholder="Add a description"></Input>
                       </Grid>
                       <Grid flex="flex; align-items:center; justify-content:center" width="500px">
                         <Grid flex="flex; align-items:center" width="90px">
@@ -200,7 +206,13 @@ const Upload = (props) => {
                         <li className="info-list-item">
                           Read the{' '}
                           <span>
-                            <a className="link" href>
+                            <a
+                              className="link"
+                              href
+                              onClick={() => {
+                                window.alert('준비중입니다.')
+                              }}
+                            >
                               Unsplash Terms
                             </a>
                           </span>
@@ -209,21 +221,6 @@ const Upload = (props) => {
                     </div>
                   </div>
                 </div>
-
-                {/* **** 이미지 업로드 후 **** */}
-                {/* <div className="preview-area">
-                  <div className="preview-title">
-                    <h2 className="title">Select size</h2>
-                    <div className="select-btn">
-                      <button className="small size-btn">small</button>
-                      <button className="medium size-btn">medium</button>
-                      <button className="large size-btn">large</button>
-                    </div>
-                  </div>
-                  <div className="preview-box">
-                    <Uploadform size="large" />
-                  </div>
-                </div> */}
               </UploadBody>
               <UploadFooter>
                 <div>
@@ -262,13 +259,11 @@ const UploadModalBody = styled.div`
   width: 100vw;
   height: 100%;
   position: absolute;
-  box-sizing: border-box;
   z-index: 0;
 
   .upload-modal-overlay {
     width: 100%;
     height: 100%;
-    box-sizing: border-box;
     backface-visibility: hidden;
     /* overflow: auto; */
     overflow-y: hidden;
@@ -281,9 +276,6 @@ const UploadModalBody = styled.div`
     z-index: 5;
 
     .upload-modal-content {
-      color: #111;
-      font-size: 15px;
-      font-weight: 400;
       line-height: 1.6;
       padding: 60px;
       height: 100%;
@@ -295,8 +287,6 @@ const UploadModalBody = styled.div`
         left: 0;
         margin: 8px 0 0 8px;
         padding: 0;
-        outline: none;
-        border: none;
         background-color: transparent;
         cursor: pointer;
 
@@ -322,6 +312,18 @@ const UploadModalBody = styled.div`
       }
     }
   }
+
+  .dropdown {
+    width: 380px;
+    padding: 10px 7px;
+    margin: 20px 0 6px;
+    font-size: 13px;
+    border-radius: 4px;
+    border: 1px solid #d1d1d1;
+    &:focus {
+      outline: none;
+    }
+  }
 `
 
 const UploadHeader = styled.div`
@@ -335,7 +337,6 @@ const UploadHeader = styled.div`
   border-top-right-radius: 4px;
 
   .header-title {
-    font-size: 15px;
     font-weight: 600;
     color: #111;
     margin: 0;
@@ -364,7 +365,6 @@ const UploadBody = styled.div`
   height: 100%;
 
   .input-area {
-    box-sizing: border-box;
     padding: 24px 16px;
     display: flex;
     flex-direction: column;
@@ -399,14 +399,17 @@ const UploadBody = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+        cursor: pointer;
 
         .img-area {
           width: 130px;
           margin-bottom: 16px;
           position: relative;
+          cursor: pointer;
 
           img {
             width: 100%;
+            cursor: pointer;
           }
         }
 
@@ -460,58 +463,10 @@ const UploadBody = styled.div`
       }
     }
   }
-
-  .preview-area {
-    height: 100%;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    max-width: 500px;
-    margin: 0 auto;
-
-    .preview-box {
-      height: 100%;
-      display: flex;
-      justify-content: center;
-    }
-
-    .preview-title {
-      text-align: center;
-      color: #111;
-      font-size: 28px;
-      line-height: 1.6;
-      padding: 10px;
-
-      .title {
-        margin: 12px 0 24px;
-      }
-      .select-btn {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-items: center;
-        .size-btn {
-          outline: none;
-          border: none;
-          background-color: #111;
-          color: #fff;
-          cursor: pointer;
-          padding: 6px 12px;
-          border-radius: 20px;
-          transition: background-color 0.1s ease-in-out;
-
-          &:hover {
-            background-color: #333;
-          }
-        }
-      }
-    }
-  }
 `
 
 const UploadFooter = styled.div`
   height: auto;
-  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -538,7 +493,6 @@ const UploadFooter = styled.div`
     gap: 8px;
     .cancel-btn,
     .submit-btn {
-      box-sizing: border-box;
       background-color: #fff;
       border: 0.5px solid #d1d1d1;
       padding: 0 9px;
@@ -550,7 +504,6 @@ const UploadFooter = styled.div`
       height: 32px;
       line-height: 30px;
       color: #767676;
-      cursor: pointer;
       transition: all 0.1s ease-in-out;
 
       &:hover {
