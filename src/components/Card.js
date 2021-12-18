@@ -78,13 +78,13 @@ const styles = {
     padding: 0,
   },
   small: {
-    gridRowEnd: 'span 26',
+    gridRowEnd: 'span 25',
   },
   medium: {
-    gridRowEnd: 'span 33',
+    gridRowEnd: 'span 40',
   },
   large: {
-    gridRowEnd: 'span 45',
+    gridRowEnd: 'span 55',
   },
 }
 

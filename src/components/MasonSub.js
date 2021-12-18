@@ -6,7 +6,6 @@ import { actionCreators as cardActions } from "../redux/modules/card";
 const Masonry = (props) => {
     const search_list = useSelector((state)=>state.card.search_list.photoboards)
     const dispatch = useDispatch()
-    console.log(props.param, search_list)
 
     React.useEffect(() => {
         dispatch(cardActions.searchCardDB(props.param))
@@ -14,7 +13,7 @@ const Masonry = (props) => {
     return (
         <div style={styles.card_container}>
             {search_list?search_list.map((c,idx) => {
-                return  <Card key={c.boardId} id={c.boardId} src={c.img} size={c.size}></Card>
+                return  <Card key={c.boardId} id={c.boardId} name={c.nickname} src={c.img} size={c.size}></Card>
             }):<></>}
         </div>
     );

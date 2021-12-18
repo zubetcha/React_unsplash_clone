@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { actionCreators as cardActions } from '../redux/modules/card'
 
 const Masonry = (props) => {
-  const card_list = useSelector((state) => state.card.card_list)
-  const dispatch = useDispatch()
+    const card_list = useSelector((state)=>state.card.card_list)
 
   return (
     <div style={styles.card_container}>

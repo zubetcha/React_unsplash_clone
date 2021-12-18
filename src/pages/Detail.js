@@ -47,11 +47,10 @@ const Detail = (props) => {
       apis
         .clickLike(card_id)
         .then((res) => {
-          console.log(res)
           setAction('liked')
         })
         .catch((err) => {
-          console.log('좋아요 클릭에 문제가 발생했습니다.', err.response)
+          window.alert('좋아요 클릭에 문제가 발생했습니다.', err.response)
         })
     } else if (action === 'liked') {
       apis
@@ -61,7 +60,7 @@ const Detail = (props) => {
           setAction(null)
         })
         .catch((err) => {
-          console.log('좋아요 취소에 문제가 발생했습니다.', err.response)
+          window.alert('좋아요 취소에 문제가 발생했습니다.', err.response)
         })
     }
   }
@@ -71,7 +70,6 @@ const Detail = (props) => {
       .getLikeUser(card_id)
       .then((res) => {
         const user_list = res.data.userIds
-        console.log(user_list)
         if (user_list.length > 0) {
           user_list.map((user) => {
             if (user === userId) {
@@ -85,7 +83,7 @@ const Detail = (props) => {
         }
       })
       .catch((err) => {
-        console.log('유저 정보를 불러오는 데 실패했습니다.', err.response)
+        window.alert('유저 정보를 불러오는 데 실패했습니다.', err.response)
       })
   }, [])
 
@@ -449,7 +447,8 @@ const ModalImage = styled.div`
       justify-content: center;
 
       img {
-        min-width: min(100%, 872px);
+        height: 680px;
+        min-width: min(100%, 572px);
         max-width: calc((100vh - 175px) * 1.50316);
         /* height: 100%; */
         margin: 0 auto;
