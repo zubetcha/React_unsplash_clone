@@ -71,10 +71,11 @@ const Edit = (props) => {
               </ModalImage>
               <div>
                 <EditScroll />
-                <Grid padding="0px 0px 0px 20px">
+                <Grid padding="20px 0px 0px 20px">
                   <Input value={textarea} _onChange={change_text} placeholder="A good description makes a photo more discoverable." label="Description" textarea></Input>
                   <Input value={location} _onChange={change_location} placeholder="Add a place or a city" label="Location" nomal></Input>
-                  <select onChange={handleClick} style={{ width: '380px', border: '1px solid black' }} class="dropdown">
+                  <p style={{ margin: '16px 0 0' }}>Tagname</p>
+                  <select onChange={handleClick} className="dropdown">
                     <option value="0">Holidays</option>
                     <option value="1">Blockchain</option>
                     <option value="2">Wallpapers</option>
@@ -92,25 +93,26 @@ const Edit = (props) => {
                     <option value="14">Interiors</option>
                   </select>
                 </Grid>
-                <Grid align="right" margin="40px 0px 0px 0px">
-                  <Button
+                <FooterBtn>
+                  <button
                     onClick={() => {
                       history.replace('/')
                     }}
-                    style={{ margin: '0px 10px 0px 0px' }}
                     variant="outlined"
+                    className="cancel-btn"
                   >
                     Cancel
-                  </Button>
-                  <Button
+                  </button>
+                  <button
                     onClick={() => {
                       edit_card()
                     }}
                     variant="contained"
+                    className="submit-btn"
                   >
                     Update info
-                  </Button>
-                </Grid>
+                  </button>
+                </FooterBtn>
               </div>
             </DetailContainer>
           </ModalContent>
@@ -162,6 +164,18 @@ const DetailContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  .dropdown {
+    width: 100%;
+    padding: 10px 7px;
+    margin: 12px 0 6px;
+    font-size: 13px;
+    border-radius: 4px;
+    border: 1px solid #d1d1d1;
+    &:focus {
+      outline: none;
+    }
+  }
 `
 const ModalImage = styled.div`
   img {
@@ -171,6 +185,36 @@ const ModalImage = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 5px 0px 0px 5px;
+  }
+`
+
+const FooterBtn = styled.div`
+  padding: 0 0 0 20px;
+  margin: 20px 0 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
+  gap: 8px;
+  .cancel-btn,
+  .submit-btn {
+    background-color: #fff;
+    border: 0.5px solid #d1d1d1;
+    padding: 0 9px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 4px;
+    height: 32px;
+    line-height: 30px;
+    color: #767676;
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      color: #111;
+      border: 0.5px solid #111;
+    }
   }
 `
 
