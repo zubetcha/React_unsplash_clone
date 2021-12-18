@@ -22,12 +22,6 @@ import { IoCloseSharp } from 'react-icons/io5'
 const Detail = (props) => {
   const dispatch = useDispatch()
 
-  // window.addEventListener('keyup', (e) => {
-  //   if (e.key === 'Escape') {
-  //     history.goBack()
-  //   }
-  // })
-
   const clickClose = () => {
     history.goBack()
   }
