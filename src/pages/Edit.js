@@ -126,8 +126,6 @@ const ModalBody = styled.div`
   width: 100vw;
   height: 100%;
   position: absolute;
-  /* opacity: 0; */
-  box-sizing: border-box;
   z-index: 0;
   overflow-y: hidden;
 `
@@ -135,7 +133,6 @@ const ModalBody = styled.div`
 const ModalOverlay = styled.div`
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
   overflow: auto;
   background-color: #0009;
   position: fixed;

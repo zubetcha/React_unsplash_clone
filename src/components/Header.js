@@ -229,7 +229,6 @@ const SubmitBtn = styled.button`
   border-radius: 4px;
   color: #767676;
   font-weight: 600;
-  font-size: 15px;
   transition: all 0.1s ease-in-out;
   &:hover {
     color: #111;
