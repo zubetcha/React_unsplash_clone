@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { actionCreators as cardActions } from '../redux/modules/card'
 import { history } from '../redux/configureStore'
 
-
 const Main = (props) => {
   const dispatch = useDispatch()
   const [search, setSearch] = React.useState('')
@@ -18,6 +17,17 @@ const Main = (props) => {
     setSearch(e.target.value)
   }
 
+  const clickSearch = (e) => {
+    dispatch(cardActions.searchCardDB(search))
+    history.push(`/sub/${search}`)
+    setSearch('')
+  }
+
+  const pressEnter = (e) => {
+    if (e.key === 'Enter') {
+      clickSearch(e)
+    }
+  }
 
   React.useEffect(() => {
     dispatch(cardActions.getCardDB())
@@ -40,12 +50,8 @@ const Main = (props) => {
 
             <Grid flex="flex; align-items:center" width="auto">
               <Button height="40px" width="50px" bg="#eee" color="#767676" text={<SearchIcon />}></Button>
-              <Input value={search} _onChange={change_text} search_box placeholder="Search free high-resolution photos" width="700px"></Input>
-              <Button 
-              _onClick={()=>{
-                dispatch(cardActions.searchCardDB(search))
-                history.push(`/sub/${search}`)
-              }} height="40px" width="50px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
+              <Input value={search} _onChange={change_text} _onKeyPress={pressEnter} search_box placeholder="Search free high-resolution photos" width="700px"></Input>
+              <Button _onClick={clickSearch} height="40px" width="50px" bg="#eee" color="#767676" text={<CenterFocusWeakIcon />}></Button>
             </Grid>
             <Text color="#fff">Trending: flower, wallpapers, backgrounds, happy, love</Text>
           </Grid>
@@ -60,4 +66,3 @@ const Main = (props) => {
 }
 
 export default Main
-
