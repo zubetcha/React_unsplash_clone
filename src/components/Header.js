@@ -27,7 +27,6 @@ const Header = (props) => {
 
   const change_text = (e) => {
     setSearch(e.target.value)
-    console.log(e.target.value)
   }
 
   const logOut = () => {
@@ -71,7 +70,7 @@ const Header = (props) => {
           <Grid width="50px">
             <Image
               _onClick={() => {
-                history.push('/')
+                window.location.href="/"
               }}
               shape="logo"
               src={Logo}

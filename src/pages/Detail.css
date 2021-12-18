@@ -1,7 +1,7 @@
 @media (min-width: 1400px) {
   .detail-modal-content {
-    margin-left: 120px;
-    margin-right: 120px;
+    margin-left: 220px;
+    margin-right: 220px;
   }
 }
 
@@ -12,7 +12,7 @@
 
 @media (min-width: 768px) {
   .detail-modal-content {
-    margin-bottom: 100px;
+    margin-bottom: 0px;
     margin-top: 16px;
   }
 }

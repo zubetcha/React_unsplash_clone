@@ -9,7 +9,6 @@ import { actionCreators as cardActions } from '../redux/modules/card'
 const Sub = (props) => {
   const param = props.match.params.tag
   const search_list = useSelector((state) => state.card.search_list)
-  console.log(search_list)
 
   const dispatch = useDispatch()
 
