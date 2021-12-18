@@ -1,28 +1,24 @@
-import React from "react";
-import Card from "./Card";
-import { useDispatch,useSelector } from "react-redux";
-import { actionCreators as cardActions } from "../redux/modules/card"; 
+import React from 'react'
+import Card from './Card'
+import { useDispatch, useSelector } from 'react-redux'
+import { actionCreators as cardActions } from '../redux/modules/card'
 
 const Masonry = (props) => {
-    const card_list = useSelector((state)=>state.card.card_list)
-    const dispatch = useDispatch()
-    console.log(card_list)
+  const card_list = useSelector((state) => state.card.card_list)
+  const dispatch = useDispatch()
 
-    
-    return (
-        <div style={styles.card_container}>
-            {card_list.map((c,idx) => {
-                return  <Card key={c.boardId} name={c.nickname} id={c.boardId} src={c.img} size={c.size}></Card>
-            })}
-           
-        </div>
-    );
-
-};
+  return (
+    <div style={styles.card_container}>
+      {card_list.map((c, idx) => {
+        return <Card key={c.boardId} name={c.nickname} id={c.boardId} src={c.img} size={c.size}></Card>
+      })}
+    </div>
+  )
+}
 
 const styles = {
-    card_container: {
-    margin: "30px 0px 0px 0px",
+  card_container: {
+    margin: '30px 0px 0px 0px',
     padding: 0,
     width: '80vw',
     display: 'grid',
@@ -33,8 +29,7 @@ const styles = {
     transform: 'translateX(-50%)',
     justifyContent: 'center',
     backgroundColor: 'white',
+  },
+}
 
-    }
-   };
-
-export default Masonry;
+export default Masonry

@@ -27,7 +27,6 @@ const Header = (props) => {
 
   const change_text = (e) => {
     setSearch(e.target.value)
-    console.log(e.target.value)
   }
 
   const logOut = () => {

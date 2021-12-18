@@ -9,6 +9,9 @@ const Card = (props) => {
   const dispatch = useDispatch()
   const token = getCookie('token')
   const nickname = localStorage.getItem('nickname')
+
+  const [show, setShow] = React.useState(false)
+
   return (
     <div
       style={{
@@ -16,14 +19,20 @@ const Card = (props) => {
         ...styles[props.size],
       }}
     >
-      <img
+      <CardImage
         onClick={() => {
           history.push(`/detail/${props.id}`)
         }}
         width="100%"
         height="100%"
         src={props.src}
-      ></img>
+        onMouseOver={() => {
+          setShow(true)
+        }}
+        onMouseLeave={() => {
+          setShow(false)
+        }}
+      ></CardImage>
       <Container>
         {token && nickname == props.name && (
           <>
@@ -31,7 +40,13 @@ const Card = (props) => {
               onClick={() => {
                 history.push(`/edit/${props.id}`)
               }}
-              className="icon-btn"
+              className={`btn icon-btn ${show ? 'show' : 'none'}`}
+              onMouseOver={() => {
+                setShow(true)
+              }}
+              onMouseLeave={() => {
+                setShow(false)
+              }}
             >
               &nbsp;Edit
             </button>
@@ -39,7 +54,13 @@ const Card = (props) => {
               onClick={() => {
                 dispatch(cardActions.deleteCardDB(props.id))
               }}
-              className="icon-btn2"
+              className={`btn icon-btn2 ${show ? 'show' : 'none'}`}
+              onMouseOver={() => {
+                setShow(true)
+              }}
+              onMouseLeave={() => {
+                setShow(false)
+              }}
             >
               &nbsp;Delete
             </button>
@@ -67,53 +88,48 @@ const styles = {
   },
 }
 
+const CardImage = styled.img`
+  cursor: zoom-in;
+`
+
 const Container = styled.div`
-  .icon-btn {
+  .btn {
     position: absolute;
     top: 10px;
-    left: 10px;
     display: flex;
     align-items: center;
-    background-color: #fff;
-    border: 0.5px solid #d1d1d1;
     padding: 0 12px;
     margin: 0;
-    font-size: 14px;
-    font-weight: 500;
-    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 50px;
     height: 32px;
     line-height: 30px;
-    color: #767676;
     transition: all 0.1s ease-in-out;
 
     &:hover {
-      color: #111;
-      border: 0.5px solid #111;
+      background-color: #949494;
     }
   }
-  .icon-btn2 {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: flex;
-    align-items: center;
+
+  .none {
     background-color: transparent;
     border: 0.5px solid transparent;
-    padding: 0 12px;
-    margin: 0;
-    font-size: 14px;
-    font-weight: 500;
-    border-radius: 4px;
-    height: 32px;
-    line-height: 30px;
     color: transparent;
-    transition: all 0.1s ease-in-out;
+  }
 
-    &:hover {
-      background-color: #fff;
-      color: #111;
-      border: 0.5px solid #111;
-    }
+  .show {
+    background-color: #636161;
+    opacity: 0.8;
+    border: 0.5px solid transparent;
+    color: #fff;
+  }
+
+  .icon-btn {
+    left: 10px;
+  }
+  .icon-btn2 {
+    right: 10px;
   }
 `
 
