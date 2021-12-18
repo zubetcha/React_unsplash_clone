@@ -39,6 +39,7 @@
 </br>
 
 ## 🎞프로젝트 시연 영상🎞
+<a href="https://www.youtube.com/watch?v=7NqR7eWZ1Hw">시연 영상 보러가기<a/>
 
 </br>
 </br>
