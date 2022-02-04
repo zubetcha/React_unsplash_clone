@@ -2,8 +2,8 @@
 
 # Unsplash 클론 코딩
 
-<img src="https://user-images.githubusercontent.com/91620721/152481773-846e84b3-82d2-47af-8f4f-d4df95f82838.gif" width="1280" height="600"/>
-<!-- ![img](https://user-images.githubusercontent.com/91620721/152481773-846e84b3-82d2-47af-8f4f-d4df95f82838.gif) -->
+<!-- <img src="https://user-images.githubusercontent.com/91620721/152481773-846e84b3-82d2-47af-8f4f-d4df95f82838.gif" width="1280" height="600"/> -->
+![img](https://user-images.githubusercontent.com/91620721/152481773-846e84b3-82d2-47af-8f4f-d4df95f82838.gif)
 
 </br>
 
