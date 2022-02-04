@@ -134,7 +134,7 @@
 
 </br>
 
-## Trouble Shooting
+## 🔫 Trouble Shooting
 
 <details>
     <summary>
