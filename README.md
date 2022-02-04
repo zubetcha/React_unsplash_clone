@@ -1,56 +1,37 @@
-# 항해99 7주차 클론코딩 <13조
+# Unsplash 클론 코딩
 
-📆2021.12.13 ~ 2021.12.18
-</br>
-
-# Team Splash
+![img](https://user-images.githubusercontent.com/91620721/152481773-846e84b3-82d2-47af-8f4f-d4df95f82838.gif)
 
 
-웹사이트 unsplash 클론 코딩 =>
+고화질 이미지 공유 사이트인 Unsplash를 클론 코딩한 프로젝트입니다.
 </br>
 <a href="https://unsplash.com/">Unsplash 웹사이트</a>
 </br>
 <a href="http://unsplashed.s3-website.ap-northeast-2.amazonaws.com/">Unsplash 클론 코딩 웹사이트</a>
-
 </br>
-</br>
-
-## 구성원 및 역할👫
-
-### **Front-end**
-
-- 정주혜:
-- 이준명:
-
-프론트 깃헙 링크 =>
-<a href="https://github.com/Hanghae99-Team-Splash/Team-Splash-Frontend">바로가기</a>
-
-</br>
-
-### **Back-end**
-
-- 이현범: 회원가입, JWT 로그인 기능 구현, 태그화, 좋아요, 카카오톡 로그인, Spring Security 사용
-- 임전혁: S3 게시물 기능 구현, 조회수 기능 구현, 테스트코드 작성, EC2배포, CORS처리
-
-백엔드 깃헙 링크 =>
-<a href="https://github.com/Hanghae99-Team-Splash/Team-Splash-Backend">바로가기</a>
-
-</br>
-</br>
-
----
-
-</br>
-
-## 🎞프로젝트 시연 영상🎞
 <a href="https://www.youtube.com/watch?v=7NqR7eWZ1Hw">시연 영상 보러가기<a/>
+  
+</br>
+
+## Period
+2021.12.13 - 2021.12.18
 
 </br>
+
+## Team Member
+
+`Front-end`
+* 정주혜
+* 이준명
+
+`Back-end`
+* 이현범
+* 임전혁
+
 </br>
 
-##TECH STAC
-
-### Front-End
+## Teck Stack
+`Front-end`
 
 <div>
   <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
@@ -62,10 +43,10 @@
   <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">  
   
 </div>
-</br>
+
 </br>
 
-# 주요 기능
+## 주요 기능
 
 **로그인/회원가입**
 
@@ -103,12 +84,6 @@
 - 로그인한 사용자의 게시물 확인 가능
   </br>
   </br>
-
-## 📅Entity 다이어그램
-
-<img width="723" alt="스크린샷 2021-12-16 오후 10 03 58" src="https://user-images.githubusercontent.com/57126167/146377185-47f86312-386d-45ff-bcf8-9c4199de3769.png">
-</br>
-
 </br>
 
 # Trouble Shooting
