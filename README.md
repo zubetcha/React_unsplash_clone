@@ -7,20 +7,13 @@
 
 </br>
 
-## 🎈 Description
-> 2021.12.13 - 2021.12.18
-> 
+## 🎈 Introduction
 > 고화질 이미지 공유 사이트인 Unsplash를 클론 코딩한 프로젝트입니다.
+> <a href="https://www.youtube.com/watch?v=7NqR7eWZ1Hw" target="_blank">프로젝트 시연 영상<a/>
 
-<a href="https://unsplash.com/">Unsplash 웹사이트</a>
-</br>
-<a href="https://www.youtube.com/watch?v=7NqR7eWZ1Hw">시연 영상 보러가기<a/>
-
-</br>
-
-## 👥 Team Member
-
-</br>
+* 개발 기간: 2021.12.13 - 2021.12.18
+* 협업 툴 : Git, Notion, Slack
+* 개발 인원 : 4명
 
 | Position | Member | Github |
 |:---:|:---:|:---:|
@@ -28,6 +21,7 @@
 | Front-end | 이준명 | [이준명 님의 Github](https://github.com/Leejunmyung) |
 | Back-end | 이현범 | [이현범 님의 Github](https://github.com/mylhb9) |
 | Back-end | 임전혁 | [임전혁 님의 Github](https://github.com/yarogono) |
+
 
 </br>
 
@@ -64,7 +58,7 @@
 
 ## 👩🏻‍💻 What I Did
 
-> 로그인 화면, 회원가입 화면, 이미지 업로드 화면, 이미지 디테일 화면, 마이페이지 화면 구현
+### 1. 로그인 화면, 회원가입 화면, 이미지 업로드 화면, 이미지 디테일 화면, 마이페이지 화면 구현
 </br>
 
 `Login Page`
