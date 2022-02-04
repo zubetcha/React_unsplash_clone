@@ -64,16 +64,36 @@
 
 ## 👩🏻‍💻 What I Did
 
-> 
+> 로그인 화면, 회원가입 화면, 이미지 업로드 화면, 이미지 디테일 화면, 마이페이지 화면 구현
+</br>
 
+`Login Page`
 
+![unsplash-login](https://user-images.githubusercontent.com/91620721/152493753-e3b39a6a-5e16-4805-8f2c-3fc570940ef0.png)
 
+</br>
 
+`Join Page`
 
+![unsplash-join](https://user-images.githubusercontent.com/91620721/152493979-232fc86d-cd6c-4e35-b18e-6241ec4ed246.png)
 
+</br>
 
+`Image Upload Page`
 
+![unplash-upload](https://user-images.githubusercontent.com/91620721/152494286-d6dd2cfd-1578-4d5c-88e7-3ff0e2486cc6.png)
 
+</br>
+
+`Image Detail Page`
+
+![unsplash-detail](https://user-images.githubusercontent.com/91620721/152494464-2d6b571f-9dbc-4b3c-a8ea-4e0d8aa48277.png)
+
+</br>
+
+`My Page`
+
+![unsplash-mypage](https://user-images.githubusercontent.com/91620721/152494560-fd83c5d7-17d5-4de7-b541-1de4a922e570.png)
 
 
 </br>
