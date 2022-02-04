@@ -4,21 +4,21 @@
 
 ![img](https://user-images.githubusercontent.com/91620721/152481773-846e84b3-82d2-47af-8f4f-d4df95f82838.gif)
 
+</br>
 
+## 🎈 프로젝트 소개
+
+2021.12.13 - 2021.12.18
+</br>
 고화질 이미지 공유 사이트인 Unsplash를 클론 코딩한 프로젝트입니다.
 </br>
 <a href="https://unsplash.com/">Unsplash 웹사이트</a>
 </br>
 <a href="https://www.youtube.com/watch?v=7NqR7eWZ1Hw">시연 영상 보러가기<a/>
-  
-</br>
-
-## Period
-2021.12.13 - 2021.12.18
 
 </br>
 
-## Team Member
+## 👩🏻‍💻 Team Member
 
 `Front-end`
 * 정주혜
@@ -30,7 +30,7 @@
 
 </br>
 
-## Teck Stack
+## 🪄 Teck Stack
 `Front-end`
 
 <div>
@@ -100,7 +100,7 @@
 
 </br>
 
-# Trouble Shooting
+## Trouble Shooting
 
 <details>
     <summary>
