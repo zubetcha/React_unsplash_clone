@@ -7,8 +7,6 @@
 </br>
 <a href="https://unsplash.com/">Unsplash 웹사이트</a>
 </br>
-<a href="http://unsplashed.s3-website.ap-northeast-2.amazonaws.com/">Unsplash 클론 코딩 웹사이트</a>
-</br>
 <a href="https://www.youtube.com/watch?v=7NqR7eWZ1Hw">시연 영상 보러가기<a/>
   
 </br>
