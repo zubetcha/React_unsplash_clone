@@ -12,6 +12,12 @@
 > <a href="https://www.youtube.com/watch?v=7NqR7eWZ1Hw" target="_blank">프로젝트 시연 영상<a/>
 
 * 개발 기간: 2021.12.13 - 2021.12.18
+* **주요 기능**
+  * 이메일 중복확인, 회원가입, 로그인
+  * 이미지 업로드 시 출력 비율 선택 기능, 카테고리 입력 기능
+  * 이미지 수정, 삭제 기능
+  * 이미지 카테고리 검색 기능
+  * 유저 활동 기록 (유저가 업로드한 이미지)
 * 협업 툴 : Git, Notion, Slack
 * 개발 인원 : 4명
 
@@ -21,7 +27,6 @@
 | Front-end | 이준명 | [이준명 님의 Github](https://github.com/Leejunmyung) |
 | Back-end | 이현범 | [이현범 님의 Github](https://github.com/mylhb9) |
 | Back-end | 임전혁 | [임전혁 님의 Github](https://github.com/yarogono) |
-
 
 </br>
 
