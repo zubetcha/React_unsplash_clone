@@ -6,27 +6,26 @@
 
 </br>
 
-## 🎈 프로젝트 소개
+## 🎈 Description
+> 2021.12.13 - 2021.12.18
+> 
+> 고화질 이미지 공유 사이트인 Unsplash를 클론 코딩한 프로젝트입니다.
 
-2021.12.13 - 2021.12.18
-</br>
-고화질 이미지 공유 사이트인 Unsplash를 클론 코딩한 프로젝트입니다.
-</br>
 <a href="https://unsplash.com/">Unsplash 웹사이트</a>
 </br>
 <a href="https://www.youtube.com/watch?v=7NqR7eWZ1Hw">시연 영상 보러가기<a/>
 
 </br>
 
-## 👩🏻‍💻 Team Member
+## 👥 Team Member
 
 `Front-end`
-* 정주혜
-* 이준명
+* [정주혜](https://github.com/zubetcha)
+* [이준명](https://github.com/Leejunmyung)
 
 `Back-end`
 * 이현범
-* 임전혁
+* [임전혁](https://github.com/yarogono)
 
 </br>
 
@@ -58,6 +57,22 @@
 <img height="28" src="https://img.shields.io/badge/Amazon_AWS-FF9900?style=flat&logo=amazonaws&logoColor=white"></a>&nbsp;
 <img height="28" src="https://img.shields.io/badge/Notion-000000?style=flat&logo=notion&logoColor=white"></a>&nbsp;
 </div>
+
+</br>
+
+## 👩🏻‍💻 What I Did
+
+> 
+
+
+
+
+
+
+
+
+
+
 
 </br>
 
