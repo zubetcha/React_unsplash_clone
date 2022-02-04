@@ -2,7 +2,8 @@
 
 # Unsplash 클론 코딩
 
-![img](https://user-images.githubusercontent.com/91620721/152481773-846e84b3-82d2-47af-8f4f-d4df95f82838.gif)
+<img src="https://user-images.githubusercontent.com/91620721/152481773-846e84b3-82d2-47af-8f4f-d4df95f82838.gif" width="1280" height="600"/>
+<!-- ![img](https://user-images.githubusercontent.com/91620721/152481773-846e84b3-82d2-47af-8f4f-d4df95f82838.gif) -->
 
 </br>
 
@@ -19,13 +20,14 @@
 
 ## 👥 Team Member
 
-`Front-end`
-* [정주혜](https://github.com/zubetcha)
-* [이준명](https://github.com/Leejunmyung)
+</br>
 
-`Back-end`
-* 이현범
-* [임전혁](https://github.com/yarogono)
+| Position | Member | Github |
+|:---:|:---:|:---:|
+| Front-end | 정주혜 | [정주혜 님의 Github](https://github.com/zubetcha) |
+| Front-end | 이준명 | [이준명 님의 Github](https://github.com/Leejunmyung) |
+| Back-end | 이현범 | [이현범 님의 Github](https://github.com/mylhb9) |
+| Back-end | 임전혁 | [임전혁 님의 Github](https://github.com/yarogono) |
 
 </br>
 
